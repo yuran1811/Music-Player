@@ -45,3 +45,16 @@ body::-webkit-scrollbar-thumb {
 	background-color: rgb(255, 205, 214);
 	/* height: calc(100% - 90px); */
 }
+
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+	text-decoration: none;
+	color: var(--color);
+}
+
+ul {
+	list-style-type: none;
+}

@@ -27,3 +27,20 @@
 	align-items: center;
 	justify-content: space-around;
 }
+
+.category-sidebar .menu {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.category-sidebar .menu-item {
+	font-size: 1.2rem;
+
+	height: 38px;
+	width: 80%;
+}
