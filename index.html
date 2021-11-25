@@ -26,38 +26,35 @@
 		/>
 
 		<!-- External CSS -->
-		<link rel="stylesheet" href="./src/css/Grid_Sys.css" />
+		<!-- <link rel="stylesheet" href="./src/css/Grid_Sys.css" /> -->
 		<link rel="stylesheet" href="./src/css/style.css" />
 		<link rel="stylesheet" href="./src/css/theme.css" />
-		<link rel="stylesheet" href="./src/css/category_sidebar.css" />
-		<link rel="stylesheet" href="./src/css/player_control.css" />
 		<link rel="stylesheet" href="./src/css/main_content.css" />
+		<link rel="stylesheet" href="./src/css/player_control.css" />
+		<link rel="stylesheet" href="./src/css/category_sidebar.css" />
+		<link rel="stylesheet" href="./src/css/playlist-sidebar.css" />
+		<link rel="stylesheet" href="./src/css/responsive.css" />
 		<title>Music Player</title>
 	</head>
 	<body class="green-theme">
-		<div class="main-container grid-sys grid-wide">
-			<div class="row">
-				<div class="category-sidebar col h-3 m-3 l-0">
-					<div class="title">
-						<img class="logo" src="./src/img/Logo.png" alt="Logo" />
-						My Player
-					</div>
-					<div class="widge"></div>
-					<div class="music-options"></div>
-					<div class="create-new-playlist"></div>
+		<div class="main-container">
+			<div class="category-sidebar">
+				<div class="title">
+					<img class="logo" src="./src/img/Logo.png" alt="Logo" />
+					<div class="app-name">My Player</div>
 				</div>
-				<div class="playlist-sidebar col h-3 m-3 l-0">
-					<div class="top-bar"></div>
-					<div class="now-play"></div>
-					<div class="next-play"></div>
-				</div>
-
-				<div class="top-bar col h-6 m-6 l-12">
+				<div class="all-folder"></div>
+				<div class="music-options"></div>
+				<div class="create-new-playlist"></div>
+			</div>
+			<div class="main-content">
+				<div class="top-bar">
 					<div class="nav-bar"></div>
 					<div class="search-bar"></div>
 					<div class="tool-bar"></div>
 				</div>
-				<div class="main-content col h-6 m-6 l-12">
+
+				<div class="content">
 					<div class="banner"></div>
 					<div class="nav-bar">
 						<ul class="nav-links">
@@ -90,6 +87,11 @@
 					</section>
 				</div>
 			</div>
+			<div class="playlist-sidebar">
+				<div class="top-bar"></div>
+				<div class="now-play"></div>
+				<div class="next-play"></div>
+			</div>
 		</div>
 
 		<div class="player-control">
@@ -101,7 +103,7 @@
 				</div>
 				<div class="media-option">
 					<i class="fas fa-heart ico ico--click"></i>
-					<i class="fas fa-ellipsis-h ico"></i>
+					<i class="fas fa-ellipsis-h ico ico--click"></i>
 				</div>
 			</div>
 			<div class="controller">
@@ -119,11 +121,11 @@
 				</div>
 			</div>
 			<div class="player-tools">
-				<i class="fas fa-microphone ico"></i>
-				<i class="fas fa-volume-up ico"></i>
-				<i class="fas fa-volume-mute ico ico--hide"></i>
+				<i class="fas fa-microphone ico ico--click"></i>
+				<i class="fas fa-volume-up ico ico--click"></i>
+				<i class="fas fa-volume-mute ico ico--click ico--hide"></i>
 				<div class="vertical-line"></div>
-				<i class="fas fa-stream ico"></i>
+				<i class="fas fa-stream ico ico--click"></i>
 			</div>
 		</div>
 		<!-- External JS -->

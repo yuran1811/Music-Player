@@ -5,5 +5,25 @@
 	align-items: center;
 	flex-direction: column;
 
+	width: 240px;
 	height: calc(100% - 90px);
+
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	transition: all 0.5s ease;
+}
+
+.category-sidebar .title {
+	color: var(--color);
+	font-size: 1.3rem;
+	font-weight: bold;
+
+	width: 70%;
+	height: 70px;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
 }

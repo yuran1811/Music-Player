@@ -37,3 +37,11 @@ body::-webkit-scrollbar-thumb {
 .ico--hide {
 	display: none;
 }
+
+.main-container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(255, 205, 214);
+	/* height: calc(100% - 90px); */
+}

@@ -1,3 +1,16 @@
 .playlist-sidebar {
-	color: pink;
+	background-color: rgb(158, 101, 111);
+
+	width: 280px;
+	height: calc(100% - 90px);
+
+	position: fixed;
+	top: 0;
+	right: 0;
+
+	transition: all 0.5s ease;
+}
+
+.playlist-sidebar.hide {
+	width: 0;
 }
