@@ -1,0 +1,6 @@
+.main-content {
+	background-color: red;
+	height: inherit;
+
+	z-index: 10;
+}
