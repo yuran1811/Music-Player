@@ -3,10 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link
-			rel="icon"
-			href="https://cdn.pixabay.com/photo/2012/04/18/00/20/globe-36242_640.png"
-		/>
+		<link rel="icon" href="./src/img/Logo.png" />
 
 		<!-- GG Font -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -32,60 +29,69 @@
 		<link rel="stylesheet" href="./src/css/Grid_Sys.css" />
 		<link rel="stylesheet" href="./src/css/style.css" />
 		<link rel="stylesheet" href="./src/css/theme.css" />
+		<link rel="stylesheet" href="./src/css/category_sidebar.css" />
 		<link rel="stylesheet" href="./src/css/player_control.css" />
+		<link rel="stylesheet" href="./src/css/main_content.css" />
 		<title>Music Player</title>
 	</head>
 	<body class="green-theme">
-		<div class="main-container">
-			<div class="top-bar">
-				<div class="nav-bar"></div>
-				<div class="search-bar"></div>
-				<div class="tool-bar"></div>
-			</div>
-			<div class="category-sidebar">
-				<div class="title">My Player</div>
-				<div class="widge"></div>
-				<div class="music-options"></div>
-				<div class="create-new-playlist"></div>
-			</div>
-			<div class="playlist-sidebar">
-				<div class="top-bar"></div>
-				<div class="now-play"></div>
-				<div class="next-play"></div>
-			</div>
-			<div class="main-content">
-				<div class="banner"></div>
-				<div class="nav-bar">
-					<ul class="nav-links">
-						<li class="link"><a href="#">Item 1</a></li>
-						<li class="link"><a href="#">Item 2</a></li>
-						<li class="link"><a href="#">Item 3</a></li>
-						<li class="link"><a href="#">Item 4</a></li>
-						<li class="link"><a href="#">Item 5</a></li>
-					</ul>
+		<div class="main-container grid-sys grid-wide">
+			<div class="row">
+				<div class="category-sidebar col h-3 m-3 l-0">
+					<div class="title">
+						<img class="logo" src="./src/img/Logo.png" alt="Logo" />
+						My Player
+					</div>
+					<div class="widge"></div>
+					<div class="music-options"></div>
+					<div class="create-new-playlist"></div>
 				</div>
-				<section class="item item1">
-					<div class="title"></div>
-					<div class="content"></div>
-				</section>
-				<section class="item item2">
-					<div class="title"></div>
-					<div class="content"></div>
-				</section>
-				<section class="item item3">
-					<div class="title"></div>
-					<div class="content"></div>
-				</section>
-				<section class="item item4">
-					<div class="title"></div>
-					<div class="content"></div>
-				</section>
-				<section class="item item5">
-					<div class="title"></div>
-					<div class="content"></div>
-				</section>
+				<div class="playlist-sidebar col h-3 m-3 l-0">
+					<div class="top-bar"></div>
+					<div class="now-play"></div>
+					<div class="next-play"></div>
+				</div>
+
+				<div class="top-bar col h-6 m-6 l-12">
+					<div class="nav-bar"></div>
+					<div class="search-bar"></div>
+					<div class="tool-bar"></div>
+				</div>
+				<div class="main-content col h-6 m-6 l-12">
+					<div class="banner"></div>
+					<div class="nav-bar">
+						<ul class="nav-links">
+							<li class="link"><a href="#">Item 1</a></li>
+							<li class="link"><a href="#">Item 2</a></li>
+							<li class="link"><a href="#">Item 3</a></li>
+							<li class="link"><a href="#">Item 4</a></li>
+							<li class="link"><a href="#">Item 5</a></li>
+						</ul>
+					</div>
+					<section class="item item1">
+						<div class="title"></div>
+						<div class="content"></div>
+					</section>
+					<section class="item item2">
+						<div class="title"></div>
+						<div class="content"></div>
+					</section>
+					<section class="item item3">
+						<div class="title"></div>
+						<div class="content"></div>
+					</section>
+					<section class="item item4">
+						<div class="title"></div>
+						<div class="content"></div>
+					</section>
+					<section class="item item5">
+						<div class="title"></div>
+						<div class="content"></div>
+					</section>
+				</div>
 			</div>
 		</div>
+
 		<div class="player-control">
 			<div class="song-info">
 				<div class="media-img"></div>
@@ -120,7 +126,6 @@
 				<i class="fas fa-stream ico"></i>
 			</div>
 		</div>
-
 		<!-- External JS -->
 		<script src="./src/js/script.js"></script>
 	</body>
