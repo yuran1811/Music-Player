@@ -5,33 +5,33 @@ const musicPlayer = {
 	songs: [
 		{
 			name: 'Nevada',
-			singer: 'Vicetone',
-			src: './src/music/Nevada.mp3',
-			img: './src/img/Nevada.png',
+			artist: 'Vicetone',
+			audioSrc: './src/music/Nevada.mp3',
+			imgSrc: './src/img/Nevada.png',
 		},
 		{
 			name: 'Summer Time',
-			singer: 'K-391',
-			src: './src/music/SummerTime.mp3',
-			img: './src/img/SummerTime.png',
+			artist: 'K-391',
+			audioSrc: './src/music/SummerTime.mp3',
+			imgSrc: './src/img/SummerTime.png',
 		},
 		{
 			name: 'Shape of You',
-			singer: 'Ed Sheeran',
-			src: './src/music/ShapeOfYou.mp3',
-			img: './src/img/EdSheeran.png',
+			artist: 'Ed Sheeran',
+			audioSrc: './src/music/ShapeOfYou.mp3',
+			imgSrc: './src/img/EdSheeran.png',
 		},
 		{
 			name: 'Cheri Cheri Lady',
-			singer: 'Modern Talking',
-			src: './src/music/CheriCheriLady.mp3',
-			img: './src/img/ModernTalking.png',
+			artist: 'Modern Talking',
+			audioSrc: './src/music/CheriCheriLady.mp3',
+			imgSrc: './src/img/ModernTalking.png',
 		},
 		{
 			name: 'Savage Love',
-			singer: 'Jason Derulo',
-			src: './src/music/SavageLove.mp3',
-			img: './src/img/SavageLove.png',
+			artist: 'Jason Derulo',
+			audioSrc: './src/music/SavageLove.mp3',
+			imgSrc: './src/img/SavageLove.png',
 		},
 	],
 
@@ -39,11 +39,11 @@ const musicPlayer = {
 		const htmls = this.songs.map((song) => {
 			return `
 				<div class="song">
-					<div class="thumb" style="background: url('${song.img}')"></div>
+					<div class="thumb" style="background: url('${song.imgSrc}')"></div>
 
 					<div class="body">
 						<h3 class="title">Name: ${song.name}</h3>
-						<p class="singer">Singer: ${song.singer}</p>
+						<p class="artist">Singer: ${song.artist}</p>
 					</div>
 
 					<div class="option"></div>
@@ -71,7 +71,7 @@ const musicPlayer = {
 	},
 
 	start() {
-		this.handleEvents();
+		// this.handleEvents();
 		this.render();
 	},
 };
