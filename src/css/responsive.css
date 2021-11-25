@@ -1,0 +1,17 @@
+@media screen and (max-width: 1024px) {
+	.category-sidebar {
+		width: 70px;
+	}
+	.category-sidebar .title > div {
+		display: none;
+	}
+
+	.main-content {
+		width: calc(100% - 70px);
+		left: 70px;
+	}
+
+	.playlist-sidebar {
+		width: 0;
+	}
+}
