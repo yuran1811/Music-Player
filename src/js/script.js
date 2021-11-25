@@ -72,7 +72,7 @@ const musicPlayer = {
 
 	start() {
 		// this.handleEvents();
-		this.render();
+		// this.render();
 	},
 };
 
