@@ -1,4 +1,6 @@
 .green-theme {
 	--background: rgb(23, 155, 116);
 	--color: white;
+
+	--background-menu-item-active: rgb(146, 221, 198);
 }
