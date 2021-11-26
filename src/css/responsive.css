@@ -7,8 +7,8 @@
 	}
 
 	.main-content {
-		width: calc(100% - 70px);
 		left: 70px;
+		width: calc(100% - 70px);
 	}
 
 	.playlist-sidebar {
