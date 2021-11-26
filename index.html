@@ -31,42 +31,44 @@
 		<link rel="stylesheet" href="./src/css/category_sidebar.css" />
 		<link rel="stylesheet" href="./src/css/playlist-sidebar.css" />
 		<link rel="stylesheet" href="./src/css/responsive.css" />
-		<title>Music Player</title>
+		<title>YR Player</title>
 	</head>
 	<body class="green-theme">
 		<div class="main-container">
 			<div class="category-sidebar">
 				<div class="title">
 					<img class="logo" src="./src/img/Logo.png" alt="Logo" />
-					<div class="app-name">My Player</div>
+					<div class="app-name">
+						<a href="#">YR Player</a>
+					</div>
 				</div>
 				<nav class="menu">
-					<ul class="menu-list">
-						<li class="menu-item active">
+					<ul class="list menu-list">
+						<li class="item menu-item active">
 							<a href="#">
 								<i class="fas fa-folder"></i>
 								<span> Personal</span>
 							</a>
 						</li>
-						<li class="menu-item">
+						<li class="item menu-item">
 							<a href="#">
 								<i class="fas fa-folder"></i>
 								<span> Discover</span>
 							</a>
 						</li>
-						<li class="menu-item">
+						<li class="item menu-item">
 							<a href="#">
 								<i class="fas fa-folder"></i>
 								<span> Ranking</span>
 							</a>
 						</li>
-						<li class="menu-item">
+						<li class="item menu-item">
 							<a href="#">
 								<i class="fas fa-folder"></i>
 								<span> Radio</span>
 							</a>
 						</li>
-						<li class="menu-item">
+						<li class="item menu-item">
 							<a href="#">
 								<i class="fas fa-folder"></i>
 								<span> Following</span>
@@ -75,8 +77,86 @@
 					</ul>
 				</nav>
 				<div class="horizone-line"></div>
-				<div class="music-options"></div>
-				<div class="create-new-playlist"></div>
+				<div class="music-option">
+					<div class="option-scroll-bar">
+						<ul class="list option-list">
+							<li class="item option-item">
+								<a href="#">
+									<i class="fas fa-folder"></i>
+									<span> New Release</span>
+								</a>
+							</li>
+							<li class="item option-item">
+								<a href="#">
+									<i class="fas fa-folder"></i>
+									<span> Kind</span>
+								</a>
+							</li>
+							<li class="item option-item">
+								<a href="#">
+									<i class="fas fa-folder"></i>
+									<span> Top 100</span>
+								</a>
+							</li>
+							<li class="item option-item">
+								<a href="#">
+									<i class="fas fa-folder"></i>
+									<span> MV</span>
+								</a>
+							</li>
+						</ul>
+						<div class="ad-banner">
+							Disable Ads and Listen Premium Songs
+							<a class="ad-link" href="#">Go Premium</a>
+						</div>
+						<ul class="list library-list">
+							<li class="item library-item">
+								<a href="#">
+									<i class="fas fa-folder"></i>
+									<span> Songs</span>
+								</a>
+							</li>
+							<li class="item library-item">
+								<a href="#">
+									<i class="fas fa-folder"></i>
+									<span> Playlist</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div
+						class="track-horizontal"
+						style="
+							position: absolute;
+							height: 6px;
+							transition: opacity 200ms ease 0s;
+							opacity: 0;
+						"
+					>
+						<div
+							style="
+								position: relative;
+								display: block;
+								height: 100%;
+								cursor: pointer;
+								border-radius: inherit;
+								background-color: rgba(0, 0, 0, 0.2);
+								width: 0px;
+							"
+						></div>
+					</div>
+				</div>
+				<div class="create-new-playlist">
+					<div class="new-playlist-btn">
+						<i class="fas fa-plus" style="margin-right: 10px"></i>
+						<span> New Playlist </span>
+					</div>
+				</div>
+			</div>
+			<div class="header">
+				<div class="nav-btn"></div>
+				<div class="search-bar"></div>
+				<div class="tool-bar"></div>
 			</div>
 			<div class="main-content">
 				<div class="top-bar">
