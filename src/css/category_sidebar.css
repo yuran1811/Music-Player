@@ -5,12 +5,12 @@
 	align-items: center;
 	flex-direction: column;
 
-	width: 240px;
-	height: calc(100% - 90px);
-
 	position: fixed;
 	top: 0;
 	left: 0;
+
+	width: 240px;
+	height: calc(100% - 90px);
 
 	transition: all 0.5s ease;
 }
@@ -20,12 +20,12 @@
 	font-size: 1.3rem;
 	font-weight: bold;
 
-	width: 70%;
-	height: 70px;
-
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
+
+	width: 70%;
+	height: 70px;
 }
 
 .category-sidebar .menu {
@@ -38,9 +38,17 @@
 	margin-bottom: 15px;
 }
 
+.category-sidebar .menu-list {
+	font-size: 1.2rem;
+
+	width: 100%;
+	margin: 0;
+}
+
 .category-sidebar .menu-item {
 	font-size: 1.2rem;
 
-	height: 38px;
 	width: 80%;
+	height: 38px;
+	padding: 7px 25px;
 }
