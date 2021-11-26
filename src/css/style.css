@@ -1,6 +1,18 @@
 :root {
-	--background: white;
-	--color: black;
+	--bg1: rgb(69, 78, 75);
+	--bg2: rgb(99, 116, 111);
+	--bg-sidebar: rgb(71, 80, 77);
+	--bg-link-active: rgb(153, 161, 158);
+	--bg-alpha: rgba(63, 73, 70, 0.8);
+	--bg-chart: rgba(60, 75, 70, 0.9);
+	--bg-blur: rgba(73, 90, 84, 0.902);
+	--bg-gradient: linear-gradient(
+		180deg,
+		rgb(255, 255, 255),
+		rgb(212, 212, 212)
+	);
+
+	--text-color: rgb(0, 0, 0);
 }
 
 * {
@@ -8,11 +20,10 @@
 	font-family: 'Outfit', sans-serif;
 }
 
-body::-webkit-scrollbar {
-	width: 0.5rem;
+::-webkit-scrollbar {
+	width: 5px;
 }
-body::-webkit-scrollbar-thumb {
-	outline: 0.1px solid darkgrey;
+::-webkit-scrollbar-thumb {
 	background-color: darkgrey;
 	border-radius: 5px;
 }
@@ -23,7 +34,7 @@ a:hover,
 a:active,
 a:focus {
 	text-decoration: none;
-	color: var(--color);
+	color: var(--text-color);
 }
 
 .logo {
@@ -32,7 +43,7 @@ a:focus {
 }
 
 .ico {
-	color: var(--color);
+	color: var(--text-color);
 	padding: 16px;
 }
 .ico--click {

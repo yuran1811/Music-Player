@@ -1,6 +1,12 @@
 .green-theme {
-	--background: rgb(23, 155, 116);
-	--color: white;
+	--bg1: rgb(18, 69, 52);
+	--bg2: rgb(15, 100, 76);
+	--bg-sidebar: rgb(36, 79, 63);
+	--bg-link-active: rgba(54, 134, 112, 0.664);
+	--bg-alpha: rgba(18, 69, 52, 0.8);
+	--bg-chart: rgba(18, 69, 52, 0.9);
+	--bg-blur: rgba(18, 69, 52, 0.9019607843137255);
+	--bg-gradient: linear-gradient(180deg, rgb(19, 117, 85), rgb(21, 83, 63));
 
-	--background-menu-item-active: rgb(146, 221, 198);
+	--text-color: white;
 }
