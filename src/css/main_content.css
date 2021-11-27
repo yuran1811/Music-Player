@@ -234,8 +234,59 @@
 .main-content .content section .title {
 	flex: 1;
 	height: 30px;
-	font-size: 1.5rem;
+	font-size: 1.3rem;
 	padding-bottom: 10px;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.main-content .content section .title-left i {
+	padding: 0 5px;
+}
+
+.main-content .content section .title-left {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.main-content .content section .upload-song {
+	margin-right: 10px;
+}
+
+.main-content .content section .upload-song,
+.main-content .content section .play-all {
+	cursor: pointer;
+	font-size: 1rem;
+
+	padding: 5px 10px;
+	height: 30px;
+
+	border-radius: 20px;
+	background-color: var(--bg-link-active);
+}
+
+.main-content .content section .img-preview {
+	position: relative;
+	margin-top: 15px;
+	width: 230px;
+	height: 230px;
+}
+
+.main-content .content section img {
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	width: 230px;
+	height: 230px;
+	object-fit: cover;
+	border-radius: 10px;
+	opacity: 0;
+
+	transition: all 0.5s ease;
 }
 
 .main-content .to-top {
