@@ -1,6 +1,15 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
+(() => {
+	const main = $('.main-content');
+	const toTop = $('.to-top');
+	main.onscroll = () => {
+		if (main.scrollTop > 100) toTop.style.display = 'block';
+		else toTop.style.display = 'none';
+	};
+})();
+
 const musicPlayer = {
 	songs: [
 		{
