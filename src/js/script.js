@@ -4,7 +4,13 @@ const $$ = document.querySelectorAll.bind(document);
 (() => {
 	const main = $('.main-content');
 	const toTop = $('.to-top');
+
+	main.classList.add('not-scroll');
 	main.onscroll = () => {
+		main.classList.remove('not-scroll');
+		setTimeout(() => {
+			main.classList.add('not-scroll');
+		}, 1000);
 		if (main.scrollTop > 100) toTop.style.display = 'block';
 		else toTop.style.display = 'none';
 	};
