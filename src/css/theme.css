@@ -1,6 +1,7 @@
 .green-theme {
 	--bg1: rgb(18, 69, 52);
 	--bg2: rgb(15, 100, 76);
+	--bg-light: rgb(176, 250, 228);
 	--bg-sidebar: rgb(36, 79, 63);
 	--bg-link-active: rgba(54, 134, 112, 0.664);
 	--bg-alpha: rgba(18, 69, 52, 0.8);

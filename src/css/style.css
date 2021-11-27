@@ -1,6 +1,7 @@
 :root {
 	--bg1: rgb(69, 78, 75);
 	--bg2: rgb(99, 116, 111);
+	--bg-light: rgb(248, 248, 248);
 	--bg-sidebar: rgb(71, 80, 77);
 	--bg-link-active: rgb(153, 161, 158);
 	--bg-alpha: rgba(63, 73, 70, 0.8);
@@ -25,9 +26,8 @@
 	transition: all 0.5s ease;
 }
 ::-webkit-scrollbar-thumb {
-	background-color: darkgrey;
+	background-color: var(--bg-light);
 	border-radius: 5px;
-
 	transition: all 0.5s ease;
 }
 

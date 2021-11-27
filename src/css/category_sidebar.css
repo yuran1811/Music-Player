@@ -16,7 +16,8 @@
 	transition: all 0.5s ease;
 }
 
-.category-sidebar .title {
+.category-sidebar .title,
+.category-sidebar .title a {
 	color: var(--text-color);
 	font-size: 1.4rem;
 	font-weight: bold;
