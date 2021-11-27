@@ -28,6 +28,10 @@
 	border-radius: 5px;
 }
 
+body {
+	overflow: hidden;
+}
+
 a:link,
 a:visited,
 a:hover,
@@ -46,6 +50,7 @@ a:focus {
 	color: var(--text-color);
 	padding: 16px;
 }
+
 .ico--click {
 	cursor: pointer;
 }
