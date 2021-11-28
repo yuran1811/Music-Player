@@ -10,6 +10,21 @@ const $$ = document.querySelectorAll.bind(document);
 	};
 })();
 
+(() => {
+	const menuList = $('.category-sidebar');
+	menuList.querySelectorAll('.item a').forEach((item) => {
+		item.addEventListener('click', (e) => {
+			const lastActive = menuList.querySelector('.active');
+			if (lastActive)
+				lastActive.className = lastActive.className.replace(
+					' active',
+					''
+				);
+			e.path[1].className += ' active';
+		});
+	});
+})();
+
 const musicPlayer = {
 	songs: [
 		{
@@ -98,5 +113,4 @@ const musicPlayer = {
 		})();
 	},
 };
-
 musicPlayer.start();

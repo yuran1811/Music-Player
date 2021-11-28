@@ -1,3 +1,8 @@
+.main-content:hover::-webkit-scrollbar-thumb,
+.main-content .content .song-list:hover::-webkit-scrollbar-thumb {
+	background-color: var(--bg-lv2);
+}
+
 .main-content {
 	background-color: var(--bg-lv8);
 	overflow: hidden auto;
