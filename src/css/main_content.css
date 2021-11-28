@@ -1,5 +1,5 @@
 .main-content {
-	background-color: var(--bg-blur);
+	background-color: var(--bg-lv8);
 	overflow: hidden auto;
 
 	position: relative;
@@ -53,7 +53,7 @@
 }
 
 .main-content .search-bar input {
-	background-color: var(--bg-blur);
+	background-color: var(--bg-lv8);
 	color: var(--bg-lv0);
 
 	width: 90%;
@@ -80,7 +80,7 @@
 }
 
 .main-content .search-bar .suggest-list {
-	background-color: var(--bg1);
+	background-color: var(--bg-lv9);
 	color: var(--bg-lv0);
 	font-size: 1rem;
 
@@ -102,7 +102,7 @@
 }
 
 .main-content .search-bar .suggest-list .content {
-	background-color: var(--bg1);
+	background-color: var(--bg-lv9);
 	height: 30vh;
 	overflow-y: auto;
 }
@@ -189,7 +189,7 @@
 	margin-bottom: 50px;
 
 	border-radius: 25px;
-	background-color: rgb(27, 82, 63);
+	background-color: var(--bg-lv7);
 }
 .main-content .content .nav-bar.ontop {
 	position: fixed;
@@ -206,7 +206,7 @@
 }
 
 .main-content .content .nav-links .liactive {
-	background-color: rgba(87, 148, 128, 0.644);
+	background-color: var(--bg-lv5);
 }
 
 .main-content .content .nav-links .link {
@@ -219,7 +219,7 @@
 }
 
 .main-content .content section {
-	background-color: rgba(54, 102, 86, 0.658);
+	background-color: var(--bg-lv6);
 	border-radius: 17px;
 
 	display: flex;
@@ -265,7 +265,7 @@
 	height: 30px;
 
 	border-radius: 20px;
-	background-color: var(--bg-link-active);
+	background-color: var(--bg-lv9);
 }
 
 .main-content .content section .img-preview {
@@ -324,7 +324,7 @@
 }
 
 .main-content .content .song-item:hover {
-	background-color: var(--bg-link-active);
+	background-color: var(--bg-lv8);
 }
 
 .main-content .content .song-item .left {
@@ -384,7 +384,7 @@
 	position: absolute;
 	bottom: 0;
 
-	background-color: var(--bg-light);
+	background-color: var(--bg-lv1);
 	width: 31px;
 	height: 5px;
 	transition: all 0.5s ease;

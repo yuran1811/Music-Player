@@ -1,5 +1,5 @@
 .playlist-sidebar {
-	background-color: rgb(158, 101, 111);
+	background-color: var(--bg-lv7);
 
 	position: fixed;
 	top: 0;

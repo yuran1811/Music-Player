@@ -1,6 +1,6 @@
 .player-control {
-	border-top: 1px solid var(--bg-link-active);
-	background-color: var(--bg1);
+	border-top: 1px solid var(--bg-lv6);
+	background-color: var(--bg-lv9);
 	position: fixed;
 	bottom: 0;
 
@@ -25,7 +25,7 @@
 }
 
 .player-control .song-info .media-img {
-	background-color: rgb(114, 206, 178);
+	background-color: var(--bg-lv2);
 	border-radius: 30px;
 
 	width: 64px;
@@ -38,7 +38,7 @@
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	color: var(--text-color);
+	color: var(--bg-lv0);
 }
 
 .player-control .song-info .media-content .title {
@@ -52,7 +52,7 @@
 }
 
 .player-control .controller {
-	background-color: var(--bg1);
+	background-color: var(--bg-lv9);
 	max-width: 40vw;
 	height: 75px;
 	flex: 1;
@@ -73,7 +73,7 @@
 }
 
 .player-control .controller .part2 {
-	color: var(--text-color);
+	color: var(--bg-lv0);
 
 	display: flex;
 	align-items: center;
@@ -85,7 +85,7 @@
 }
 
 .player-control .controller .part2 .duration {
-	background-color: var(--text-color);
+	background-color: var(--bg-lv0);
 
 	height: 3px;
 	width: 80%;
@@ -101,7 +101,7 @@
 }
 
 .vertical-line {
-	background-color: var(--text-color);
+	background-color: var(--bg-lv0);
 	width: 3px;
 	height: 50%;
 	margin: 0 20px;
