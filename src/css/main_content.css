@@ -1,5 +1,6 @@
 .main-content:hover::-webkit-scrollbar-thumb,
-.main-content .content .song-list:hover::-webkit-scrollbar-thumb {
+.main-content .content .song-list:hover::-webkit-scrollbar-thumb,
+#summary-playlist .playlist-slider:hover::-webkit-scrollbar-thumb {
 	background-color: var(--bg-lv2);
 }
 
@@ -236,7 +237,11 @@
 	margin-bottom: 50px;
 }
 
-.main-content .content section .title {
+.main-content .content section .section-content {
+	margin-top: 15px;
+}
+
+.main-content .content section > .title {
 	flex: 1;
 	height: 30px;
 	font-size: 1.4rem;
@@ -275,7 +280,6 @@
 
 .main-content .content section .img-preview {
 	position: relative;
-	margin-top: 15px;
 	width: 230px;
 	height: 230px;
 }
@@ -310,7 +314,6 @@
 
 	height: 250px;
 	padding: 0 30px;
-	margin-top: 15px;
 	overflow: hidden auto;
 }
 
@@ -363,6 +366,81 @@
 .main-content .content .song-item .right {
 	display: flex;
 	align-items: center;
+}
+
+#summary-playlist .new-playlist {
+	background: linear-gradient(33deg, #5a1eae -7%, #ce267a 117%);
+	border-radius: 8px;
+	position: relative;
+
+	width: 180px;
+	height: 230px;
+	margin-right: 25px;
+
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#summary-playlist .new-playlist .create-btn {
+	position: relative;
+	cursor: pointer;
+	width: 50px;
+	height: 50px;
+}
+#summary-playlist .new-playlist .create-btn::after,
+#summary-playlist .new-playlist .create-btn::before {
+	content: '';
+	background-color: var(--bg-lv0);
+	position: absolute;
+	top: 50%;
+
+	height: 3px;
+	width: 50px;
+	transform: translateY(-50%);
+}
+#summary-playlist .new-playlist .create-btn::before {
+	transform: rotateZ(90deg) translateX(-3px);
+	bottom: 2px;
+}
+
+#summary-playlist .new-playlist .title {
+	text-align: center;
+	padding: 10px;
+	font-size: 1.2rem;
+}
+
+#summary-playlist .playlist-slider {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+
+	width: calc(100% - 230px);
+
+	position: relative;
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+#summary-playlist .playlist-item {
+	width: 150px;
+	height: 200px;
+	margin: 0 15px;
+}
+
+#summary-playlist .playlist-item .playlist-option {
+	background-size: 100% 100%;
+	border-radius: 10px;
+	width: 130px;
+	height: 160px;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+#summary-playlist .playlist-item .playlist-option:hover {
+	background-size: 120% 120%;
 }
 
 .main-content .to-top {

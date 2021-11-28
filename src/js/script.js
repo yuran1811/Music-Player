@@ -26,6 +26,34 @@ const $$ = document.querySelectorAll.bind(document);
 })();
 
 const musicPlayer = {
+	playlists: [
+		{
+			name: 'US-UK',
+			owner: 'Yuran',
+			imgSrc: './src/img/playlist/US-UK.jpg',
+		},
+		{
+			name: 'EDM',
+			owner: 'Yuran',
+			imgSrc: './src/img/playlist/EDM.jpg',
+		},
+		{
+			name: '80s',
+			owner: 'Yuran',
+			imgSrc: './src/img/playlist/80s.jpg',
+		},
+		{
+			name: 'Pop',
+			owner: 'Yuran',
+			imgSrc: './src/img/playlist/Pop.jpg',
+		},
+		{
+			name: 'Energetic',
+			owner: 'Yuran',
+			imgSrc: './src/img/playlist/Energetic.jpg',
+		},
+	],
+
 	songs: [
 		{
 			name: 'Nevada',
@@ -69,6 +97,9 @@ const musicPlayer = {
 			.map((song) => {
 				return `
 				<li class="song-item">
+					<audio class="hide">
+						<source src="${song.audioSrc}" type="audio/mpeg">
+					</audio>
 					<div class="left">
 						<img src="${song.imgSrc}" alt="${song.name}" />
 						<div class="left-content">
@@ -80,7 +111,7 @@ const musicPlayer = {
 						<span>
 							<i class="fas fa-heart ico ico--click"></i>
 						</span>
-						<span>${song.length}</span>
+						<span class="duration">3:00</span>
 					</div>
 				</li>
 			`;
@@ -94,6 +125,26 @@ const musicPlayer = {
 					<img src="${song.imgSrc}" alt="${song.name}" />
 				</a>
 			`;
+			})
+			.join('');
+
+		$('section .playlist-slider').innerHTML = this.playlists
+			.map((playlist) => {
+				return `
+					<div class="playlist-item">
+						<div class="playlist-option" style="
+							background: url('${playlist.imgSrc}');
+						">
+							<i class="fas fa-times"></i>
+							<i class="fas fa-play"></i>
+							<i
+								class="fas fa-ellipsis-h"
+							></i>
+						</div>
+						<div class="playlist-title">${playlist.name}</div>
+						<div class="playlist-owner">${playlist.owner}</div>
+					</div>
+				`;
 			})
 			.join('');
 	},
