@@ -1,19 +1,14 @@
 :root {
-	--bg1: rgb(69, 78, 75);
-	--bg2: rgb(99, 116, 111);
-	--bg-light: rgb(248, 248, 248);
-	--bg-sidebar: rgb(71, 80, 77);
-	--bg-link-active: rgb(153, 161, 158);
-	--bg-alpha: rgba(63, 73, 70, 0.8);
-	--bg-chart: rgba(60, 75, 70, 0.9);
-	--bg-blur: rgba(73, 90, 84, 0.902);
-	--bg-gradient: linear-gradient(
-		180deg,
-		rgb(255, 255, 255),
-		rgb(212, 212, 212)
-	);
-
-	--text-color: rgb(0, 0, 0);
+	--bg-lv0: #000000;
+	--bg-lv1: #f4f4f4;
+	--bg-lv2: #f2f2f2;
+	--bg-lv3: #e3e3e3;
+	--bg-lv4: #d4d4d4;
+	--bg-lv5: #c5c5c5;
+	--bg-lv6: #b6b6b6;
+	--bg-lv7: #a7a7a7;
+	--bg-lv8: #989898;
+	--bg-lv9: #898989;
 }
 
 * {
@@ -26,15 +21,15 @@
 	transition: all 0.5s ease;
 }
 ::-webkit-scrollbar-thumb {
-	background-color: var(--bg-light);
+	background-color: var(--bg-lv6);
 	border-radius: 5px;
 	transition: all 0.5s ease;
 }
 
 body {
 	overflow: hidden;
-	color: var(--text-color);
-	background-color: var(--bg-blur);
+	color: var(--bg-lv0);
+	background-color: var(--bg-lv9);
 }
 
 a:link,
@@ -43,7 +38,7 @@ a:hover,
 a:active,
 a:focus {
 	text-decoration: none;
-	color: var(--text-color);
+	color: var(--bg-lv0);
 }
 
 .logo {
@@ -52,10 +47,9 @@ a:focus {
 }
 
 .ico {
-	color: var(--text-color);
+	color: var(--bg-lv0);
 	padding: 16px;
 }
-
 .ico--click {
 	cursor: pointer;
 }

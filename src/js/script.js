@@ -2,18 +2,6 @@ const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
 (() => {
-	const imgList = $$('section .img-preview img');
-	const imgListLth = imgList.length;
-	let imgIndex = 0;
-	imgList[0].style.opacity = 1;
-	setInterval(() => {
-		imgList[imgIndex++].style.opacity = 0;
-		if (imgIndex >= imgListLth) imgIndex = 0;
-		imgList[imgIndex].style.opacity = 1;
-	}, 3000);
-})();
-
-(() => {
 	const main = $('.main-content');
 	const toTop = $('.to-top');
 	main.onscroll = () => {
@@ -22,79 +10,93 @@ const $$ = document.querySelectorAll.bind(document);
 	};
 })();
 
-// const musicPlayer = {
-// 	songs: [
-// 		{
-// 			name: 'Nevada',
-// 			artist: 'Vicetone',
-// 			audioSrc: './src/music/Nevada.mp3',
-// 			imgSrc: './src/img/Nevada.png',
-// 		},
-// 		{
-// 			name: 'Summer Time',
-// 			artist: 'K-391',
-// 			audioSrc: './src/music/SummerTime.mp3',
-// 			imgSrc: './src/img/SummerTime.png',
-// 		},
-// 		{
-// 			name: 'Shape of You',
-// 			artist: 'Ed Sheeran',
-// 			audioSrc: './src/music/ShapeOfYou.mp3',
-// 			imgSrc: './src/img/EdSheeran.png',
-// 		},
-// 		{
-// 			name: 'Cheri Cheri Lady',
-// 			artist: 'Modern Talking',
-// 			audioSrc: './src/music/CheriCheriLady.mp3',
-// 			imgSrc: './src/img/ModernTalking.png',
-// 		},
-// 		{
-// 			name: 'Savage Love',
-// 			artist: 'Jason Derulo',
-// 			audioSrc: './src/music/SavageLove.mp3',
-// 			imgSrc: './src/img/SavageLove.png',
-// 		},
-// 	],
+const musicPlayer = {
+	songs: [
+		{
+			name: 'Nevada',
+			artist: 'Vicetone',
+			audioSrc: './src/music/Nevada.mp3',
+			imgSrc: './src/img/Nevada.png',
+			length: '3:00',
+		},
+		{
+			name: 'Summer Time',
+			artist: 'K-391',
+			audioSrc: './src/music/SummerTime.mp3',
+			imgSrc: './src/img/SummerTime.png',
+			length: '3:00',
+		},
+		{
+			name: 'Shape of You',
+			artist: 'Ed Sheeran',
+			audioSrc: './src/music/ShapeOfYou.mp3',
+			imgSrc: './src/img/EdSheeran.png',
+			length: '3:00',
+		},
+		{
+			name: 'Cheri Cheri Lady',
+			artist: 'Modern Talking',
+			audioSrc: './src/music/CheriCheriLady.mp3',
+			imgSrc: './src/img/ModernTalking.png',
+			length: '3:00',
+		},
+		{
+			name: 'Savage Love',
+			artist: 'Jason Derulo',
+			audioSrc: './src/music/SavageLove.mp3',
+			imgSrc: './src/img/SavageLove.png',
+			length: '3:00',
+		},
+	],
 
-// 	render() {
-// 		const htmls = this.songs.map((song) => {
-// 			return `
-// 				<div class="song">
-// 					<div class="thumb" style="background: url('${song.imgSrc}')"></div>
+	render() {
+		$('section .song-list ul').innerHTML = this.songs
+			.map((song) => {
+				return `
+				<li class="song-item">
+					<div class="left">
+						<img src="${song.imgSrc}" alt="${song.name}" />
+						<div class="left-content">
+							<span class="song-title">${song.name}</span>
+							<span class="song-artist">${song.artist}</span>
+						</div>
+					</div>
+					<div class="right">
+						<span>
+							<i class="fas fa-heart ico ico--click"></i>
+						</span>
+						<span>${song.length}</span>
+					</div>
+				</li>
+			`;
+			})
+			.join('');
 
-// 					<div class="body">
-// 						<h3 class="title">Name: ${song.name}</h3>
-// 						<p class="artist">Singer: ${song.artist}</p>
-// 					</div>
+		$('section .img-preview').innerHTML = this.songs
+			.map((song) => {
+				return `
+				<a href="#">
+					<img src="${song.imgSrc}" alt="${song.name}" />
+				</a>
+			`;
+			})
+			.join('');
+	},
 
-// 					<div class="option"></div>
-// 				</div>
-// 			`;
-// 		});
-// 		$('.playlist').innerHTML = htmls.join('');
-// 		$('.cd').innerHTML = htmls[0];
-// 	},
+	start() {
+		this.render();
+		(() => {
+			const imgList = $$('section .img-preview img');
+			const imgListLth = imgList.length;
+			let imgIndex = 0;
+			imgList[0].style.opacity = 1;
+			setInterval(() => {
+				imgList[imgIndex++].style.opacity = 0;
+				if (imgIndex >= imgListLth) imgIndex = 0;
+				imgList[imgIndex].style.opacity = 1;
+			}, 3000);
+		})();
+	},
+};
 
-// 	handleEvents() {
-// 		// document.onscroll = () => {
-// 		// const CD = $('.cd');
-// 		// const CDWidth = CD.offsetWidth;
-// 		// document.onscroll = () => {
-// 		// 	const scrollTop =
-// 		// 		window.scrollY || document.documentElement.scrollTop;
-// 		// 	const newCDWidth = Math.max(0, CDWidth - scrollTop);
-// 		// 	CD.style.width = newCDWidth + 'px';
-// 		// 	CD.style.height =
-// 		// 		newCDWidth > 200 ? newCDWidth - 200 + 'px' : newCDWidth;
-// 		// 	CD.style.opacity = newCDWidth / CDWidth;
-// 		// };
-// 		// };
-// 	},
-
-// 	start() {
-// 		// this.handleEvents();
-// 		// this.render();
-// 	},
-// };
-
-// musicPlayer.start();
+musicPlayer.start();
