@@ -11,7 +11,6 @@
 			href="https://fonts.googleapis.com/css2?family=Outfit:wght@200&display=swap"
 			rel="stylesheet"
 		/>
-		<!-- Icon -->
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
@@ -20,7 +19,10 @@
 			href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
 			rel="stylesheet"
 		/>
-		<!-- External CSS -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css"
+		/>
 		<link rel="stylesheet" href="./src/css/reset.css" />
 		<link rel="stylesheet" href="./src/css/style.css" />
 		<link rel="stylesheet" href="./src/css/theme.css" />
@@ -44,31 +46,31 @@
 					<ul class="list menu-list">
 						<li class="item menu-item active">
 							<a href="#">
-								<i class="fas fa-folder"></i>
+								<i class="bi bi-music-player"></i>
 								Personal
 							</a>
 						</li>
 						<li class="item menu-item">
 							<a href="#">
-								<i class="fas fa-folder"></i>
+								<i class="bi bi-vinyl"></i>
 								Discover
 							</a>
 						</li>
 						<li class="item menu-item">
 							<a href="#">
-								<i class="fas fa-folder"></i>
+								<i class="bi bi-graph-up"></i>
 								Ranking
 							</a>
 						</li>
 						<li class="item menu-item">
 							<a href="#">
-								<i class="fas fa-folder"></i>
+								<i class="bi bi-soundwave"></i>
 								Radio
 							</a>
 						</li>
 						<li class="item menu-item">
 							<a href="#">
-								<i class="fas fa-folder"></i>
+								<i class="bi bi-file-post"></i>
 								Following
 							</a>
 						</li>
@@ -80,19 +82,19 @@
 						<ul class="list option-list">
 							<li class="item option-item">
 								<a href="#">
-									<i class="fas fa-folder"></i>
+									<i class="bi bi-music-note-beamed"></i>
 									New Release
 								</a>
 							</li>
 							<li class="item option-item">
 								<a href="#">
-									<i class="fas fa-folder"></i>
+									<i class="bi bi-slack"></i>
 									Kind
 								</a>
 							</li>
 							<li class="item option-item">
 								<a href="#">
-									<i class="fas fa-folder"></i>
+									<i class="bi bi-star"></i>
 									Top 100
 								</a>
 							</li>
@@ -112,13 +114,15 @@
 						<ul class="list library-list">
 							<li class="item library-item">
 								<a href="#">
-									<i class="fas fa-folder"></i>
+									<i class="bi bi-vinyl-fill"></i>
 									Songs
 								</a>
 							</li>
 							<li class="item library-item">
 								<a href="#">
-									<i class="fas fa-folder"></i>
+									<i
+										class="bi bi-file-earmark-music-fill"
+									></i>
 									Playlist
 								</a>
 							</li>
@@ -146,6 +150,9 @@
 						></div>
 					</div>
 				</div>
+				<i
+					class="bi bi-arrow-right-circle ico ico--click ico--hide"
+				></i>
 				<div class="create-new-playlist">
 					<div class="new-playlist-btn">
 						<i class="fas fa-plus" style="margin-right: 10px"></i>
@@ -157,13 +164,9 @@
 				<div id="top" class="top-bar">
 					<div class="parts">
 						<div class="part1">
+							<i class="bi bi-arrow-left top-ico ico--click"></i>
 							<i
-								style="width: 44px"
-								class="fas fa-chevron-left top-ico ico--click"
-							></i>
-							<i
-								style="width: 44px"
-								class="fas fa-chevron-right top-ico ico--click"
+								class="bi bi-arrow-right top-ico ico--clickt"
 							></i>
 							<div class="search-bar">
 								<input
@@ -214,14 +217,18 @@
 						<div class="part2">
 							<div class="item">
 								<i
-									class="fab fa-ethereum top-ico ico--click"
+									class="
+										bi bi-circle-square
+										top-ico
+										ico--click
+									"
 								></i>
 							</div>
 							<div class="item">
-								<i class="fas fa-cog top-ico ico--click"></i>
+								<i class="bi bi-sliders top-ico ico--click"></i>
 							</div>
 							<div class="item">
-								<i class="fas fa-upload top-ico ico--click"></i>
+								<i class="bi bi-upload top-ico ico--click"></i>
 							</div>
 							<div class="item">
 								<img
@@ -260,11 +267,22 @@
 									</span>
 									<div class="title-left">
 										<div class="upload-song">
-											<i class="fas fa-upload"></i>
+											<i
+												class="
+													bi bi-upload
+													ico ico--click
+												"
+											></i>
+
 											<span>Upload</span>
 										</div>
 										<div class="play-all">
-											<i class="fas fa-play"></i>
+											<i
+												class="
+													bi bi-play
+													ico ico--click
+												"
+											></i>
 											<span>Play All</span>
 										</div>
 									</div>
@@ -360,7 +378,7 @@
 				<i class="fas fa-volume-up ico ico--click"></i>
 				<i class="fas fa-volume-mute ico ico--click ico--hide"></i>
 				<div class="vertical-line"></div>
-				<i class="fas fa-stream ico ico--click"></i>
+				<i class="bi bi-music-note-list ico ico--click"></i>
 			</div>
 		</div>
 		<script src="./src/js/script.js"></script>
