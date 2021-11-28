@@ -9,6 +9,16 @@
 	--bg-lv7: #a7a7a7;
 	--bg-lv8: #989898;
 	--bg-lv9: #898989;
+	--bg-lv0-alpha: rgba(0, 0, 0, 0.7);
+	--bg-lv1-alpha: rgba(244, 244, 244, 0.7);
+	--bg-lv2-alpha: rgba(242, 242, 242, 0.7);
+	--bg-lv3-alpha: rgba(227, 227, 227, 0.7);
+	--bg-lv4-alpha: rgba(212, 212, 212, 0.7);
+	--bg-lv5-alpha: rgba(197, 197, 197, 0.7);
+	--bg-lv6-alpha: rgba(182, 182, 182, 0.7);
+	--bg-lv7-alpha: rgba(167, 167, 167, 0.7);
+	--bg-lv8-alpha: rgba(152, 152, 152, 0.7);
+	--bg-lv9-alpha: rgba(137, 137, 137, 0.7);
 }
 
 * {
