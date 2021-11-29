@@ -132,14 +132,12 @@ const musicPlayer = {
 			.map((playlist) => {
 				return `
 					<div class="playlist-item">
-						<div class="playlist-option" style="
-							background: url('${playlist.imgSrc}');
-						">
-							<i class="fas fa-times"></i>
-							<i class="fas fa-play"></i>
-							<i
-								class="fas fa-ellipsis-h"
-							></i>
+						<div class="playlist-option" style="background: url('${playlist.imgSrc}');">
+							<div class="playlist-option-overlay">
+								<i class="fas fa-times"></i>
+								<i class="fas fa-play"></i>
+								<i class="fas fa-ellipsis-h"></i>
+							</div>
 						</div>
 						<div class="playlist-title">${playlist.name}</div>
 						<div class="playlist-owner">${playlist.owner}</div>

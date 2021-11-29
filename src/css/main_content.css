@@ -430,7 +430,7 @@
 }
 
 #summary-playlist .playlist-item .playlist-option {
-	background-size: 100% 100%;
+	background-size: cover;
 	border-radius: 10px;
 	width: 130px;
 	height: 160px;
@@ -439,8 +439,20 @@
 	align-items: center;
 	justify-content: space-around;
 }
+
+#summary-playlist .playlist-item .playlist-option-overlay {
+	opacity: 0;
+}
+
 #summary-playlist .playlist-item .playlist-option:hover {
-	background-size: 120% 120%;
+	background-size: contain;
+}
+#summary-playlist
+	.playlist-item
+	.playlist-option:hover
+	.playlist-option-overlay {
+	opacity: 1;
+	transition: all 0.5s ease;
 }
 
 .main-content .to-top {
@@ -456,11 +468,6 @@
 	width: 50px;
 	height: 50px;
 }
-
-.main-content .to-top:hover {
-	cursor: default;
-}
-
 .main-content .to-top::after,
 .main-content .to-top::before {
 	content: '';
@@ -472,10 +479,6 @@
 	height: 5px;
 	transition: all 0.5s ease;
 }
-.main-content .to-top:hover::after,
-.main-content .to-top:hover::before {
-	transform: rotateZ(0);
-}
 
 .main-content .to-top::after {
 	left: 0;
@@ -484,6 +487,14 @@
 .main-content .to-top::before {
 	right: 0;
 	transform: rotateZ(225deg);
+}
+
+.main-content .to-top:hover {
+	cursor: default;
+}
+.main-content .to-top:hover::after,
+.main-content .to-top:hover::before {
+	transform: rotateZ(0);
 }
 
 .main-content .to-top .content {
