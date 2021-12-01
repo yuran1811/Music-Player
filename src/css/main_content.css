@@ -445,7 +445,7 @@
 }
 
 #summary-playlist .playlist-item .playlist-option:hover {
-	background-size: contain;
+	background-size: 120% 120%;
 }
 #summary-playlist
 	.playlist-item
