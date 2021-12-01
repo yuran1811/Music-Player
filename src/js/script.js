@@ -25,6 +25,18 @@ const $$ = document.querySelectorAll.bind(document);
 	});
 })();
 
+(() => {
+	const modalBox = $('body .ad-modal');
+	modalBox.addEventListener('click', () => {
+		modalBox.classList.toggle('active');
+	});
+
+	const modalBoxClick = $('.music-option .ad-link');
+	modalBoxClick.addEventListener('click', () => {
+		modalBox.classList.toggle('active');
+	});
+})();
+
 const musicPlayer = {
 	playlists: [
 		{
