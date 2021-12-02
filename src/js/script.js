@@ -12,7 +12,7 @@ const $$ = document.querySelectorAll.bind(document);
 
 (() => {
 	const menuList = $('.category-sidebar');
-	menuList.querySelectorAll('.item a').forEach((item) => {
+	menuList.querySelectorAll('.item').forEach((item) => {
 		item.addEventListener('click', (e) => {
 			const lastActive = menuList.querySelector('.active');
 			if (lastActive)
@@ -20,7 +20,7 @@ const $$ = document.querySelectorAll.bind(document);
 					' active',
 					''
 				);
-			e.path[1].className += ' active';
+			e.currentTarget.className += ' active';
 		});
 	});
 })();
@@ -35,6 +35,21 @@ const $$ = document.querySelectorAll.bind(document);
 	modalBoxClick.addEventListener('click', () => {
 		modalBox.classList.toggle('active');
 	});
+})();
+
+(() => {
+	const newPlModalBox = $('body .new-pl-modal');
+	const newPlBtn = $('.category-sidebar .new-playlist-btn');
+
+	newPlBtn.addEventListener('click', () => {
+		newPlModalBox.classList.toggle('active');
+	});
+
+	newPlModalBox
+		.querySelector('.new-pl-banner__overlay')
+		.addEventListener('click', () => {
+			newPlModalBox.classList.toggle('active');
+		});
 })();
 
 const musicPlayer = {
