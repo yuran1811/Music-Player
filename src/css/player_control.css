@@ -17,6 +17,7 @@
 
 .player-control .song-info {
 	display: flex;
+	flex-direction: row;
 	align-items: center;
 	justify-content: flex-start;
 
@@ -26,7 +27,7 @@
 
 .player-control .song-info .media-img {
 	background-color: var(--bg-lv2);
-	border-radius: 30px;
+	border-radius: 50%;
 
 	width: 64px;
 	height: 64px;
@@ -101,9 +102,37 @@
 	height: 65px;
 }
 
-.vertical-line {
+.player-control .vertical-line {
 	background-color: var(--bg-lv0);
 	width: 3px;
 	height: 50%;
 	margin: 0 20px;
+}
+
+@media screen and (max-width: 750px) {
+	.player-control .song-info {
+		flex-direction: column;
+	}
+
+	.player-control .song-info .media-img {
+		display: none;
+	}
+
+	.player-control .vertical-line {
+		display: none;
+	}
+
+	.player-control .ico {
+		padding: 10px;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.player-control .song-info .media-img {
+		position: absolute;
+		top: -20px;
+		left: 40px;
+		z-index: -1;
+		opacity: 0.7;
+	}
 }
