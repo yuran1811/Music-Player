@@ -1,5 +1,5 @@
 .main-content:hover::-webkit-scrollbar-thumb,
-.main-content .content .song-list:hover::-webkit-scrollbar-thumb,
+.main-content > .content .song-list:hover::-webkit-scrollbar-thumb,
 #summary-playlist .playlist-slider:hover::-webkit-scrollbar-thumb {
 	background-color: var(--bg-lv2);
 }
@@ -27,10 +27,9 @@
 	top: 0;
 	left: 0;
 
-	min-width: 660px;
 	width: 100%;
 	height: 70px;
-	padding: 0 30px;
+	padding: 0;
 
 	display: flex;
 	align-items: center;
@@ -55,7 +54,8 @@
 
 .main-content .search-bar {
 	position: relative;
-	width: 540px;
+	min-width: 250px;
+	width: 100%;
 }
 
 .main-content .search-bar input {
@@ -74,23 +74,21 @@
 .main-content .search-bar input::placeholder,
 .main-content .search-bar input:target {
 	color: var(--bg-lv0);
+	font-size: 1rem;
 }
-
 .main-content .search-bar input:focus {
+	background-color: var(--bg-lv6);
 	border-radius: 20px 20px 0 0;
 	outline: none;
 	border: none;
 }
-.main-content .search-bar input:focus + .suggest-list {
-	display: block;
-}
 
 .main-content .search-bar .suggest-list {
-	background-color: var(--bg-lv9);
+	background-color: var(--bg-lv6);
 	color: var(--bg-lv0);
 	font-size: 1rem;
 
-	display: none;
+	display: block;
 	overflow: hidden;
 	position: absolute;
 
@@ -108,9 +106,9 @@
 }
 
 .main-content .search-bar .suggest-list .content {
-	background-color: var(--bg-lv9);
-	height: 30vh;
+	background-color: var(--bg-lv6);
 	overflow-y: auto;
+	height: 30vh;
 }
 
 .main-content .search-bar .suggest-list .title {
@@ -119,7 +117,8 @@
 
 .main-content .search-bar .suggest-item {
 	display: flex;
-	align-items: baseline;
+	align-items: center;
+	justify-content: flex-start;
 
 	position: relative;
 
@@ -156,7 +155,7 @@
 	height: inherit;
 }
 
-.main-content .content {
+.main-content > .content {
 	position: relative;
 
 	width: 100%;
@@ -167,7 +166,7 @@
 	flex-direction: column;
 }
 
-.main-content .content .banner {
+.main-content > .content .banner {
 	width: 100%;
 	height: 30%;
 
@@ -176,11 +175,11 @@
 	flex-direction: column;
 	justify-content: center;
 }
-.main-content .content .banner img {
+.main-content > .content .banner img {
 	width: 100px;
 	height: 100px;
 }
-.main-content .content .banner .info {
+.main-content > .content .banner .info {
 	font-size: 2.2rem;
 	letter-spacing: 4px;
 
@@ -188,7 +187,7 @@
 	padding: 10px;
 }
 
-.main-content .content .nav-bar {
+.main-content > .content .nav-bar {
 	width: auto;
 	height: auto;
 	padding: 10px 6px;
@@ -197,7 +196,7 @@
 	border-radius: 25px;
 	background-color: var(--bg-lv7);
 }
-.main-content .content .nav-bar.ontop {
+.main-content > .content .nav-bar.ontop {
 	position: fixed;
 	left: 240px;
 	top: 0;
@@ -206,18 +205,18 @@
 	width: 815px;
 }
 
-.main-content .content .nav-links {
+.main-content > .content .nav-links {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
 }
 
-.main-content .content .nav-links .liactive {
+.main-content > .content .nav-links .liactive {
 	background-color: var(--bg-lv5);
 }
 
-.main-content .content .nav-links .link {
+.main-content > .content .nav-links .link {
 	text-align: center;
 	width: 100px;
 	margin: 0 7px;
@@ -225,11 +224,11 @@
 	border-radius: 20px;
 }
 
-.main-content .content .main-page {
+.main-content > .content .main-page {
 	width: 100%;
 }
 
-.main-content .content section {
+.main-content > .content section {
 	background-color: var(--bg-lv6);
 	border-radius: 17px;
 
@@ -242,11 +241,11 @@
 	margin-bottom: 50px;
 }
 
-.main-content .content section .section-content {
+.main-content > .content section .section-content {
 	margin-top: 15px;
 }
 
-.main-content .content section > .title {
+.main-content > .content section > .title {
 	flex: 1;
 	height: 30px;
 	font-size: 1.4rem;
@@ -257,22 +256,22 @@
 	justify-content: space-between;
 }
 
-.main-content .content section .title-left i {
+.main-content > .content section .title-left i {
 	padding: 0 5px;
 }
 
-.main-content .content section .title-left {
+.main-content > .content section .title-left {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
 }
 
-.main-content .content section .upload-song {
+.main-content > .content section .upload-song {
 	margin-right: 10px;
 }
 
-.main-content .content section .upload-song,
-.main-content .content section .play-all {
+.main-content > .content section .upload-song,
+.main-content > .content section .play-all {
 	cursor: pointer;
 	font-size: 1rem;
 
@@ -283,13 +282,13 @@
 	background-color: var(--bg-lv9);
 }
 
-.main-content .content section .img-preview {
+.main-content > .content section .img-preview {
 	position: relative;
 	width: 230px;
 	height: 230px;
 }
 
-.main-content .content section img {
+.main-content > .content section img {
 	cursor: pointer;
 	position: absolute;
 	left: 0;
@@ -304,11 +303,11 @@
 	transition: all 0.5s ease;
 }
 
-.main-content .content .section-content {
+.main-content > .content .section-content {
 	display: flex;
 }
 
-.main-content .content .song-list {
+.main-content > .content .song-list {
 	flex: 1;
 	position: relative;
 
@@ -322,7 +321,7 @@
 	overflow: hidden auto;
 }
 
-.main-content .content .song-item {
+.main-content > .content .song-item {
 	flex: 1;
 	border-radius: 10px;
 	width: 100%;
@@ -336,17 +335,17 @@
 	justify-content: space-between;
 }
 
-.main-content .content .song-item:hover {
+.main-content > .content .song-item:hover {
 	background-color: var(--bg-lv8);
 }
 
-.main-content .content .song-item .left {
+.main-content > .content .song-item .left {
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 }
 
-.main-content .content .song-item .left-content {
+.main-content > .content .song-item .left-content {
 	position: relative;
 
 	display: flex;
@@ -355,7 +354,7 @@
 	justify-content: flex-start;
 }
 
-.main-content .content .song-item img {
+.main-content > .content .song-item img {
 	width: 40px;
 	height: 40px;
 	margin-right: 15px;
@@ -364,11 +363,11 @@
 	opacity: 1;
 }
 
-.main-content .content .song-item .song-title {
+.main-content > .content .song-item .song-title {
 	font-weight: 600;
 }
 
-.main-content .content .song-item .right {
+.main-content > .content .song-item .right {
 	display: flex;
 	align-items: center;
 }
@@ -522,15 +521,15 @@
 }
 
 @media screen and (max-width: 750px) {
-	.main-content .content .nav-bar {
+	.main-content > .content .nav-bar {
 		min-width: 80%;
 	}
 
-	.main-content .content .nav-links {
+	.main-content > .content .nav-links {
 		flex-direction: column;
 	}
 
-	.main-content .content .nav-links .link {
+	.main-content > .content .nav-links .link {
 		width: 90%;
 		margin: 5px 0;
 		padding: 5px;
