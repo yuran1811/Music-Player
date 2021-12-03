@@ -13,12 +13,11 @@
 
 	width: calc(100% - 240px - 280px);
 	height: calc(100vh - 90px);
-
 	transition: all 0.5s ease;
 }
 
 .main-content .top-ico {
-	padding: 0 15px;
+	padding: 0 10px;
 	color: var(--bg-lv0);
 }
 
@@ -37,16 +36,14 @@
 
 .main-content .top-bar .parts {
 	width: 100%;
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
 .main-content .top-bar .part1 {
+	margin-left: 10px;
 	flex: 1;
-	margin-right: 10px;
-
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
@@ -54,7 +51,6 @@
 
 .main-content .search-bar {
 	position: relative;
-	min-width: 250px;
 	width: 100%;
 }
 
@@ -141,7 +137,9 @@
 }
 
 .main-content .part2 {
+	position: relative;
 	display: flex;
+	flex-direction: row;
 	align-items: center;
 }
 
@@ -154,6 +152,7 @@
 	width: 40px;
 	height: 40px;
 	margin-right: 10px;
+	z-index: 100;
 }
 
 .main-content .ava-img {
@@ -527,6 +526,20 @@
 }
 
 @media screen and (max-width: 750px) {
+	.main-content .search-bar input,
+	.main-content .search-bar .suggest-list {
+		width: 85%;
+	}
+
+	.main-content .part2 {
+		flex-direction: column-reverse;
+		top: 65px;
+	}
+
+	.main-content .part2 .item {
+		margin-top: 5px;
+	}
+
 	.main-content > .content .nav-bar {
 		min-width: 80%;
 	}
