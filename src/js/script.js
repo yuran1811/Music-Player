@@ -47,7 +47,7 @@ const $$ = document.querySelectorAll.bind(document);
 		searchBar.classList.add('active');
 
 	searchBar.querySelector('input').onblur = () =>
-		setTimeout(() => searchBar.classList.remove('active'), 400);
+		setTimeout(() => searchBar.classList.remove('active'), 300);
 
 	searchBar
 		.querySelectorAll('.suggest-item')
