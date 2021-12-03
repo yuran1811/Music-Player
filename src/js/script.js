@@ -27,29 +27,35 @@ const $$ = document.querySelectorAll.bind(document);
 
 (() => {
 	const modalBox = $('body .ad-modal');
-	modalBox.addEventListener('click', () => {
-		modalBox.classList.toggle('active');
-	});
-
-	const modalBoxClick = $('.music-option .ad-link');
-	modalBoxClick.addEventListener('click', () => {
-		modalBox.classList.toggle('active');
-	});
+	modalBox.onclick = () => modalBox.classList.toggle('active');
+	const modalBoxClick = $('.music-option .banner-modal-ad-link');
+	modalBoxClick.onclick = () => modalBox.classList.toggle('active');
 })();
 
 (() => {
 	const newPlModalBox = $('body .new-pl-modal');
 	const newPlBtn = $('.category-sidebar .new-playlist-btn');
 
-	newPlBtn.addEventListener('click', () => {
+	newPlBtn.onclick = () => newPlModalBox.classList.toggle('active');
+	newPlModalBox.querySelector('.new-pl-banner__overlay').onclick = () =>
 		newPlModalBox.classList.toggle('active');
-	});
+})();
 
-	newPlModalBox
-		.querySelector('.new-pl-banner__overlay')
-		.addEventListener('click', () => {
-			newPlModalBox.classList.toggle('active');
-		});
+(() => {
+	const searchBar = $('.main-content .search-bar');
+	searchBar.querySelector('input').onfocus = () =>
+		searchBar.classList.add('active');
+
+	searchBar.querySelector('input').onblur = () =>
+		setTimeout(() => searchBar.classList.remove('active'), 400);
+
+	searchBar
+		.querySelectorAll('.suggest-item')
+		.forEach((item) =>
+			item.addEventListener('click', () =>
+				searchBar.classList.remove('active')
+			)
+		);
 })();
 
 const musicPlayer = {

@@ -76,6 +76,7 @@
 	color: var(--bg-lv0);
 	font-size: 1rem;
 }
+.main-content .search-bar.active input,
 .main-content .search-bar input:focus {
 	background-color: var(--bg-lv6);
 	border-radius: 20px 20px 0 0;
@@ -96,13 +97,18 @@
 	border-bottom-right-radius: 20px;
 
 	width: 90%;
-	height: auto;
+	height: 0;
+	padding: 0;
 	margin-left: 10px;
-	padding: 13px 10px;
 
 	z-index: 10;
 
 	transition: all 0.5s ease;
+}
+
+.main-content .search-bar.active .suggest-list {
+	padding: 13px 10px;
+	height: 30vh;
 }
 
 .main-content .search-bar .suggest-list .content {
