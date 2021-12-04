@@ -125,10 +125,43 @@ const musicPlayer = {
 		},
 	],
 
+	artists: [
+		{
+			name: 'Vicetone',
+			imgSrc: './src/img/Nevada.png',
+			follow: 3000,
+			status: false,
+		},
+		{
+			name: 'K-391',
+			imgSrc: './src/img/SummerTime.png',
+			follow: 3000,
+			status: false,
+		},
+		{
+			name: 'Ed Sheeran',
+			imgSrc: './src/img/EdSheeran.png',
+			follow: 3000,
+			status: false,
+		},
+		{
+			name: 'Modern Talking',
+			imgSrc: './src/img/ModernTalking.png',
+			follow: 3000,
+			status: false,
+		},
+		{
+			name: 'Jason Derulo',
+			imgSrc: './src/img/SavageLove.png',
+			follow: 3000,
+			status: false,
+		},
+	],
+
 	render() {
 		$('section .song-list ul').innerHTML = this.songs
-			.map((song) => {
-				return `
+			.map(
+				(song) => `
 				<li class="song-item">
 					<audio class="hide">
 						<source src="${song.audioSrc}" type="audio/mpeg">
@@ -147,25 +180,30 @@ const musicPlayer = {
 						<span class="duration">3:00</span>
 					</div>
 				</li>
-			`;
-			})
+			`
+			)
 			.join('');
 
 		$('section .img-preview').innerHTML = this.songs
-			.map((song) => {
-				return `
+			.map(
+				(song) => `
 				<a href="#">
 					<img src="${song.imgSrc}" alt="${song.name}" />
 				</a>
-			`;
-			})
+			`
+			)
 			.join('');
 
-		$('section .swiper-wrapper').innerHTML = this.playlists
-			.map((playlist) => {
-				return `
+		$('#playlist .swiper-wrapper').innerHTML = this.playlists
+			.map(
+				(playlist) => `
 					<div class="playlist-item swiper-slide">
-						<div class="playlist-option" style="background: url('${playlist.imgSrc}');">
+						<div
+							class="playlist-option"
+							style="
+								background: url('${playlist.imgSrc}');
+								background-size: 100% 100%;
+							">
 							<div class="playlist-option-overlay">
 								<i class="fas fa-times"></i>
 								<i class="fas fa-play"></i>
@@ -175,8 +213,25 @@ const musicPlayer = {
 						<div class="playlist-title">${playlist.name}</div>
 						<div class="playlist-owner">${playlist.owner}</div>
 					</div>
-				`;
-			})
+				`
+			)
+			.join('');
+
+		$('#artist .swiper-wrapper').innerHTML = this.artists
+			.map(
+				(artist) => `
+				<div class="artist-info swiper-slide">
+					<div class="artist__bg">
+						<img src="${artist.imgSrc}" alt="bg">
+					</div>
+					<div class="artist__content">
+						<div class="artist__name">${artist.name}</div>
+						<div class="artist__follow">${artist.follow}</div>
+						<div class="artist__status">${artist.status ? 'Follow' : 'Unfollow'}</div>
+					</div>
+				</div>
+			`
+			)
 			.join('');
 	},
 
@@ -197,7 +252,7 @@ const musicPlayer = {
 };
 musicPlayer.start();
 
-const mySwiper = new Swiper('.swiper-container', {
+const mySwiper = new Swiper('#playlist .swiper-container', {
 	direction: 'horizontal',
 	centeredSlides: true,
 	slidesPerView: 2,
@@ -207,7 +262,7 @@ const mySwiper = new Swiper('.swiper-container', {
 	loop: true,
 
 	pagination: {
-		el: '.swiper-pagination',
+		el: '#playlist .swiper-pagination',
 		clickable: true,
 	},
 
@@ -224,6 +279,25 @@ const mySwiper = new Swiper('.swiper-container', {
 			spaceBetween: 5,
 			threshold: 5,
 		},
+		750: {
+			centeredSlides: true,
+			slidesPerView: 3,
+			spaceBetween: 5,
+			threshold: 4,
+		},
+	},
+});
+
+const mySwiper2 = new Swiper('#artist .swiper-container', {
+	direction: 'horizontal',
+	centeredSlides: true,
+	slidesPerView: 1,
+	spaceBetween: 5,
+	threshold: 1,
+	speed: 800,
+	loop: true,
+
+	breakpoints: {
 		750: {
 			centeredSlides: true,
 			slidesPerView: 3,

@@ -1,4 +1,4 @@
-[theme='green'] {
+[data-theme='green'] {
 	--bg-lv0: #d2ffec;
 	--bg-lv1: #a3ffd9;
 	--bg-lv2: #a1fbd8;
@@ -21,7 +21,7 @@
 	--bg-lv9-alpha: rgba(0, 62, 41, 0.7);
 }
 
-[theme='blue'] {
+[data-theme='blue'] {
 	--bg-lv0: #bac3e4;
 	--bg-lv1: #a3b7ff;
 	--bg-lv2: #a1b3fa;
@@ -44,7 +44,7 @@
 	--bg-lv9-alpha: rgba(0, 32, 61, 0.7);
 }
 
-[theme='pink'] {
+[data-theme='pink'] {
 	--bg-lv0: #facbcb;
 	--bg-lv1: #ffb8b8;
 	--bg-lv2: #fcb2b5;
@@ -67,7 +67,7 @@
 	--bg-lv9-alpha: rgba(126, 10, 62, 0.7);
 }
 
-[theme='orange'] {
+[data-theme='orange'] {
 	--bg-lv0: #fffed0;
 	--bg-lv1: #fffeb3;
 	--bg-lv2: #fffcaf;
@@ -90,7 +90,7 @@
 	--bg-lv9-alpha: rgba(255, 168, 0, 0.7);
 }
 
-[theme='dark'] {
+[data-theme='dark'] {
 	--bg-lv0: #ffffff;
 	--bg-lv1: #d5d5d5;
 	--bg-lv2: #d2d2d2;
@@ -113,7 +113,7 @@
 	--bg-lv9-alpha: rgba(0, 0, 0, 0.7);
 }
 
-[theme='light'] {
+[data-theme='light'] {
 	--bg-lv0: #000000;
 	--bg-lv1: #f4f4f4;
 	--bg-lv2: #f2f2f2;

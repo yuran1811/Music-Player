@@ -133,7 +133,8 @@ body > .ad-modal.active {
 
 body > .new-pl-modal .new-pl-banner,
 body > .ad-modal .banner-modal-ad {
-	background-image: linear-gradient(117deg, #5a4be7, #c86dd7 102%);
+	/* background-image: linear-gradient(117deg, #5a4be7, #c86dd7 102%); */
+	background: linear-gradient(33deg, #5a1eae -7%, #ce267a 117%);
 	border-radius: 8px;
 	text-align: center;
 	color: var(--bg-lv0);
@@ -254,7 +255,9 @@ body > .new-pl-modal input:focus {
 }
 .category-sidebar .new-pl-banner,
 .category-sidebar .banner-modal-ad {
-	background-image: linear-gradient(117deg, #5a4be7, #c86dd7 102%);
+	/* background-image: linear-gradient(117deg, #5a4be7, #c86dd7 102%); */
+	background: linear-gradient(33deg, #5a1eae -7%, #ce267a 117%);
+
 	display: block;
 	border-radius: 8px;
 	text-align: center;
