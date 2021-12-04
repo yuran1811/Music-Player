@@ -347,7 +347,6 @@
 	align-items: center;
 	justify-content: space-between;
 }
-
 .main-content > .content .song-item:hover {
 	background-color: var(--bg-lv6);
 }
@@ -376,7 +375,7 @@
 	opacity: 1;
 }
 
-.main-content > .content .song-item .song-title {
+.main-content > .content .song-item div.song-title {
 	font-weight: 600;
 }
 
@@ -401,6 +400,7 @@
 	background: linear-gradient(33deg, #5a1eae -7%, #ce267a 117%);
 	border-radius: 8px;
 	position: relative;
+	z-index: 10;
 
 	width: 180px;
 	height: 230px;
@@ -441,23 +441,55 @@
 }
 
 #playlist .swiper-container {
+	overflow: hidden;
+	position: relative;
+	width: calc(100% - 180px);
+	height: 230px;
+
 	display: flex;
 	align-items: center;
-	justify-content: flex-start;
+	justify-content: center;
+}
 
-	width: calc(100% - 230px);
+#playlist .swiper-wrapper {
+	position: absolute;
+	inset: 0 0 0 0;
+	z-index: 0;
+	width: 100%;
+	height: 230px;
+}
 
-	position: relative;
+#playlist .swiper-slide {
+	width: 100%;
+	height: 80%;
+	margin-right: 10px;
 	overflow: hidden;
+	position: relative;
+	border-radius: 10px;
+
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	transition: all 0.5s ease;
 }
 
-#playlist .playlist-item {
-	width: 150px;
-	height: 200px;
-	margin: 0 15px;
+#playlist .swiper-container .swiper-pagination .swiper-pagination-bullet {
+	background-color: #6f7073;
+	margin: 0 5px;
+	border-radius: 5px;
+	transition: all 0.4s ease;
 }
 
-#playlist .playlist-item .playlist-option {
+#playlist
+	.swiper-container
+	.swiper-pagination
+	.swiper-pagination-bullet-active {
+	background: linear-gradient(140deg, #d45b7a, #fda576);
+	width: 16px;
+}
+
+#playlist .swiper-slide .playlist-option {
 	background-size: cover;
 	border-radius: 10px;
 	width: 130px;
@@ -468,14 +500,14 @@
 	justify-content: space-around;
 }
 
-#playlist .playlist-item .playlist-option-overlay {
+#playlist .swiper-slide .playlist-option-overlay {
 	opacity: 0;
 }
 
-#playlist .playlist-item .playlist-option:hover {
+#playlist .swiper-slide .playlist-option:hover {
 	background-size: 120% 120%;
 }
-#playlist .playlist-item .playlist-option:hover .playlist-option-overlay {
+#playlist .swiper-slide .playlist-option:hover .playlist-option-overlay {
 	opacity: 1;
 	transition: all 0.5s ease;
 }
@@ -485,7 +517,7 @@
 
 	position: fixed;
 	bottom: 120px;
-	right: 290px;
+	right: 20px;
 	z-index: 10;
 
 	cursor: pointer;
@@ -600,13 +632,7 @@
 		margin: 5px auto 15px;
 	}
 
-	#playlist .playlist-slider {
+	#playlist .swiper-container {
 		width: 100%;
-	}
-}
-
-@media screen and (max-width: 1024px) {
-	.main-content .to-top {
-		right: 20px;
 	}
 }

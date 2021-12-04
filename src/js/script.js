@@ -58,29 +58,6 @@ const $$ = document.querySelectorAll.bind(document);
 		);
 })();
 
-const mySwiper = new Swiper('.swiper-container', {
-	direction: 'horizontal',
-	speed: 800,
-
-	centeredSlides: true,
-	slidesPerView: 4,
-	spaceBetween: 20,
-	threshold: 4,
-
-	breakpoints: {
-		1024: {
-			centeredSlides: true,
-			slidesPerView: 3,
-			spaceBetween: 20,
-		},
-		750: {
-			centeredSlides: true,
-			slidesPerView: 2,
-			spaceBetween: 20,
-		},
-	},
-});
-
 const musicPlayer = {
 	playlists: [
 		{
@@ -219,3 +196,39 @@ const musicPlayer = {
 	},
 };
 musicPlayer.start();
+
+const mySwiper = new Swiper('.swiper-container', {
+	direction: 'horizontal',
+	centeredSlides: true,
+	slidesPerView: 2,
+	spaceBetween: 5,
+	threshold: 3,
+	speed: 800,
+	loop: true,
+
+	pagination: {
+		el: '.swiper-pagination',
+		clickable: true,
+	},
+
+	// Navigation arrows
+	// navigation: {
+	// 	nextEl: '.swiper-button-next',
+	// 	prevEl: '.swiper-button-prev',
+	// },
+
+	breakpoints: {
+		1024: {
+			centeredSlides: true,
+			slidesPerView: 4,
+			spaceBetween: 5,
+			threshold: 5,
+		},
+		750: {
+			centeredSlides: true,
+			slidesPerView: 3,
+			spaceBetween: 5,
+			threshold: 4,
+		},
+	},
+});

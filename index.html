@@ -25,16 +25,9 @@
 		<!-- Swiper -->
 		<link
 			rel="stylesheet"
-			type="text/css"
-			href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.css"
+			href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
 		/>
-		<link
-			rel="stylesheet"
-			type="text/css"
-			href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css"
-		/>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 		<!-- External CSS -->
 		<link rel="stylesheet" href="./src/css/reset.css" />
 		<link rel="stylesheet" href="./src/css/style.css" />
@@ -361,7 +354,7 @@
 							<section id="playlist" class="item item3">
 								<div class="title">
 									<span>
-										<a href="#songs"> Playlist </a>
+										<a href="#playlist"> Playlist </a>
 									</span>
 								</div>
 								<div class="section-content">
@@ -371,17 +364,16 @@
 											Create New Playlist
 										</div>
 									</div>
-									<div
-										class="playlist-slider swiper-container"
-									>
+									<div class="swiper-container">
 										<div class="swiper-wrapper"></div>
+										<div class="swiper-pagination"></div>
 									</div>
 								</div>
 							</section>
 							<section id="artist" class="item item4">
 								<div class="title">
 									<span>
-										<a href="#songs"> Artist </a>
+										<a href="#artist"> Artist </a>
 									</span>
 								</div>
 								<div class="section-content"></div>
