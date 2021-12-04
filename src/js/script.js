@@ -226,7 +226,7 @@ const musicPlayer = {
 					</div>
 					<div class="artist__content">
 						<div class="artist__name">${artist.name}</div>
-						<div class="artist__follow">${artist.follow}</div>
+						<div class="artist__follow">${artist.follow} followers</div>
 						<div class="artist__status">${artist.status ? 'Follow' : 'Unfollow'}</div>
 					</div>
 				</div>
@@ -235,74 +235,74 @@ const musicPlayer = {
 			.join('');
 	},
 
+	imageSlideShow() {
+		const imgList = $$('section .img-preview img');
+		const imgListLth = imgList.length;
+		let imgIndex = 0;
+		imgList[0].style.opacity = 1;
+		setInterval(() => {
+			imgList[imgIndex++].style.opacity = 0;
+			if (imgIndex >= imgListLth) imgIndex = 0;
+			imgList[imgIndex].style.opacity = 1;
+		}, 3000);
+	},
+
+	swiperGenerator() {
+		const mySwiper = new Swiper('#playlist .swiper-container', {
+			direction: 'horizontal',
+			centeredSlides: false,
+			slidesPerView: 2,
+			spaceBetween: 5,
+			threshold: 3,
+			speed: 800,
+			loop: true,
+			pagination: {
+				el: '#playlist .swiper-pagination',
+				clickable: true,
+			},
+			breakpoints: {
+				1024: {
+					centeredSlides: false,
+					slidesPerView: 4,
+					spaceBetween: 5,
+					threshold: 5,
+				},
+				750: {
+					centeredSlides: false,
+					slidesPerView: 3,
+					spaceBetween: 5,
+					threshold: 4,
+				},
+			},
+		});
+
+		const mySwiper2 = new Swiper('#artist .swiper-container', {
+			direction: 'horizontal',
+			centeredSlides: false,
+			slidesPerView: 1,
+			spaceBetween: 5,
+			threshold: 1,
+			speed: 800,
+			loop: true,
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+			breakpoints: {
+				750: {
+					centeredSlides: false,
+					slidesPerView: 3,
+					spaceBetween: 5,
+					threshold: 4,
+				},
+			},
+		});
+	},
+
 	start() {
 		this.render();
-		(() => {
-			const imgList = $$('section .img-preview img');
-			const imgListLth = imgList.length;
-			let imgIndex = 0;
-			imgList[0].style.opacity = 1;
-			setInterval(() => {
-				imgList[imgIndex++].style.opacity = 0;
-				if (imgIndex >= imgListLth) imgIndex = 0;
-				imgList[imgIndex].style.opacity = 1;
-			}, 3000);
-		})();
+		this.imageSlideShow();
+		this.swiperGenerator();
 	},
 };
 musicPlayer.start();
-
-const mySwiper = new Swiper('#playlist .swiper-container', {
-	direction: 'horizontal',
-	centeredSlides: true,
-	slidesPerView: 2,
-	spaceBetween: 5,
-	threshold: 3,
-	speed: 800,
-	loop: true,
-
-	pagination: {
-		el: '#playlist .swiper-pagination',
-		clickable: true,
-	},
-
-	// Navigation arrows
-	// navigation: {
-	// 	nextEl: '.swiper-button-next',
-	// 	prevEl: '.swiper-button-prev',
-	// },
-
-	breakpoints: {
-		1024: {
-			centeredSlides: true,
-			slidesPerView: 4,
-			spaceBetween: 5,
-			threshold: 5,
-		},
-		750: {
-			centeredSlides: true,
-			slidesPerView: 3,
-			spaceBetween: 5,
-			threshold: 4,
-		},
-	},
-});
-
-const mySwiper2 = new Swiper('#artist .swiper-container', {
-	direction: 'horizontal',
-	centeredSlides: true,
-	slidesPerView: 1,
-	spaceBetween: 5,
-	threshold: 1,
-	speed: 800,
-	loop: true,
-
-	breakpoints: {
-		750: {
-			centeredSlides: true,
-			slidesPerView: 3,
-			spaceBetween: 5,
-			threshold: 4,
-		},
-	},
-});
