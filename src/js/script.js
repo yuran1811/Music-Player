@@ -58,6 +58,29 @@ const $$ = document.querySelectorAll.bind(document);
 		);
 })();
 
+const mySwiper = new Swiper('.swiper-container', {
+	direction: 'horizontal',
+	speed: 800,
+
+	centeredSlides: true,
+	slidesPerView: 4,
+	spaceBetween: 20,
+	threshold: 4,
+
+	breakpoints: {
+		1024: {
+			centeredSlides: true,
+			slidesPerView: 3,
+			spaceBetween: 20,
+		},
+		750: {
+			centeredSlides: true,
+			slidesPerView: 2,
+			spaceBetween: 20,
+		},
+	},
+});
+
 const musicPlayer = {
 	playlists: [
 		{
@@ -136,8 +159,8 @@ const musicPlayer = {
 					<div class="left">
 						<img src="${song.imgSrc}" alt="${song.name}" />
 						<div class="left-content">
-							<span class="song-title">${song.name}</span>
-							<span class="song-artist">${song.artist}</span>
+							<div class="song-title">${song.name}</div>
+							<div class="song-artist">${song.artist}</div>
 						</div>
 					</div>
 					<div class="right">
@@ -161,10 +184,10 @@ const musicPlayer = {
 			})
 			.join('');
 
-		$('section .playlist-slider').innerHTML = this.playlists
+		$('section .swiper-wrapper').innerHTML = this.playlists
 			.map((playlist) => {
 				return `
-					<div class="playlist-item">
+					<div class="playlist-item swiper-slide">
 						<div class="playlist-option" style="background: url('${playlist.imgSrc}');">
 							<div class="playlist-option-overlay">
 								<i class="fas fa-times"></i>

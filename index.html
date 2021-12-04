@@ -22,6 +22,20 @@
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css"
 		/>
+		<!-- Swiper -->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.css"
+		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css"
+		/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<!-- External CSS -->
 		<link rel="stylesheet" href="./src/css/reset.css" />
 		<link rel="stylesheet" href="./src/css/style.css" />
 		<link rel="stylesheet" href="./src/css/theme.css" />
@@ -289,12 +303,12 @@
 					<div class="main-page">
 						<!-- Summary -->
 						<div id="summary" class="item item1">
-							<section id="summary-songs" class="item item2">
+							<section id="songs" class="item item2">
 								<div class="title">
 									<span>
 										<a href="#songs"> Songs </a>
 									</span>
-									<div class="title-left">
+									<div class="title-right">
 										<div class="upload-song">
 											<i
 												class="
@@ -344,8 +358,12 @@
 									</div>
 								</div>
 							</section>
-							<section id="summary-playlist" class="item item3">
-								<div class="title">Playlist</div>
+							<section id="playlist" class="item item3">
+								<div class="title">
+									<span>
+										<a href="#songs"> Playlist </a>
+									</span>
+								</div>
 								<div class="section-content">
 									<div class="new-playlist">
 										<div class="create-btn"></div>
@@ -353,11 +371,19 @@
 											Create New Playlist
 										</div>
 									</div>
-									<div class="playlist-slider"></div>
+									<div
+										class="playlist-slider swiper-container"
+									>
+										<div class="swiper-wrapper"></div>
+									</div>
 								</div>
 							</section>
-							<section id="summary-artist" class="item item4">
-								<div class="title">Artist</div>
+							<section id="artist" class="item item4">
+								<div class="title">
+									<span>
+										<a href="#songs"> Artist </a>
+									</span>
+								</div>
 								<div class="section-content"></div>
 							</section>
 						</div>
