@@ -14,12 +14,8 @@ const $$ = document.querySelectorAll.bind(document);
 	const menuList = $('.category-sidebar');
 	menuList.querySelectorAll('.item').forEach((item) => {
 		item.addEventListener('click', (e) => {
-			const lastActive = menuList.querySelector('.active');
-			if (lastActive)
-				lastActive.className = lastActive.className.replace(
-					' active',
-					''
-				);
+			const last = menuList.querySelector('.active');
+			if (last) last.className = last.className.replace(' active', '');
 			e.currentTarget.className += ' active';
 		});
 	});
@@ -299,7 +295,7 @@ const musicPlayer = {
 		});
 	},
 
-	tabsHandle() {
+	personalTabsHandle() {
 		const hideAll = (list) =>
 			list.forEach((item) => (item.style.display = 'none'));
 		const showAll = (list) =>
@@ -307,22 +303,95 @@ const musicPlayer = {
 		const tabLink = $$('.nav-bar .link');
 		const tabItem = $$('.main-page .item');
 		tabLink.forEach((link, id) =>
-			link.addEventListener('click', () => {
+			link.addEventListener('click', (e) => {
+				const last = $('.nav-bar .liactive');
+				if (last)
+					last.className = last.className.replace('liactive', '');
 				if (!id) {
 					showAll(tabItem);
+					e.currentTarget.className += ' liactive';
 					return;
 				}
 				hideAll(tabItem);
 				tabItem[id - 1].style.display = 'block';
+				e.currentTarget.className += ' liactive';
+			})
+		);
+	},
+
+	categoryTabsHandle() {
+		const tabLink = $$('.category-sidebar .item');
+		const tabItem = $$('.main-content .category-item');
+		const tabLinkLth = tabLink.length - 1;
+		const personalSection = $('.personal-section');
+		const personalSectionNavBar = $('.personal-section .nav-bar');
+
+		const hideAll = (list) =>
+			list.forEach((item) => (item.style.display = 'none'));
+		const removeLastActive = () => {
+			personalSectionNavBar
+				.querySelectorAll('.liactive')
+				.forEach(
+					(item) =>
+						(item.className = item.className.replace(
+							'liactive',
+							''
+						))
+				);
+		};
+
+		tabLink.forEach((link, id) =>
+			link.addEventListener('click', (e) => {
+				const last = $('.category-sidebar .active');
+				if (last) last.className = last.className.replace('active', '');
+				hideAll(tabItem);
+				e.currentTarget.className += ' active';
+				switch (id) {
+					case tabLinkLth:
+						hideAll(personalSection.querySelectorAll('.item'));
+						removeLastActive();
+						personalSection.style.display = 'block';
+						personalSection.querySelector(
+							'#playlist'
+						).style.display = 'block';
+						personalSectionNavBar.querySelectorAll(
+							'.link'
+						)[2].className += ' liactive';
+						break;
+					case tabLinkLth - 1:
+						hideAll(personalSection.querySelectorAll('.item'));
+						removeLastActive();
+						personalSectionNavBar.querySelectorAll(
+							'.link'
+						)[1].className += ' liactive';
+						personalSection.style.display = 'block';
+						personalSection.querySelector('#songs').style.display =
+							'block';
+						break;
+					case 0:
+						hideAll(personalSection.querySelectorAll('.item'));
+						removeLastActive();
+						personalSectionNavBar.querySelectorAll(
+							'.link'
+						)[0].className += ' liactive';
+						personalSection.style.display = 'none';
+						tabItem[id].style.display = 'block';
+						break;
+					default:
+						personalSection.style.display = 'none';
+						tabItem[id].style.display = 'block';
+						break;
+				}
 			})
 		);
 	},
 
 	start() {
 		this.render();
-		this.tabsHandle();
 		this.imageSlideShow();
 		this.swiperGenerator();
+		this.personalTabsHandle();
+		this.categoryTabsHandle();
 	},
 };
 musicPlayer.start();
