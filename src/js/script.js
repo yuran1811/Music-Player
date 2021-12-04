@@ -299,8 +299,28 @@ const musicPlayer = {
 		});
 	},
 
+	tabsHandle() {
+		const hideAll = (list) =>
+			list.forEach((item) => (item.style.display = 'none'));
+		const showAll = (list) =>
+			list.forEach((item) => (item.style.display = 'block'));
+		const tabLink = $$('.nav-bar .link');
+		const tabItem = $$('.main-page .item');
+		tabLink.forEach((link, id) =>
+			link.addEventListener('click', () => {
+				if (!id) {
+					showAll(tabItem);
+					return;
+				}
+				hideAll(tabItem);
+				tabItem[id - 1].style.display = 'block';
+			})
+		);
+	},
+
 	start() {
 		this.render();
+		this.tabsHandle();
 		this.imageSlideShow();
 		this.swiperGenerator();
 	},
