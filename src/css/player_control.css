@@ -12,7 +12,7 @@
 	align-items: center;
 	justify-content: space-between;
 
-	z-index: 2;
+	z-index: 1000;
 }
 
 .player-control .song-info {
