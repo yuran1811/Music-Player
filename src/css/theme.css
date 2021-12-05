@@ -114,16 +114,16 @@
 }
 
 [data-theme='light'] {
-	--bg-lv0: #000000;
+	--bg-lv0: #535353;
 	--bg-lv1: #f4f4f4;
 	--bg-lv2: #f2f2f2;
 	--bg-lv3: #e3e3e3;
 	--bg-lv4: #d4d4d4;
-	--bg-lv5: #c5c5c5;
-	--bg-lv6: #b6b6b6;
-	--bg-lv7: #a7a7a7;
-	--bg-lv8: #989898;
-	--bg-lv9: #898989;
+	--bg-lv5: #cfcfcf;
+	--bg-lv6: #c0c0c0;
+	--bg-lv7: #b6b6b6;
+	--bg-lv8: #b3b1b1;
+	--bg-lv9: #adadad;
 	--bg-lv0-alpha: rgba(0, 0, 0, 0.7);
 	--bg-lv1-alpha: rgba(244, 244, 244, 0.7);
 	--bg-lv2-alpha: rgba(242, 242, 242, 0.7);
