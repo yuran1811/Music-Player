@@ -227,7 +227,7 @@
 							</div>
 						</div>
 						<div class="part2">
-							<div class="item theme-ico">
+							<div class="icon item theme-ico">
 								<i
 									class="
 										bi bi-circle-square
@@ -256,13 +256,73 @@
 									</div>
 								</div>
 							</div>
-							<div class="item setting-ico">
+							<div class="icon item setting-ico">
 								<i class="bi bi-sliders top-ico ico--click"></i>
+								<div class="setting-panel">
+									<ul class="setting-list">
+										<li class="setting-item">
+											<i class="bi bi-slash-circle"></i>
+											Block List
+										</li>
+										<li class="setting-item">
+											<i class="bi bi-badge-hd"></i>
+											Music Quality
+											<div class="quality-panel">
+												<input
+													type="radio"
+													id="SQ"
+													name="quality"
+												/>
+												<label for="SQ">
+													<span> SQ - 128 </span>
+													<p>Info</p>
+												</label>
+												<input
+													type="radio"
+													id="HQ"
+													name="quality"
+												/>
+												<label for="SQ">
+													<span> HQ - 320 </span>
+													<p>Info</p>
+												</label>
+											</div>
+										</li>
+										<li class="setting-item">
+											<i class="bi bi-play-circle"></i>
+											This Player
+										</li>
+										<li class="setting-item">
+											<i class="bi bi-info-circle"></i>
+											Introduce
+										</li>
+										<li class="setting-item">
+											<i class="bi bi-flag"></i> Report
+										</li>
+										<li class="setting-item">
+											<i class="bi bi-telephone"></i>
+											Contact
+										</li>
+										<li class="setting-item">
+											<i class="bi bi-shield-check"></i>
+											Privacy
+										</li>
+									</ul>
+								</div>
 							</div>
-							<div class="item upload-ico">
-								<i class="bi bi-upload top-ico ico--click"></i>
+							<div class="icon item upload-ico">
+								<input
+									type="file"
+									name="upload-song"
+									id="upload-song"
+								/>
+								<label for="upload-song">
+									<i
+										class="bi bi-upload top-ico ico--click"
+									></i>
+								</label>
 							</div>
-							<div class="item">
+							<div class="item personal-ico">
 								<img
 									class="ava-img"
 									src="./src/img/Logo.png"
@@ -298,10 +358,23 @@
 								</span>
 								<div class="title-right">
 									<div class="upload-song">
-										<i
-											class="bi bi-upload ico ico--click"
-										></i>
-										<span>Upload</span>
+										<input
+											type="file"
+											name="upload-song"
+											id="upload-song2"
+										/>
+										<label
+											for="upload-song2"
+											class="ico--click"
+										>
+											<i
+												class="
+													bi bi-upload
+													ico ico--click
+												"
+											></i>
+											<span>Upload</span>
+										</label>
 									</div>
 									<div class="play-all">
 										<i
