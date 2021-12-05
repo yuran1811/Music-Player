@@ -1,15 +1,7 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-(() => {
-	const main = $('.main-content');
-	const toTop = $('.to-top');
-	main.onscroll = () => {
-		if (main.scrollTop > 170) toTop.style.display = 'block';
-		else toTop.style.display = 'none';
-	};
-})();
-
+// Category Link
 (() => {
 	const menuList = $('.category-sidebar');
 	menuList.querySelectorAll('.item').forEach((item) => {
@@ -21,6 +13,7 @@ const $$ = document.querySelectorAll.bind(document);
 	});
 })();
 
+// Ad Modal
 (() => {
 	const modalBox = $('body .ad-modal');
 	modalBox.onclick = () => modalBox.classList.toggle('active');
@@ -28,15 +21,18 @@ const $$ = document.querySelectorAll.bind(document);
 	modalBoxClick.onclick = () => modalBox.classList.toggle('active');
 })();
 
+// New Playlist Handle
 (() => {
 	const newPlModalBox = $('body .new-pl-modal');
 	const newPlBtn = $('.category-sidebar .new-playlist-btn');
-
-	newPlBtn.onclick = () => newPlModalBox.classList.toggle('active');
-	newPlModalBox.querySelector('.new-pl-banner__overlay').onclick = () =>
-		newPlModalBox.classList.toggle('active');
+	const toggleActive = () => newPlModalBox.classList.toggle('active');
+	newPlBtn.onclick = toggleActive;
+	newPlModalBox.querySelector('.new-pl-banner__overlay').onclick =
+		toggleActive;
+	newPlModalBox.querySelector('.new-pl-link').onclick = toggleActive;
 })();
 
+// Search Bar Handle
 (() => {
 	const searchBar = $('.main-content .search-bar');
 	searchBar.querySelector('input').onfocus = () =>
@@ -354,6 +350,10 @@ const musicPlayer = {
 					tabLink[index + 1].className += ' liactive';
 				})
 		);
+
+		const newPlaylist = $('.personal-section .new-playlist');
+		newPlaylist.onclick = () =>
+			$('body .new-pl-modal').classList.toggle('active');
 	},
 
 	categoryTabsHandle() {
@@ -424,7 +424,14 @@ const musicPlayer = {
 
 		let navPosition = personalNav.offsetTop;
 		main.onscroll = () => {
-			if (window.innerWidth <= 750) return;
+			const toTop = $('.to-top');
+			if (main.scrollTop > 170) toTop.style.display = 'block';
+			else toTop.style.display = 'none';
+
+			if (window.innerWidth <= 750) {
+				personalNav.classList.remove('ontop');
+				return;
+			}
 
 			const mainPos = main.scrollTop;
 			const navPos = personalNav.getBoundingClientRect().top;
@@ -437,6 +444,17 @@ const musicPlayer = {
 				if (navPos <= 4) personalNav.classList.add('ontop');
 			}
 		};
+	},
+
+	topIconHandle() {
+		$$('.main-content .top-bar .part2 .icon').forEach((item) =>
+			item.addEventListener('click', () =>
+				item.classList.toggle('active')
+			)
+		);
+
+		$('.main-content .top-bar .part2 .personal-ico').onclick = () =>
+			($('.personal-section').style.display = 'block');
 	},
 
 	themeToggle() {
@@ -468,6 +486,7 @@ const musicPlayer = {
 	start() {
 		this.render();
 		this.themeToggle();
+		this.topIconHandle();
 		this.imageSlideShow();
 		this.swiperGenerator();
 		this.personalTabsHandle();

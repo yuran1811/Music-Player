@@ -137,14 +137,24 @@
 }
 .main-content .part2 .item {
 	position: relative;
-
+	cursor: pointer;
+	z-index: 100;
 	display: flex;
 	align-items: center;
 
 	width: 40px;
 	height: 40px;
 	margin-right: 10px;
-	z-index: 100;
+	transition: all 0.3s ease;
+	border-top: 2px solid transparent;
+}
+.main-content .part2 .item.active {
+	border-color: var(--bg-lv1);
+}
+
+#upload-song,
+#upload-song2 {
+	display: none;
 }
 
 .main-content .part2 .theme-panel {
@@ -216,8 +226,8 @@
 	justify-content: center;
 }
 .main-content > .personal-section .banner img {
-	width: 100px;
-	height: 100px;
+	max-width: 175px;
+	width: 16vmax;
 }
 .main-content > .personal-section .banner .info {
 	font-size: 2.2rem;
@@ -509,6 +519,7 @@
 	background: linear-gradient(33deg, #5a1eae -7%, #ce267a 117%);
 	border-radius: 8px;
 	position: relative;
+	cursor: pointer;
 	z-index: 10;
 
 	width: 180px;
@@ -545,6 +556,7 @@
 	bottom: 2px;
 }
 
+#playlist .new-playlist:hover .create-btn,
 #playlist .new-playlist .create-btn:hover {
 	transform: rotateZ(-90deg);
 }
