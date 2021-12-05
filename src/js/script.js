@@ -310,7 +310,7 @@ const musicPlayer = {
 		const showAll = (list) =>
 			list.forEach((item) => (item.style.display = 'block'));
 		const tabLink = $$('.nav-bar .link');
-		const tabItem = $$('.main-page .item');
+		const tabItem = $$('.personal-section .main-page .item');
 		tabLink.forEach((link, id) =>
 			link.addEventListener('click', (e) => {
 				const last = $('.nav-bar .liactive');
@@ -338,6 +338,22 @@ const musicPlayer = {
 				() => (item.style.backgroundSize = '120% auto')
 			);
 		});
+
+		const allSection = $$(
+			'.personal-section .main-page section .title > span'
+		);
+		allSection.forEach(
+			(item, index) =>
+				(item.onclick = () => {
+					hideAll(tabItem);
+					tabItem[index].style.display = 'block';
+
+					const last = $('.nav-bar .liactive');
+					if (last)
+						last.className = last.className.replace('liactive', '');
+					tabLink[index + 1].className += ' liactive';
+				})
+		);
 	},
 
 	categoryTabsHandle() {
