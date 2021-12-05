@@ -222,7 +222,7 @@ const musicPlayer = {
 							class="img" 
 							style="
 								background: url('${artist.imgSrc}');
-								background-size: 120% auto;
+								background-size: 130% auto;
 								background-position: center;
 								background-repeat: no-repeat;
 								transition: all 0.32s ease-in-out;
@@ -331,11 +331,11 @@ const musicPlayer = {
 		artistImg.forEach((item) => {
 			item.addEventListener(
 				'mouseover',
-				() => (item.style.backgroundSize = '150% auto')
+				() => (item.style.backgroundSize = '155% auto')
 			);
 			item.addEventListener(
 				'mouseout',
-				() => (item.style.backgroundSize = '120% auto')
+				() => (item.style.backgroundSize = '130% auto')
 			);
 		});
 
@@ -440,15 +440,27 @@ const musicPlayer = {
 	},
 
 	themeToggle() {
+		const allTheme = [
+			['dark', '#0e0c0c'],
+			['light', '#f4f4f4'],
+			['green', '#a1fbd8'],
+			['blue', '#a1b3fa'],
+			['pink', '#fcb2b5'],
+			['orange', '#fffcaf'],
+		];
 		const themeBtn = $('.main-content .top-bar .theme-ico');
 		themeBtn.onclick = () => {
 			themeBtn.querySelector('.theme-panel').classList.toggle('active');
 			const themeList = themeBtn.querySelectorAll('.theme-item');
 			themeList.forEach(
-				(item) =>
+				(item, index) => (
 					(item.onclick = () =>
-						(document.body.dataset.theme =
-							item.innerText.toLowerCase()))
+						(document.body.dataset.theme = item
+							.querySelector('span')
+							.innerText.trim()
+							.toLowerCase())),
+					(item.style.backgroundColor = allTheme[index][1])
+				)
 			);
 		};
 	},
