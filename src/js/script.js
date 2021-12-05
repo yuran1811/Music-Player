@@ -218,7 +218,16 @@ const musicPlayer = {
 				(artist) => `
 				<div class="artist-info swiper-slide">
 					<div class="artist__bg">
-						<img src="${artist.imgSrc}" alt="bg">
+						<div
+							class="img" 
+							style="
+								background: url('${artist.imgSrc}');
+								background-size: 120% auto;
+								background-position: center;
+								background-repeat: no-repeat;
+								transition: all 0.32s ease-in-out;
+							"
+							></div>
 					</div>
 					<div class="artist__content">
 						<div class="artist__name">${artist.name}</div>
@@ -317,6 +326,18 @@ const musicPlayer = {
 				e.currentTarget.className += ' liactive';
 			})
 		);
+
+		const artistImg = $$('#artist .artist__bg .img');
+		artistImg.forEach((item) => {
+			item.addEventListener(
+				'mouseover',
+				() => (item.style.backgroundSize = '150% auto')
+			);
+			item.addEventListener(
+				'mouseout',
+				() => (item.style.backgroundSize = '120% auto')
+			);
+		});
 	},
 
 	categoryTabsHandle() {
