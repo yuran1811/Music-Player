@@ -324,12 +324,15 @@ const musicPlayer = {
 		const tabItem = $$('.main-content .category-item');
 		const tabLinkLth = tabLink.length - 1;
 		const personalSection = $('.personal-section');
-		const personalSectionNavBar = $('.personal-section .nav-bar');
+		const personalNav = $('.personal-section .nav-bar');
+		const main = $('.main-content');
 
 		const hideAll = (list) =>
 			list.forEach((item) => (item.style.display = 'none'));
+		const showAll = (list) =>
+			list.forEach((item) => (item.style.display = 'block'));
 		const removeLastActive = () => {
-			personalSectionNavBar
+			personalNav
 				.querySelectorAll('.liactive')
 				.forEach(
 					(item) =>
@@ -354,26 +357,23 @@ const musicPlayer = {
 						personalSection.querySelector(
 							'#playlist'
 						).style.display = 'block';
-						personalSectionNavBar.querySelectorAll(
-							'.link'
-						)[2].className += ' liactive';
+						personalNav.querySelectorAll('.link')[2].className +=
+							' liactive';
 						break;
 					case tabLinkLth - 1:
 						hideAll(personalSection.querySelectorAll('.item'));
 						removeLastActive();
-						personalSectionNavBar.querySelectorAll(
-							'.link'
-						)[1].className += ' liactive';
+						personalNav.querySelectorAll('.link')[1].className +=
+							' liactive';
 						personalSection.style.display = 'block';
 						personalSection.querySelector('#songs').style.display =
 							'block';
 						break;
 					case 0:
-						hideAll(personalSection.querySelectorAll('.item'));
+						showAll(personalSection.querySelectorAll('.item'));
 						removeLastActive();
-						personalSectionNavBar.querySelectorAll(
-							'.link'
-						)[0].className += ' liactive';
+						personalNav.querySelectorAll('.link')[0].className +=
+							' liactive';
 						personalSection.style.display = 'none';
 						tabItem[id].style.display = 'block';
 						break;
@@ -384,10 +384,41 @@ const musicPlayer = {
 				}
 			})
 		);
+
+		let navPosition = personalNav.offsetTop;
+		main.onscroll = () => {
+			if (window.innerWidth <= 750) return;
+
+			const mainPos = main.scrollTop;
+			const navPos = personalNav.getBoundingClientRect().top;
+			if (personalNav.className.includes('ontop')) {
+				if (mainPos - 20 <= navPosition && navPosition <= mainPos + 20)
+					personalNav.classList.remove('ontop');
+				else if (mainPos <= navPosition)
+					personalNav.classList.remove('ontop');
+			} else {
+				if (navPos <= 4) personalNav.classList.add('ontop');
+			}
+		};
+	},
+
+	themeToggle() {
+		const themeBtn = $('.main-content .top-bar .theme-ico');
+		themeBtn.onclick = () => {
+			themeBtn.querySelector('.theme-panel').classList.toggle('active');
+			const themeList = themeBtn.querySelectorAll('.theme-item');
+			themeList.forEach(
+				(item) =>
+					(item.onclick = () =>
+						(document.body.dataset.theme =
+							item.innerText.toLowerCase()))
+			);
+		};
 	},
 
 	start() {
 		this.render();
+		this.themeToggle();
 		this.imageSlideShow();
 		this.swiperGenerator();
 		this.personalTabsHandle();
