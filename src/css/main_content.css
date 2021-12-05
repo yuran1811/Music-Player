@@ -149,28 +149,44 @@
 
 .main-content .part2 .theme-panel {
 	position: absolute;
-	visibility: hidden;
-	top: 50px;
 	right: 0;
-	width: 500px;
+	top: 50px;
+	width: 150px;
+	height: 0;
+	padding: 0;
+
+	background-color: var(--bg-lv6);
+	border-radius: 20px;
 
 	display: flex;
 	flex-flow: row wrap;
 	align-items: center;
 	justify-content: center;
-}
-.main-content .part2 .theme-panel.active {
-	visibility: visible;
+	transition: all 0.45s ease;
 }
 
 .main-content .part2 .theme-panel .theme-item {
 	background-color: var(--bg-lv5);
 	position: relative;
 	cursor: pointer;
-	width: 90px;
-	height: 50px;
+	width: 50px;
+	height: 0;
+	padding: 0;
+	margin: 10px;
+	border-radius: 50%;
+	transition: all 0.2s ease;
+}
+.main-content .part2 .theme-panel .theme-item > span {
+	display: none;
+}
+
+.main-content .part2 .theme-panel.active {
+	height: auto;
+	padding: 5px;
+}
+.main-content .part2 .theme-panel.active .theme-item {
 	padding: 5px 10px;
-	margin: 0 0 15px 15px;
+	height: 50px;
 }
 
 /* Section */
