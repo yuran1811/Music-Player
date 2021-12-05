@@ -4,7 +4,7 @@
 
 .category-sidebar {
 	background-color: var(--bg-lv8);
-	border-right: 1px solid var(--bg-lv7);
+	border-right: 1px solid var(--bg-lv6);
 
 	display: flex;
 	align-items: center;
@@ -287,8 +287,8 @@ body > .new-pl-modal input:focus {
 }
 
 .category-sidebar .create-new-playlist {
-	border-top: 1px solid var(--bg-lv7);
-	border-right: 1px solid var(--bg-lv7);
+	border-top: 1px solid var(--bg-lv6);
+	border-right: 1px solid var(--bg-lv6);
 	background-color: var(--bg-lv8);
 
 	position: fixed;
