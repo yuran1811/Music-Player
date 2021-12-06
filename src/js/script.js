@@ -476,8 +476,12 @@ const musicPlayer = {
 		const settingIcon = $('.main-content .top-bar .setting-ico');
 		settingIcon.onclick = () =>
 			settingIcon
-				.querySelector('.setting-panle')
+				.querySelector('.setting-panel')
 				.classList.toggle('active');
+		const settingItems = $$('.main-content .top-bar .setting-item');
+		settingItems.forEach(
+			(item) => (item.onclick = (e) => e.stopPropagation())
+		);
 	},
 
 	topIconHandle() {

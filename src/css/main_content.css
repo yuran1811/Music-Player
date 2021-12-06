@@ -60,16 +60,19 @@
 	width: 90%;
 	height: 34px;
 	margin-left: 10px;
-	padding: 5px 0 5px 10px;
+	padding: 15px 10px;
 
 	border-radius: 25px;
-	border: none;
+	border: 0;
+	border-left: 2px solid var(--bg-lv6);
+	border-bottom: 2px solid var(--bg-lv6);
 	outline: none;
 }
 .main-content .search-bar input::placeholder,
 .main-content .search-bar input:target {
 	color: var(--bg-lv0);
 	font-size: 1rem;
+	font-style: italic;
 }
 .main-content .search-bar.active input,
 .main-content .search-bar input:focus {
@@ -203,6 +206,13 @@
 }
 
 /* Setting */
+.main-content .part2 .setting-panel {
+	display: none;
+}
+.main-content .part2 .setting-panel.active {
+	display: block;
+}
+
 .main-content .part2 .setting-list {
 	background-color: var(--bg-lv6);
 	position: absolute;
@@ -881,9 +891,12 @@
 		flex-direction: column-reverse;
 		top: 65px;
 	}
-
 	.main-content .part2 .item {
-		margin-top: 5px;
+		border: 0;
+		border-right: 2px solid transparent;
+	}
+	.main-content .part2 .item.active {
+		border-color: var(--bg-lv1);
 	}
 
 	.main-content > .personal-section .nav-bar {
@@ -926,7 +939,7 @@
 
 	#playlist .new-playlist {
 		width: 80%;
-		height: 120px;
+		height: 150px;
 		margin: 5px auto 15px;
 	}
 
