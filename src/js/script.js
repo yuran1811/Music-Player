@@ -446,17 +446,6 @@ const musicPlayer = {
 		};
 	},
 
-	topIconHandle() {
-		$$('.main-content .top-bar .part2 .icon').forEach((item) =>
-			item.addEventListener('click', () =>
-				item.classList.toggle('active')
-			)
-		);
-
-		$('.main-content .top-bar .part2 .personal-ico').onclick = () =>
-			($('.personal-section').style.display = 'block');
-	},
-
 	themeToggle() {
 		const allTheme = [
 			['dark', '#0e0c0c'],
@@ -483,9 +472,30 @@ const musicPlayer = {
 		};
 	},
 
+	settingDialog() {
+		const settingIcon = $('.main-content .top-bar .setting-ico');
+		settingIcon.onclick = () =>
+			settingIcon
+				.querySelector('.setting-panle')
+				.classList.toggle('active');
+	},
+
+	topIconHandle() {
+		$$('.main-content .top-bar .part2 .icon').forEach((item) =>
+			item.addEventListener('click', () =>
+				item.classList.toggle('active')
+			)
+		);
+
+		$('.main-content .top-bar .part2 .personal-ico').onclick = () =>
+			($('.personal-section').style.display = 'block');
+
+		this.themeToggle();
+		this.settingDialog();
+	},
+
 	start() {
 		this.render();
-		this.themeToggle();
 		this.topIconHandle();
 		this.imageSlideShow();
 		this.swiperGenerator();

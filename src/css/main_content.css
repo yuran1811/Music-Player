@@ -47,6 +47,7 @@
 	justify-content: flex-start;
 }
 
+/* Search Bar */
 .main-content .search-bar {
 	position: relative;
 	width: 80%;
@@ -129,6 +130,7 @@
 	margin-left: 10px;
 }
 
+/* Part2 */
 .main-content .part2 {
 	position: relative;
 	display: flex;
@@ -157,6 +159,7 @@
 	display: none;
 }
 
+/* Theme */
 .main-content .part2 .theme-panel {
 	position: absolute;
 	right: 0;
@@ -197,6 +200,83 @@
 .main-content .part2 .theme-panel.active .theme-item {
 	padding: 5px 10px;
 	height: 50px;
+}
+
+/* Setting */
+.main-content .part2 .setting-list {
+	background-color: var(--bg-lv6);
+	position: absolute;
+	top: 45px;
+	right: 0;
+	width: 170px;
+	padding: 7px 12px;
+	border-radius: 20px;
+
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.main-content .part2 .setting-item {
+	width: 100%;
+	margin: 3px 0;
+	padding: 8px 12px;
+	border-radius: 20px;
+
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+.main-content .part2 .setting-item:hover {
+	background-color: var(--bg-lv8);
+}
+
+.main-content .part2 .setting-item > i {
+	margin-right: 10px;
+}
+
+.main-content .part2 .music-quality > .quality-panel {
+	display: none;
+	position: absolute;
+	left: -90%;
+	width: 170px;
+	padding: 8px 12px;
+	border-radius: 20px;
+	background-color: var(--bg-lv6);
+}
+.main-content .part2 .music-quality .quality-item {
+	margin: 8px 0 12px;
+}
+.main-content .part2 .music-quality .quality-item span {
+	font-weight: bold;
+	margin: 5px 0;
+}
+.main-content .part2 .music-quality .quality-item p {
+	margin: 5px 0 8px;
+}
+
+.main-content .part2 .music-quality:hover > .quality-panel {
+	display: block;
+}
+
+.main-content .horizone-line {
+	position: relative;
+	margin: 6px 0 4px;
+	width: 100%;
+}
+.main-content .horizone-line::after {
+	content: '';
+	border-top: 1px solid var(--bg-lv9);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 0;
+	width: 80%;
+	transform: translate(-50%, -50%);
+}
+.main-content .horizone-line ~ .setting-item {
+	opacity: 0.64;
 }
 
 /* Section */
