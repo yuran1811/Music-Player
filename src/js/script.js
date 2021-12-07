@@ -305,6 +305,7 @@ const musicPlayer = {
 			list.forEach((item) => (item.style.display = 'none'));
 		const showAll = (list) =>
 			list.forEach((item) => (item.style.display = 'block'));
+
 		const tabLink = $$('.nav-bar .link');
 		const tabItem = $$('.personal-section .main-page .item');
 		tabLink.forEach((link, id) =>
@@ -325,20 +326,11 @@ const musicPlayer = {
 
 		const artistImg = $$('#artist .artist__bg .img');
 		artistImg.forEach((item) => {
-			item.addEventListener(
-				'mouseover',
-				() => (item.style.backgroundSize = '155% auto')
-			);
-			item.addEventListener(
-				'mouseout',
-				() => (item.style.backgroundSize = '130% auto')
-			);
+			item.onmouseover = () => (item.style.backgroundSize = '155% auto');
+			item.onmouseout = () => (item.style.backgroundSize = '130% auto');
 		});
 
-		const allSection = $$(
-			'.personal-section .main-page section .title > span'
-		);
-		allSection.forEach(
+		$$('.personal-section .main-page section .title > span').forEach(
 			(item, index) =>
 				(item.onclick = () => {
 					hideAll(tabItem);
@@ -351,8 +343,7 @@ const musicPlayer = {
 				})
 		);
 
-		const newPlaylist = $('.personal-section .new-playlist');
-		newPlaylist.onclick = () =>
+		$('.personal-section .new-playlist').onclick = () =>
 			$('body .new-pl-modal').classList.toggle('active');
 	},
 
@@ -446,7 +437,19 @@ const musicPlayer = {
 		};
 	},
 
-	themeToggle() {
+	topIconHandle() {
+		const checkStatus = (item) => {
+			if (item.className.includes('active')) {
+				item.classList.remove('active');
+				return true;
+			}
+			return false;
+		};
+		const disableAll = () =>
+			$$('.main-content .top-bar .part2 .icon').forEach((item) =>
+				item.classList.remove('active')
+			);
+
 		const allTheme = [
 			['dark', '#0e0c0c'],
 			['light', '#f4f4f4'],
@@ -456,46 +459,37 @@ const musicPlayer = {
 			['orange', '#fffcaf'],
 		];
 		const themeBtn = $('.main-content .top-bar .theme-ico');
-		themeBtn.onclick = () => {
-			themeBtn.querySelector('.theme-panel').classList.toggle('active');
-			const themeList = themeBtn.querySelectorAll('.theme-item');
-			themeList.forEach(
-				(item, index) => (
-					(item.onclick = () =>
-						(document.body.dataset.theme = item
-							.querySelector('span')
-							.innerText.trim()
-							.toLowerCase())),
-					(item.style.backgroundColor = allTheme[index][1])
-				)
+		themeBtn.addEventListener('click', () => {
+			if (checkStatus(themeBtn)) return;
+			disableAll();
+			themeBtn.classList.toggle('active');
+			themeBtn
+				.querySelectorAll('.theme-item')
+				.forEach(
+					(item, index) => (
+						(item.onclick = () =>
+							(document.body.dataset.theme = item
+								.querySelector('span')
+								.innerText.trim()
+								.toLowerCase())),
+						(item.style.backgroundColor = allTheme[index][1])
+					)
+				);
+		});
+
+		$('.main-content .top-bar .setting-ico').onclick = (e) => {
+			if (checkStatus(e.currentTarget)) return;
+			disableAll();
+			e.currentTarget.classList.toggle('active');
+			const settingItems = $$('.main-content .top-bar .setting-item');
+			settingItems.forEach(
+				(item) => (item.onclick = (e) => e.stopPropagation())
 			);
 		};
-	},
 
-	settingDialog() {
-		const settingIcon = $('.main-content .top-bar .setting-ico');
-		settingIcon.onclick = () =>
-			settingIcon
-				.querySelector('.setting-panel')
-				.classList.toggle('active');
-		const settingItems = $$('.main-content .top-bar .setting-item');
-		settingItems.forEach(
-			(item) => (item.onclick = (e) => e.stopPropagation())
+		$('.main-content .top-bar .personal-ico').onclick = () => (
+			disableAll(), ($('.personal-section').style.display = 'block')
 		);
-	},
-
-	topIconHandle() {
-		$$('.main-content .top-bar .part2 .icon').forEach((item) =>
-			item.addEventListener('click', () =>
-				item.classList.toggle('active')
-			)
-		);
-
-		$('.main-content .top-bar .part2 .personal-ico').onclick = () =>
-			($('.personal-section').style.display = 'block');
-
-		this.themeToggle();
-		this.settingDialog();
 	},
 
 	start() {

@@ -196,11 +196,11 @@
 	display: none;
 }
 
-.main-content .part2 .theme-panel.active {
+.main-content .part2 .item.active .theme-panel {
 	height: auto;
 	padding: 5px;
 }
-.main-content .part2 .theme-panel.active .theme-item {
+.main-content .part2 .item.active .theme-panel .theme-item {
 	padding: 5px 10px;
 	height: 50px;
 }
@@ -209,7 +209,7 @@
 .main-content .part2 .setting-panel {
 	display: none;
 }
-.main-content .part2 .setting-panel.active {
+.main-content .part2 .item.active .setting-panel {
 	display: block;
 }
 
