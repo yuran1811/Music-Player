@@ -71,10 +71,13 @@ const songArtist = select(songInfo, '.artist');
 const songTitle = select(songInfo, '.title');
 audio.volume = 0.2;
 
-const musicPlayer = {
-	currentIndex: 0,
+const USER_CONFIG_KEY = 'user__settings';
 
+const musicPlayer = {
+	userConfig: JSON.parse(localStorage.getItem(USER_CONFIG_KEY)) || {},
+	currentIndex: 0,
 	randArr: [],
+	isRepeat: 0,
 	isRand: 0,
 
 	playlists: [
@@ -175,6 +178,15 @@ const musicPlayer = {
 			status: false,
 		},
 	],
+
+	setConfig(key, val) {
+		this.userConfig[key] = val;
+		localStorage.setItem(USER_CONFIG_KEY, JSON.stringify(this.userConfig));
+	},
+	loadConfig() {
+		this.isRand = this.userConfig.isRand;
+		this.isRepeat = this.userConfig.isRepeat;
+	},
 
 	defineProperties() {
 		Object.defineProperty(this, 'currentSong', {
@@ -538,6 +550,10 @@ const musicPlayer = {
 	},
 
 	playNextSong() {
+		if (this.isRepeat) {
+			this.loadCurrentSong();
+			return;
+		}
 		if (this.isRand) {
 			this.playShuffle();
 			return;
@@ -547,6 +563,10 @@ const musicPlayer = {
 		this.loadCurrentSong();
 	},
 	playPrevSong() {
+		if (this.isRepeat) {
+			this.loadCurrentSong();
+			return;
+		}
 		if (this.isRand) {
 			this.playShuffle();
 			return;
@@ -556,11 +576,15 @@ const musicPlayer = {
 		this.loadCurrentSong();
 	},
 	playShuffle() {
+		if (this.isRepeat) {
+			this.loadCurrentSong();
+			return;
+		}
 		if ([...this.randArr].sort()[0]) this.randArr.fill(0);
 
-		let tmp = 0;
+		let tmp;
 		do tmp = Math.floor(Math.random() * this.songs.length);
-		while (this.randArr[tmp]);
+		while (this.randArr[tmp] === 1 || tmp === this.currentIndex);
 
 		this.randArr[tmp] = 1;
 		this.currentIndex = tmp;
@@ -604,11 +628,25 @@ const musicPlayer = {
 		prevBtn.onclick = () => (
 			this.playPrevSong(), audio.play(), songImgAnimation.play()
 		);
-		shuffleBtn.onclick = () => (this.isRand = !this.isRand);
+		shuffleBtn.onclick = () => (
+			(this.isRand = !this.isRand), this.setConfig('isRand', this.isRand)
+		);
+		repeatBtn.onclick = () => (
+			(this.isRepeat = !this.isRepeat),
+			this.setConfig('isRepeat', this.isRepeat)
+		);
+
+		audio.onended = () => {
+			if (this.isRepeat) {
+				audio.play();
+				songImgAnimation.play();
+			} else nextBtn.click();
+		};
 	},
 
 	start() {
 		this.defineProperties();
+		this.loadConfig();
 
 		this.render();
 
@@ -618,8 +656,8 @@ const musicPlayer = {
 		this.personalTabsHandle();
 		this.categoryTabsHandle();
 
-		this.handleEvents();
 		this.loadCurrentSong();
+		this.handleEvents();
 	},
 };
 musicPlayer.start();
