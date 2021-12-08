@@ -480,7 +480,9 @@
 
 		<div class="player-control">
 			<div class="song-info">
-				<div class="media-img"></div>
+				<div class="media-img">
+					<img src="" alt="Song Img" />
+				</div>
 				<div class="media-content">
 					<div class="title">Song Name</div>
 					<div class="artist">Unknown Artist</div>
@@ -500,7 +502,17 @@
 				</div>
 				<div class="part2">
 					<div class="left-time">00:00</div>
-					<div class="duration"></div>
+					<div class="duration-container">
+						<input
+							id="progress"
+							class="duration ico--click"
+							type="range"
+							value="0"
+							step="1"
+							min="0"
+							max="100"
+						/>
+					</div>
 					<div class="right-time">99:99</div>
 				</div>
 			</div>
@@ -511,6 +523,7 @@
 				<div class="vertical-line"></div>
 				<i class="bi bi-music-note-list ico ico--click"></i>
 			</div>
+			<audio class="hide now-play"></audio>
 		</div>
 		<script src="./src/js/script.js"></script>
 	</body>

@@ -26,12 +26,15 @@
 }
 
 .player-control .song-info .media-img {
-	background-color: var(--bg-lv2);
-	border-radius: 50%;
-
 	width: 64px;
 	height: 64px;
 	margin-right: 10px;
+	border-radius: 50%;
+}
+.player-control .song-info .media-img img {
+	width: inherit;
+	height: inherit;
+	border-radius: 50%;
 }
 
 .player-control .song-info .media-content {
@@ -85,12 +88,16 @@
 	padding: 0 10px 5px;
 }
 
+.player-control .controller .part2 .duration-container {
+	margin-top: -5px;
+}
 .player-control .controller .part2 .duration {
 	background-color: var(--bg-lv0);
 
 	height: 3px;
-	width: 80%;
-	margin: 0 5px;
+	width: 30vw;
+	padding: 2px 0;
+	margin: 0 7px;
 }
 
 .player-control .player-tools {
@@ -109,6 +116,16 @@
 	margin: 0 20px;
 }
 
+@media screen and (max-width: 1024px) {
+	.player-control .song-info .media-img {
+		position: absolute;
+		top: -20px;
+		left: 40px;
+		z-index: -1;
+		opacity: 0.7;
+	}
+}
+
 @media screen and (max-width: 750px) {
 	.player-control .song-info {
 		flex-direction: column;
@@ -125,14 +142,9 @@
 	.player-control .ico {
 		padding: 10px;
 	}
-}
 
-@media screen and (max-width: 1024px) {
-	.player-control .song-info .media-img {
-		position: absolute;
-		top: -20px;
-		left: 40px;
-		z-index: -1;
-		opacity: 0.7;
+	.player-control .controller .part2 .left-time,
+	.player-control .controller .part2 .right-time {
+		display: none;
 	}
 }
