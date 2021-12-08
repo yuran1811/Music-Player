@@ -1,6 +1,9 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
+const select = (par, child) => par.querySelector(child);
+const selectAll = (par, child) => par.querySelectorAll(child);
+
 // Category Link
 (() => {
 	const menuList = $('.category-sidebar');
@@ -50,7 +53,30 @@ const $$ = document.querySelectorAll.bind(document);
 		);
 })();
 
+// Player Control Elements
+const playerControl = $('.player-control');
+const controller = select(playerControl, '.controller');
+const songInfo = select(playerControl, '.song-info');
+const audio = select(playerControl, '.now-play');
+
+const playBtn = select(controller, '.fa-play');
+const nextBtn = select(controller, '.fa-forward');
+const prevBtn = select(controller, '.fa-backward');
+const shuffleBtn = select(controller, '.fa-random');
+const repeatBtn = select(controller, '.fa-redo-alt');
+const songProgress = select(controller, '#progress');
+
+const songImg = select(songInfo, '.media-img > img');
+const songArtist = select(songInfo, '.artist');
+const songTitle = select(songInfo, '.title');
+audio.volume = 0.2;
+
 const musicPlayer = {
+	currentIndex: 0,
+
+	randArr: [],
+	isRand: 0,
+
 	playlists: [
 		{
 			name: 'US-UK',
@@ -150,14 +176,19 @@ const musicPlayer = {
 		},
 	],
 
-	render() {
+	defineProperties() {
+		Object.defineProperty(this, 'currentSong', {
+			get: function () {
+				return this.songs[this.currentIndex];
+			},
+		});
+	},
+
+	renderSongs() {
 		$('section .song-list ul').innerHTML = this.songs
 			.map(
 				(song) => `
-				<li class="song-item">
-					<audio class="hide">
-						<source src="${song.audioSrc}" type="audio/mpeg">
-					</audio>
+				<li class="song-item" data-songurl="${song.audioSrc}">
 					<div class="left">
 						<img src="${song.imgSrc}" alt="${song.name}" />
 						<div class="left-content">
@@ -175,40 +206,8 @@ const musicPlayer = {
 			`
 			)
 			.join('');
-
-		$('section .img-preview').innerHTML = this.songs
-			.map(
-				(song) => `
-				<a href="#">
-					<img src="${song.imgSrc}" alt="${song.name}" />
-				</a>
-			`
-			)
-			.join('');
-
-		$('#playlist .swiper-wrapper').innerHTML = this.playlists
-			.map(
-				(playlist) => `
-					<div class="playlist-item swiper-slide">
-						<div
-							class="playlist-option"
-							style="
-								background: url('${playlist.imgSrc}');
-								background-size: 100% 100%;
-							">
-							<div class="playlist-option-overlay">
-								<i class="fas fa-times"></i>
-								<i class="fas fa-play"></i>
-								<i class="fas fa-ellipsis-h"></i>
-							</div>
-						</div>
-						<div class="playlist-title">${playlist.name}</div>
-						<div class="playlist-owner">${playlist.owner}</div>
-					</div>
-				`
-			)
-			.join('');
-
+	},
+	renderArtists() {
 		$('#artist .swiper-wrapper').innerHTML = this.artists
 			.map(
 				(artist) => `
@@ -234,6 +233,47 @@ const musicPlayer = {
 			`
 			)
 			.join('');
+	},
+	renderPlaylists() {
+		$('#playlist .swiper-wrapper').innerHTML = this.playlists
+			.map(
+				(playlist) => `
+					<div class="playlist-item swiper-slide">
+						<div
+							class="playlist-option"
+							style="
+								background: url('${playlist.imgSrc}');
+								background-size: 100% 100%;
+							">
+							<div class="playlist-option-overlay">
+								<i class="fas fa-times"></i>
+								<i class="fas fa-play"></i>
+								<i class="fas fa-ellipsis-h"></i>
+							</div>
+						</div>
+						<div class="playlist-title">${playlist.name}</div>
+						<div class="playlist-owner">${playlist.owner}</div>
+					</div>
+				`
+			)
+			.join('');
+	},
+	render() {
+		this.renderSongs();
+		this.renderArtists();
+		this.renderPlaylists();
+		$('section .img-preview').innerHTML = this.songs
+			.map(
+				(song) => `
+				<a href="#">
+					<img src="${song.imgSrc}" alt="${song.name}" />
+				</a>
+			`
+			)
+			.join('');
+
+		this.randArr = new Array(this.songs.length);
+		this.randArr.fill(0);
 	},
 
 	imageSlideShow() {
@@ -346,7 +386,6 @@ const musicPlayer = {
 		$('.personal-section .new-playlist').onclick = () =>
 			$('body .new-pl-modal').classList.toggle('active');
 	},
-
 	categoryTabsHandle() {
 		const tabLink = $$('.category-sidebar .item');
 		const tabItem = $$('.main-content .category-item');
@@ -436,7 +475,6 @@ const musicPlayer = {
 			}
 		};
 	},
-
 	topIconHandle() {
 		const checkStatus = (item) => {
 			if (item.className.includes('active')) {
@@ -492,13 +530,99 @@ const musicPlayer = {
 		);
 	},
 
+	loadCurrentSong() {
+		songTitle.innerHTML = this.currentSong.name;
+		songArtist.innerHTML = this.currentSong.artist;
+		songImg.src = this.currentSong.imgSrc;
+		audio.src = this.currentSong.audioSrc;
+	},
+
+	playNextSong() {
+		if (this.isRand) {
+			this.playShuffle();
+			return;
+		}
+
+		if (++this.currentIndex >= this.songs.length) this.currentIndex = 0;
+		this.loadCurrentSong();
+	},
+	playPrevSong() {
+		if (this.isRand) {
+			this.playShuffle();
+			return;
+		}
+
+		if (--this.currentIndex < 0) this.currentIndex = this.songs.length - 1;
+		this.loadCurrentSong();
+	},
+	playShuffle() {
+		if ([...this.randArr].sort().indexOf(0) < 0) this.randArr.fill(0);
+
+		let tmp = 0;
+		do tmp = Math.floor(Math.random() * this.songs.length);
+		while (tmp === this.currentIndex && this.randArr[tmp]);
+
+		this.randArr[tmp] = 1;
+		this.currentIndex = tmp;
+		this.loadCurrentSong();
+		console.log(this.randArr, [...this.randArr].sort());
+	},
+
+	handleEvents() {
+		const songImgAnimation = songImg.animate(
+			[{ transform: 'rotate(360deg)' }],
+			{
+				duration: 10000,
+				iterations: Infinity,
+			}
+		);
+		songImgAnimation.pause();
+
+		playBtn.onclick = () => {
+			if (audio.paused) {
+				audio.play();
+				playerControl.classList.toggle('playing');
+				songImgAnimation.play();
+			} else {
+				audio.pause();
+				songImgAnimation.pause();
+			}
+
+			audio.ontimeupdate = () =>
+				(songProgress.value =
+					(audio.currentTime / audio.duration) * 100);
+		};
+
+		songProgress.onchange = () => {
+			audio.currentTime = (songProgress.value * audio.duration) / 100;
+			songProgress.value = (audio.currentTime / audio.duration) * 100;
+			audio.play();
+		};
+
+		nextBtn.onclick = () => (
+			this.playNextSong(), audio.play(), songImgAnimation.play()
+		);
+		prevBtn.onclick = () => (
+			this.playPrevSong(), audio.play(), songImgAnimation.play()
+		);
+		shuffleBtn.onclick = () => (
+			(this.isRand = !this.isRand), console.log('Shuffle: ', this.isRand)
+		);
+	},
+
 	start() {
+		this.defineProperties();
+
 		this.render();
+
 		this.topIconHandle();
 		this.imageSlideShow();
 		this.swiperGenerator();
 		this.personalTabsHandle();
 		this.categoryTabsHandle();
+
+		this.handleEvents();
+		this.loadCurrentSong();
 	},
 };
 musicPlayer.start();
