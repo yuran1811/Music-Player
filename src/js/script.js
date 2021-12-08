@@ -304,7 +304,7 @@ const musicPlayer = {
 		const hideAll = (list) =>
 			list.forEach((item) => (item.style.display = 'none'));
 		const showAll = (list) =>
-			list.forEach((item) => (item.style.display = 'block'));
+			list.forEach((item) => (item.style.display = 'flex'));
 
 		const tabLink = $$('.nav-bar .link');
 		const tabItem = $$('.personal-section .main-page .item');
@@ -319,7 +319,7 @@ const musicPlayer = {
 					return;
 				}
 				hideAll(tabItem);
-				tabItem[id - 1].style.display = 'block';
+				tabItem[id - 1].style.display = 'flex';
 				e.currentTarget.className += ' liactive';
 			})
 		);
@@ -334,7 +334,7 @@ const musicPlayer = {
 			(item, index) =>
 				(item.onclick = () => {
 					hideAll(tabItem);
-					tabItem[index].style.display = 'block';
+					tabItem[index].style.display = 'flex';
 
 					const last = $('.nav-bar .liactive');
 					if (last)
@@ -358,7 +358,7 @@ const musicPlayer = {
 		const hideAll = (list) =>
 			list.forEach((item) => (item.style.display = 'none'));
 		const showAll = (list) =>
-			list.forEach((item) => (item.style.display = 'block'));
+			list.forEach((item) => (item.style.display = 'flex'));
 		const removeLastActive = () => {
 			personalNav
 				.querySelectorAll('.liactive')
@@ -384,7 +384,7 @@ const musicPlayer = {
 						personalSection.style.display = 'block';
 						personalSection.querySelector(
 							'#playlist'
-						).style.display = 'block';
+						).style.display = 'flex';
 						personalNav.querySelectorAll('.link')[2].className +=
 							' liactive';
 						break;
@@ -395,7 +395,7 @@ const musicPlayer = {
 							' liactive';
 						personalSection.style.display = 'block';
 						personalSection.querySelector('#songs').style.display =
-							'block';
+							'flex';
 						break;
 					case 0:
 						showAll(personalSection.querySelectorAll('.item'));
