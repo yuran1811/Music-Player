@@ -556,16 +556,15 @@ const musicPlayer = {
 		this.loadCurrentSong();
 	},
 	playShuffle() {
-		if ([...this.randArr].sort().indexOf(0) < 0) this.randArr.fill(0);
+		if ([...this.randArr].sort()[0]) this.randArr.fill(0);
 
 		let tmp = 0;
 		do tmp = Math.floor(Math.random() * this.songs.length);
-		while (tmp === this.currentIndex && this.randArr[tmp]);
+		while (this.randArr[tmp]);
 
 		this.randArr[tmp] = 1;
 		this.currentIndex = tmp;
 		this.loadCurrentSong();
-		console.log(this.randArr, [...this.randArr].sort());
 	},
 
 	handleEvents() {
@@ -605,9 +604,7 @@ const musicPlayer = {
 		prevBtn.onclick = () => (
 			this.playPrevSong(), audio.play(), songImgAnimation.play()
 		);
-		shuffleBtn.onclick = () => (
-			(this.isRand = !this.isRand), console.log('Shuffle: ', this.isRand)
-		);
+		shuffleBtn.onclick = () => (this.isRand = !this.isRand);
 	},
 
 	start() {
