@@ -752,6 +752,10 @@
 
 #playlist .swiper-slide .playlist-option-overlay > i {
 	cursor: pointer;
+	transition: all 0.35s ease;
+}
+#playlist .swiper-slide .playlist-option-overlay > i:hover {
+	transform: scale(1.5);
 }
 
 #playlist .swiper-slide .playlist-option:hover {
@@ -884,6 +888,12 @@
 }
 
 @media screen and (max-width: 750px) {
+	.main-content:hover::-webkit-scrollbar-thumb,
+	.main-content > .personal-section .song-list:hover::-webkit-scrollbar-thumb,
+	#playlist .playlist-slider:hover::-webkit-scrollbar-thumb {
+		background-color: transparent;
+	}
+
 	.main-content .personal-section {
 		padding-left: 5px;
 		padding-right: 5px;

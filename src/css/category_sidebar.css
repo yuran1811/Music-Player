@@ -368,6 +368,10 @@ body > .new-pl-modal input:focus {
 	body > .new-pl-modal .new-pl-banner a > span {
 		display: none;
 	}
+
+	.category-sidebar .music-option:hover::-webkit-scrollbar-thumb {
+		background-color: transparent;
+	}
 }
 
 /* .link {
