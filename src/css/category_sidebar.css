@@ -21,6 +21,10 @@
 	transition: all 0.5s ease;
 }
 
+.category-sidebar .item .bi {
+	font-size: unset;
+}
+
 .category-sidebar .title,
 .category-sidebar .title a {
 	color: var(--bg-lv0);
