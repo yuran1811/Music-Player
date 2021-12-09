@@ -655,18 +655,6 @@
 	animation: pock 0.7s ease-in-out;
 }
 
-@keyframes pock {
-	0% {
-		transform: scale(0.9);
-	}
-	50% {
-		transform: scale(1.1);
-	}
-	100% {
-		transform: scale(1);
-	}
-}
-
 #playlist .new-playlist .title {
 	text-align: center;
 	padding: 10px;
