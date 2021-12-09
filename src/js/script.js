@@ -617,7 +617,7 @@ const musicPlayer = {
 		);
 		songImgAnimation.pause();
 
-		songProgress.onchange = () => {
+		songProgress.oninput = () => {
 			audio.currentTime = (songProgress.value * audio.duration) / 100;
 			songProgress.value = (audio.currentTime / audio.duration) * 100;
 			songImgAnimation.play();
@@ -666,7 +666,7 @@ const musicPlayer = {
 			} else nextBtn.click();
 		};
 
-		songVolume.onchange = () => (audio.volume = songVolume.value / 100);
+		songVolume.oninput = () => (audio.volume = songVolume.value / 100);
 
 		$$('.bi-heart').forEach(
 			(item) =>
@@ -701,3 +701,49 @@ const musicPlayer = {
 	},
 };
 musicPlayer.start();
+
+const api = NhacCuaTui;
+
+Promise.all([
+	api.getHome(),
+
+	api.getSong('EdENCgJm9dAa'),
+	api.getLyric('EdENCgJm9dAa'),
+	api.getArtistDetail('erik'),
+	api.getVideoDetail('IXTbg1bBelQKh'),
+	api.getPlaylistDetail('7ROXQyroRFYT'),
+
+	api.getTopics(),
+	api.getTopicDetail('weiwjycnu'),
+
+	api.getTrendingArtists(),
+	api.exploreArtists({
+		nation: 'hot',
+		gender: 1,
+	}),
+	api.explore({
+		type: 'song',
+	}),
+	api.explore({
+		type: 'playlist',
+	}),
+	api.explore({
+		type: 'mv',
+	}),
+
+	api.getTopKeyword(),
+	api.searchByKeyword('energy'),
+
+	api.getTop100('m3liaiy6vVsF'),
+	api.getChart({
+		category: 'nhac-viet',
+		time: {
+			week: 48,
+			year: 2021,
+		},
+	}),
+])
+	.then((data) => {
+		console.log(data);
+	})
+	.catch((err) => console.log(err));
