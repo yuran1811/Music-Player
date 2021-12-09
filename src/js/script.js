@@ -1,3 +1,5 @@
+'use strict';
+
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
@@ -24,7 +26,7 @@ const selectAll = (par, child) => par.querySelectorAll(child);
 	modalBoxClick.onclick = () => modalBox.classList.toggle('active');
 })();
 
-// New Playlist Handle
+// New Playlist Modal Handle
 (() => {
 	const newPlModalBox = $('body .new-pl-modal');
 	const newPlBtn = $('.category-sidebar .new-playlist-btn');
@@ -58,18 +60,18 @@ const playerControl = $('.player-control');
 const controller = select(playerControl, '.controller');
 const songInfo = select(playerControl, '.song-info');
 const audio = select(playerControl, '.now-play');
+const songVolume = select(playerControl, '#volume');
 
-const playBtn = select(controller, '.fa-play');
-const nextBtn = select(controller, '.fa-forward');
-const prevBtn = select(controller, '.fa-backward');
-const shuffleBtn = select(controller, '.fa-random');
-const repeatBtn = select(controller, '.fa-redo-alt');
+const playBtn = select(controller, '.play-and-pause');
+const prevBtn = select(controller, '.bi-skip-backward');
+const nextBtn = select(controller, '.bi-skip-forward');
+const shuffleBtn = select(controller, '.bi-shuffle');
+const repeatBtn = select(controller, '.bi-arrow-repeat');
 const songProgress = select(controller, '#progress');
 
 const songImg = select(songInfo, '.media-img > img');
 const songArtist = select(songInfo, '.artist');
 const songTitle = select(songInfo, '.title');
-audio.volume = 0.2;
 
 const USER_CONFIG_KEY = 'user__settings';
 
@@ -107,9 +109,9 @@ const musicPlayer = {
 			imgSrc: './src/img/playlist/Energetic.jpg',
 		},
 	],
-
 	songs: [
 		{
+			id: 0,
 			name: 'Nevada',
 			artist: 'Vicetone',
 			audioSrc: './src/music/Nevada.mp3',
@@ -117,35 +119,38 @@ const musicPlayer = {
 			length: '3:00',
 		},
 		{
+			id: 1,
 			name: 'Summer Time',
 			artist: 'K-391',
 			audioSrc: './src/music/SummerTime.mp3',
 			imgSrc: './src/img/SummerTime.png',
-			length: '3:00',
+			length: '4:00',
 		},
 		{
+			id: 2,
 			name: 'Shape of You',
 			artist: 'Ed Sheeran',
 			audioSrc: './src/music/ShapeOfYou.mp3',
 			imgSrc: './src/img/EdSheeran.png',
-			length: '3:00',
+			length: '3:10',
 		},
 		{
+			id: 3,
 			name: 'Cheri Cheri Lady',
 			artist: 'Modern Talking',
 			audioSrc: './src/music/CheriCheriLady.mp3',
 			imgSrc: './src/img/ModernTalking.png',
-			length: '3:00',
+			length: '3:30',
 		},
 		{
+			id: 4,
 			name: 'Savage Love',
 			artist: 'Jason Derulo',
 			audioSrc: './src/music/SavageLove.mp3',
 			imgSrc: './src/img/SavageLove.png',
-			length: '3:00',
+			length: '3:60',
 		},
 	],
-
 	artists: [
 		{
 			name: 'Vicetone',
@@ -184,8 +189,8 @@ const musicPlayer = {
 		localStorage.setItem(USER_CONFIG_KEY, JSON.stringify(this.userConfig));
 	},
 	loadConfig() {
-		this.isRand = this.userConfig.isRand;
-		this.isRepeat = this.userConfig.isRepeat;
+		this.isRand = this.userConfig.isRand || 0;
+		this.isRepeat = this.userConfig.isRepeat || 0;
 	},
 
 	defineProperties() {
@@ -196,11 +201,23 @@ const musicPlayer = {
 		});
 	},
 
+	initApp() {
+		this.randArr = new Array(this.songs.length);
+		this.randArr.fill(0);
+
+		audio.volume = songVolume.value / 100;
+		shuffleBtn.classList.toggle('active', this.isRand);
+		repeatBtn.classList.toggle('fa-spin', this.isRepeat);
+
+		const lastPlaySong = this.userConfig.currentSong || { id: 0 };
+		this.currentIndex = lastPlaySong.id;
+		this.loadCurrentSong();
+	},
 	renderSongs() {
 		$('section .song-list ul').innerHTML = this.songs
 			.map(
 				(song) => `
-				<li class="song-item" data-songurl="${song.audioSrc}">
+				<li class="song-item" data-songindex="${song.id}" data-songurl="${song.audioSrc}">
 					<div class="left">
 						<img src="${song.imgSrc}" alt="${song.name}" />
 						<div class="left-content">
@@ -210,9 +227,9 @@ const musicPlayer = {
 					</div>
 					<div class="right">
 						<span>
-							<i class="fas fa-heart ico ico--click"></i>
+							<i class="bi bi-heart ico ico--click"></i>
 						</span>
-						<span class="duration">3:00</span>
+						<span class="duration">${song.length}</span>
 					</div>
 				</li>
 			`
@@ -270,10 +287,7 @@ const musicPlayer = {
 			)
 			.join('');
 	},
-	render() {
-		this.renderSongs();
-		this.renderArtists();
-		this.renderPlaylists();
+	renderSongPreview() {
 		$('section .img-preview').innerHTML = this.songs
 			.map(
 				(song) => `
@@ -283,9 +297,13 @@ const musicPlayer = {
 			`
 			)
 			.join('');
-
-		this.randArr = new Array(this.songs.length);
-		this.randArr.fill(0);
+	},
+	render() {
+		this.renderSongs();
+		this.renderArtists();
+		this.renderPlaylists();
+		this.renderSongPreview();
+		this.initApp();
 	},
 
 	imageSlideShow() {
@@ -299,7 +317,6 @@ const musicPlayer = {
 			imgList[imgIndex].style.opacity = 1;
 		}, 3000);
 	},
-
 	swiperGenerator() {
 		const mySwiper = new Swiper('#playlist .swiper-container', {
 			direction: 'horizontal',
@@ -548,7 +565,6 @@ const musicPlayer = {
 		songImg.src = this.currentSong.imgSrc;
 		audio.src = this.currentSong.audioSrc;
 	},
-
 	playNextSong() {
 		if (this.isRepeat) {
 			this.loadCurrentSong();
@@ -601,10 +617,17 @@ const musicPlayer = {
 		);
 		songImgAnimation.pause();
 
+		songProgress.onchange = () => {
+			audio.currentTime = (songProgress.value * audio.duration) / 100;
+			songProgress.value = (audio.currentTime / audio.duration) * 100;
+			songImgAnimation.play();
+			audio.play();
+		};
+
 		playBtn.onclick = () => {
+			playerControl.classList.toggle('playing');
 			if (audio.paused) {
 				audio.play();
-				playerControl.classList.toggle('playing');
 				songImgAnimation.play();
 			} else {
 				audio.pause();
@@ -615,13 +638,6 @@ const musicPlayer = {
 				(songProgress.value =
 					(audio.currentTime / audio.duration) * 100);
 		};
-
-		songProgress.onchange = () => {
-			audio.currentTime = (songProgress.value * audio.duration) / 100;
-			songProgress.value = (audio.currentTime / audio.duration) * 100;
-			audio.play();
-		};
-
 		nextBtn.onclick = () => (
 			this.playNextSong(), audio.play(), songImgAnimation.play()
 		);
@@ -629,19 +645,44 @@ const musicPlayer = {
 			this.playPrevSong(), audio.play(), songImgAnimation.play()
 		);
 		shuffleBtn.onclick = () => (
-			(this.isRand = !this.isRand), this.setConfig('isRand', this.isRand)
+			(this.isRand = !this.isRand),
+			this.setConfig('isRand', this.isRand),
+			shuffleBtn.classList.toggle('active')
 		);
 		repeatBtn.onclick = () => (
 			(this.isRepeat = !this.isRepeat),
-			this.setConfig('isRepeat', this.isRepeat)
+			this.setConfig('isRepeat', this.isRepeat),
+			repeatBtn.classList.toggle('fa-spin')
 		);
 
+		audio.onplay = () => {
+			this.setConfig('currentSong', this.currentSong);
+			playerControl.classList.add('playing');
+		};
 		audio.onended = () => {
 			if (this.isRepeat) {
 				audio.play();
 				songImgAnimation.play();
 			} else nextBtn.click();
 		};
+
+		songVolume.onchange = () => (audio.volume = songVolume.value / 100);
+
+		$$('.bi-heart').forEach(
+			(item) =>
+				(item.onclick = () => {
+					if (item.className.includes('bi-heart-fill'))
+						item.className = item.className.replace(
+							'bi-heart-fill',
+							'bi-heart'
+						);
+					else
+						item.className = item.className.replace(
+							'bi-heart',
+							'bi-heart-fill'
+						);
+				})
+		);
 	},
 
 	start() {
@@ -656,7 +697,6 @@ const musicPlayer = {
 		this.personalTabsHandle();
 		this.categoryTabsHandle();
 
-		this.loadCurrentSong();
 		this.handleEvents();
 	},
 };
