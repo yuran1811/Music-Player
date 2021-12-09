@@ -599,6 +599,9 @@
 	display: flex;
 	align-items: center;
 }
+.main-content > .personal-section .song-item .right > .duration {
+	width: 50px;
+}
 
 /* Song Section */
 #songs .section-content {
