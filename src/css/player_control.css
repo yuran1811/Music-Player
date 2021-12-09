@@ -24,7 +24,6 @@
 	width: 30%;
 	height: 65px;
 }
-
 .player-control .song-info .media-img {
 	width: 64px;
 	height: 64px;
@@ -36,20 +35,19 @@
 	height: inherit;
 	border-radius: 50%;
 }
-
 .player-control .song-info .media-content {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 	color: var(--bg-lv0);
+	text-align: center;
 }
-
 .player-control .song-info .media-content .title {
 	font-size: 1.2rem;
 	font-weight: bold;
+	width: 110px;
 }
-
 .player-control .song-info .media-option {
 	margin-left: 10px;
 	display: flex;
@@ -66,7 +64,6 @@
 	flex-direction: column;
 	justify-content: center;
 }
-
 .player-control .controller .part1 {
 	display: flex;
 	align-items: center;
@@ -74,6 +71,41 @@
 
 	flex: 2;
 	width: 50%;
+}
+.player-control .controller .part1 > i {
+	font-size: 1.4em;
+}
+.player-control .controller .part1 > i:hover::before {
+	transform: scale(1.3);
+}
+
+.player-control .controller .part1 > .bi-shuffle.active {
+	animation: shake 0.24s infinite linear alternate;
+}
+
+.player-control .controller .part1 .play-and-pause {
+	position: relative;
+	padding: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.player-control .controller .part1 .play-and-pause > i {
+	position: absolute;
+	font-size: 2em;
+}
+.player-control .controller .part1 .play-and-pause > i:hover::before {
+	transform: scale(1.3);
+}
+.player-control .controller .part1 .play-and-pause .bi-pause {
+	transform: scale(0);
+	transition: all 0.5s ease;
+}
+.player-control.playing .controller .part1 .play-and-pause .bi-pause {
+	transform: scale(1);
+}
+.player-control.playing .controller .part1 .play-and-pause .bi-play-circle {
+	transform: scale(0);
 }
 
 .player-control .controller .part2 {
@@ -87,7 +119,6 @@
 	width: 100%;
 	padding: 0 10px 5px;
 }
-
 .player-control .controller .part2 .duration-container {
 	margin-top: -5px;
 }
@@ -108,6 +139,23 @@
 	width: 30%;
 	height: 65px;
 }
+.player-control .player-tools > i {
+	font-size: 1.3em;
+}
+.player-control .player-tools .bi-volume-up {
+	position: relative;
+}
+
+.player-control #volume {
+	position: absolute;
+	display: none;
+	top: -15px;
+	left: -43px;
+}
+
+.player-control .player-tools .bi-volume-up:hover #volume {
+	display: block;
+}
 
 .player-control .vertical-line {
 	background-color: var(--bg-lv0);
@@ -120,7 +168,7 @@
 	.player-control .song-info .media-img {
 		position: absolute;
 		top: -20px;
-		left: 40px;
+		left: 45px;
 		z-index: -1;
 		opacity: 0.7;
 	}
@@ -131,20 +179,22 @@
 		flex-direction: column;
 	}
 
-	.player-control .song-info .media-img {
-		display: none;
-	}
-
-	.player-control .vertical-line {
-		display: none;
-	}
-
 	.player-control .ico {
 		padding: 10px;
 	}
 
+	.player-control .vertical-line,
+	.player-control .song-info .media-img,
 	.player-control .controller .part2 .left-time,
 	.player-control .controller .part2 .right-time {
 		display: none;
+	}
+
+	.player-control #volume {
+		-webkit-appearance: slider-vertical;
+		position: absolute;
+		display: none;
+		top: -130px;
+		left: -50px;
 	}
 }
