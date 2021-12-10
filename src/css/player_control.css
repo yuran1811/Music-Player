@@ -175,19 +175,23 @@
 }
 
 @media screen and (max-width: 750px) {
-	.player-control .song-info {
-		flex-direction: column;
-	}
-
 	.player-control .ico {
 		padding: 10px;
 	}
 
+	.player-control .song-info .media-option {
+		visibility: hidden;
+	}
+
 	.player-control .vertical-line,
-	.player-control .song-info .media-img,
 	.player-control .controller .part2 .left-time,
 	.player-control .controller .part2 .right-time {
 		display: none;
+	}
+
+	.player-control .song-info .media-img {
+		position: absolute;
+		top: 14px;
 	}
 
 	.player-control #volume {
