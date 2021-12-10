@@ -339,10 +339,7 @@ body > .new-pl-modal input:focus {
 	.category-sidebar .item:hover,
 	.category-sidebar .item.active {
 		background-color: var(--bg-lv6);
-		border-top: 2px solid var(--bg-lv2);
-		border-bottom: 2px solid var(--bg-lv2);
-		border-right: none;
-		border-left: none;
+		border: none;
 	}
 	.category-sidebar .item,
 	.category-sidebar .item i {
