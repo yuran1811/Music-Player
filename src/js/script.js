@@ -55,6 +55,14 @@ const selectAll = (par, child) => par.querySelectorAll(child);
 		);
 })();
 
+// Playlist Sidebar Handle
+(() => {
+	const playlistSidebar = $('.playlist-sidebar');
+	const playlistBtn = $('.player-control .bi-music-note-list');
+
+	playlistBtn.onclick = () => playlistSidebar.classList.toggle('active');
+})();
+
 // Player Control Elements
 const playerControl = $('.player-control');
 const controller = select(playerControl, '.controller');
@@ -431,7 +439,10 @@ const musicPlayer = {
 		const main = $('.main-content');
 
 		const hideAll = (list) =>
-			list.forEach((item) => (item.style.display = 'none'));
+			list.forEach(
+				(item) => (item.style.display = 'none'),
+				personalNav.classList.remove('ontop')
+			);
 		const showAll = (list) =>
 			list.forEach((item) => (item.style.display = 'flex'));
 		const removeLastActive = () => {
@@ -565,6 +576,23 @@ const musicPlayer = {
 			disableAll(), ($('.personal-section').style.display = 'block')
 		);
 	},
+	heartIconHandle() {
+		$$('.bi-heart').forEach(
+			(item) =>
+				(item.onclick = () => {
+					if (item.className.includes('bi-heart-fill'))
+						item.className = item.className.replace(
+							'bi-heart-fill',
+							'bi-heart'
+						);
+					else
+						item.className = item.className.replace(
+							'bi-heart',
+							'bi-heart-fill'
+						);
+				})
+		);
+	},
 
 	loadCurrentSong() {
 		songTitle.innerHTML = this.currentSong.name;
@@ -653,7 +681,8 @@ const musicPlayer = {
 		shuffleBtn.onclick = () => (
 			(this.isRand = !this.isRand),
 			this.setConfig('isRand', this.isRand),
-			shuffleBtn.classList.toggle('active')
+			shuffleBtn.classList.toggle('active'),
+			(this.randArr[this.currentIndex] = 1)
 		);
 		repeatBtn.onclick = () => (
 			(this.isRepeat = !this.isRepeat),
@@ -766,26 +795,12 @@ const musicPlayer = {
 
 	handleEvents() {
 		this.topIconHandle();
+		this.heartIconHandle();
 		this.imageSlideShow();
 		this.swiperGenerator();
 		this.personalTabsHandle();
 		this.categoryTabsHandle();
 		this.playerHandle();
-		$$('.bi-heart').forEach(
-			(item) =>
-				(item.onclick = () => {
-					if (item.className.includes('bi-heart-fill'))
-						item.className = item.className.replace(
-							'bi-heart-fill',
-							'bi-heart'
-						);
-					else
-						item.className = item.className.replace(
-							'bi-heart',
-							'bi-heart-fill'
-						);
-				})
-		);
 	},
 
 	start() {
