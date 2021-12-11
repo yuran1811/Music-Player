@@ -184,6 +184,13 @@ const musicPlayer = {
 		},
 	],
 
+	NCTArtists: [],
+	NCTTrendArtists: [],
+	NCTPlaylists: [],
+	NCTTop100: [],
+	NCTTopics: [],
+	NCTHome: [],
+
 	setConfig(key, val) {
 		this.userConfig[key] = val;
 		localStorage.setItem(USER_CONFIG_KEY, JSON.stringify(this.userConfig));
@@ -692,9 +699,18 @@ const musicPlayer = {
 			searchBarRender();
 			searchBarEvent();
 		};
-		const trendingArtistHandle = (data) => {};
-		const topicsHandle = (data) => {};
-		const homeHandle = (data) => {};
+		const trendingArtistHandle = (data) => {
+			this.NCTTrendArtists = data;
+		};
+		const topicsHandle = (data) => {
+			this.NCTTopics = data;
+		};
+		const homeHandle = (data) => {
+			this.NCTHome = data;
+		};
+		const top100Handle = (data) => {
+			this.NCTTop100 = data;
+		};
 
 		const api = NhacCuaTui;
 		Promise.all([
@@ -727,7 +743,7 @@ const musicPlayer = {
 			api.getTopKeyword(),
 			// api.searchByKeyword('energy'),
 
-			// api.getTop100('m3liaiy6vVsF'),
+			api.getTop100('m3liaiy6vVsF'),
 			// api.getChart({
 			// 	category: 'nhac-viet',
 			// 	time: {
@@ -736,12 +752,14 @@ const musicPlayer = {
 			// 	},
 			// }),
 		])
-			.then(([home, topics, trendingArtist, topKeyword]) => {
-				console.log(home, topics, trendingArtist, topKeyword);
-				homeHandle(homeHandle);
+			.then((data) => {
+				console.log(data);
+				const [home, topics, trendingArtist, topKeyword, top100] = data;
+				top100Handle(top100);
 				topicsHandle(topics);
-				trendingArtistHandle(trendingArtist);
+				homeHandle(home);
 				searchBarHandle(topKeyword);
+				trendingArtistHandle(trendingArtist);
 			})
 			.catch((err) => console.log(err));
 	},
