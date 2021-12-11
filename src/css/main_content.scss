@@ -43,6 +43,10 @@
 				display: flex;
 				align-items: center;
 				justify-content: flex-start;
+
+				& > .top-ico:hover {
+					transform: scale(1.4);
+				}
 			}
 			.part2 {
 				position: relative;
@@ -218,7 +222,7 @@
 				font-style: italic;
 			}
 			&.active input,
-			& input:focus {
+			input:focus {
 				background-color: var(--bg-lv6);
 				border-radius: 20px 20px 0 0;
 				outline: none;
@@ -262,22 +266,23 @@
 				display: flex;
 				align-items: center;
 				justify-content: flex-start;
-
 				position: relative;
-				border-radius: 4px;
+				border-radius: 20px;
 				padding: 8px 10px;
-
 				text-overflow: ellipsis;
 				white-space: nowrap;
 				overflow: hidden;
 				cursor: pointer;
+				&:hover {
+					background-color: var(--bg-lv5);
+				}
 
 				span {
 					margin-left: 10px;
-					display: block;
-					display: -webkit-box;
-					-webkit-box-orient: vertical;
-					-webkit-line-clamp: 2;
+					width: 100%;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
 				}
 			}
 		}
@@ -388,12 +393,12 @@
 					border-top-left-radius: 5px;
 					border-bottom-right-radius: 15px;
 					border-bottom-left-radius: 5px;
-					transition: all 0.3s ease-in-out;
-					transition: background 0.3s 0.2s ease-in-out;
+					transition: all 0.2s ease-in-out;
+					transition: background 0.2s 0.2s ease-in-out;
 
 					& > a {
 						color: var(--bg-lv0);
-						transition: all 0.3s ease-in-out;
+						transition: all 0.2s ease-in-out;
 						&::before {
 							content: '';
 							background-color: #f38181;
@@ -404,7 +409,7 @@
 							z-index: 10;
 							height: 100%;
 							border-radius: 50px;
-							transition: all 0.3s ease-in-out;
+							transition: all 0.2s ease-in-out;
 						}
 						&::after {
 							content: '';
@@ -423,7 +428,7 @@
 							border-bottom: 0;
 							border-left: 0;
 							transform: translateX(-42px) rotate(45deg);
-							transition: all 0.3s 0.1s ease-in-out;
+							transition: all 0.2s 0.1s ease-in-out;
 						}
 					}
 					&:hover {
@@ -536,7 +541,6 @@
 #upload-song2 {
 	display: none;
 }
-
 #songs {
 	.section-content {
 		margin-top: 15px;
@@ -596,13 +600,15 @@
 					opacity: 1;
 				}
 				.left {
+					width: 100%;
 					display: flex;
 					align-items: center;
 					justify-content: flex-start;
 
 					.left-content {
 						position: relative;
-
+						font-size: 1.1rem;
+						width: 100%;
 						display: flex;
 						flex-direction: column;
 						align-items: flex-start;
@@ -610,7 +616,7 @@
 
 						.song-title,
 						.song-artist {
-							width: 120px;
+							width: 80%;
 							overflow: hidden;
 							white-space: nowrap;
 							text-overflow: ellipsis;
@@ -678,6 +684,23 @@
 			text-align: center;
 			padding: 10px;
 			font-size: 1.2rem;
+		}
+	}
+	.swiper-container {
+		width: calc(100% - 180px);
+		height: 230px;
+
+		.swiper-pagination {
+			.swiper-pagination-bullet {
+				background-color: #6f7073;
+				margin: 0 5px;
+				border-radius: 5px;
+				transition: all 0.4s ease;
+			}
+			.swiper-pagination-bullet-active {
+				background: linear-gradient(140deg, #d45b7a, #fda576);
+				width: 16px;
+			}
 		}
 	}
 	.swiper-slide {
@@ -781,8 +804,6 @@
 #playlist .swiper-container {
 	overflow: hidden;
 	position: relative;
-	width: calc(100% - 180px);
-	height: 230px;
 	margin-top: 15px;
 	@extend %flexCenter;
 }
@@ -793,19 +814,6 @@
 	z-index: 0;
 	width: 100%;
 	height: 230px;
-}
-#playlist .swiper-container .swiper-pagination .swiper-pagination-bullet {
-	background-color: #6f7073;
-	margin: 0 5px;
-	border-radius: 5px;
-	transition: all 0.4s ease;
-}
-#playlist
-	.swiper-container
-	.swiper-pagination
-	.swiper-pagination-bullet-active {
-	background: linear-gradient(140deg, #d45b7a, #fda576);
-	width: 16px;
 }
 
 .swiper-button-next,
@@ -836,15 +844,13 @@
 			.parts {
 				.part2 {
 					flex-direction: column-reverse;
-					top: 65px;
+					top: 66px;
 					.item {
+						margin-top: 5px;
 						border: 0;
 						border-right: 2px solid transparent;
 						&.active {
 							border-color: var(--bg-lv1);
-						}
-						& + .item {
-							margin-top: 10px;
 						}
 					}
 				}
