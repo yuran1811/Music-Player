@@ -90,7 +90,6 @@
 		&:hover {
 			&::-webkit-scrollbar-thumb {
 				background-color: var(--bg-lv2);
-				background-color: transparent;
 			}
 		}
 
@@ -321,5 +320,10 @@ body {
 	.category-sidebar .list .item,
 	.category-sidebar .list .item i {
 		margin: 0;
+	}
+}
+@media screen and (max-width: 750px) {
+	.category-sidebar .music-option::-webkit-scrollbar {
+		width: 0;
 	}
 }

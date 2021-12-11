@@ -99,7 +99,6 @@ body > .ad-modal .banner-modal-ad > a {
 
 .category-sidebar .music-option:hover::-webkit-scrollbar-thumb {
   background-color: var(--bg-lv2);
-  background-color: transparent;
 }
 
 .category-sidebar .music-option .option-scroll-bar {
@@ -334,5 +333,11 @@ body > .new-pl-modal .new-pl-banner a > span {
   .category-sidebar .list .item,
   .category-sidebar .list .item i {
     margin: 0;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .category-sidebar .music-option::-webkit-scrollbar {
+    width: 0;
   }
 }
