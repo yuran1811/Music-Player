@@ -191,7 +191,7 @@ body > .new-pl-modal .new-pl-banner__overlay {
 
 body > .new-pl-modal input {
   display: block;
-  max-width: 80%;
+  width: 260px;
   padding: 7px 5px;
   margin: 15px auto;
   font-size: 1.3rem;
@@ -202,7 +202,7 @@ body > .new-pl-modal input {
 
 body > .new-pl-modal input:focus {
   outline: none;
-  border-color: #00243b;
+  border-color: black;
 }
 
 body > .ad-modal .banner-modal-ad__content > img {
@@ -235,7 +235,7 @@ body > .ad-modal .banner-modal-ad {
   display: block;
   top: 50%;
   left: 50%;
-  width: 40vw;
+  width: 350px;
   padding: 25px 8px;
   display: flex;
   align-items: center;
@@ -335,17 +335,5 @@ body > .new-pl-modal .new-pl-banner a > span {
   .category-sidebar .list .item,
   .category-sidebar .list .item i {
     margin: 0;
-  }
-}
-
-@media screen and (max-width: 750px) {
-  body > .new-pl-modal .new-pl-banner a {
-    width: 100px;
-  }
-  body > .new-pl-modal .new-pl-banner a > span {
-    display: none;
-  }
-  .banner-modal-ad-link > span {
-    display: none;
   }
 }
