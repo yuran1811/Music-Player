@@ -484,7 +484,7 @@ const musicPlayer = {
 		let navPosition = personalNav.offsetTop;
 		main.onscroll = () => {
 			const toTop = $('.to-top');
-			if (main.scrollTop > 170) toTop.style.display = 'block';
+			if (main.scrollTop > 178) toTop.style.display = 'block';
 			else toTop.style.display = 'none';
 
 			if (window.innerWidth <= 750) {
