@@ -149,7 +149,7 @@
 .player-control #volume {
 	position: absolute;
 	display: none;
-	top: -15px;
+	top: -8px;
 	left: -43px;
 }
 
