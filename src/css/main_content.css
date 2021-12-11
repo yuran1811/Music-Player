@@ -794,6 +794,10 @@
   line-height: 1.3;
 }
 
+#playlist .swiper-slide .playlist-title {
+  font-weight: bold;
+}
+
 #artist .swiper-container {
   width: 100%;
   height: 300px;

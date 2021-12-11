@@ -163,7 +163,7 @@ body {
 		.new-pl-banner__content > div {
 			padding: 0 5px;
 			margin: 6px auto;
-			font-size: 3.5vh;
+			font-size: 1.4rem;
 		}
 		.new-pl-banner__overlay {
 			position: absolute;
@@ -214,22 +214,21 @@ body {
 	& > .new-pl-modal .new-pl-banner,
 	& > .ad-modal .banner-modal-ad {
 		background: linear-gradient(33deg, #5a1eae -7%, #ce267a 117%);
+		color: var(--bg-lv0);
 		border-radius: 8px;
 		text-align: center;
-		color: var(--bg-lv0);
-		display: block;
 		position: absolute;
+		line-height: 1.5;
+		display: block;
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%, -50%);
 		width: 40vw;
-		height: 70vh;
-		padding: 15px 8px;
-		line-height: 1.5;
+		padding: 25px 8px;
 		display: flex;
 		align-items: center;
 		flex-direction: column;
 		justify-content: space-around;
+		transform: translate(-50%, -50%);
 	}
 
 	& > .new-pl-modal .new-pl-banner__content,
@@ -243,11 +242,11 @@ body {
 		border-color: #ffdb00;
 		border-radius: 25px;
 		color: rgb(189, 80, 29);
-		font-weight: 600;
-		font-size: 4.2vh;
-		@extend %flexCenter;
-		padding: 6px 35px;
 		margin-top: 7px;
+		font-weight: 600;
+		font-size: 1.2rem;
+		padding: 6px 35px;
+		@extend %flexCenter;
 		transition: all 0.3s ease;
 	}
 	& > .new-pl-modal .new-pl-banner a > span,
@@ -308,7 +307,6 @@ body {
 }
 
 @media screen and (max-width: 1024px) {
-	body > .new-pl-modal .new-pl-banner a > span,
 	.banner-modal-ad-link,
 	.category-sidebar .list .item span,
 	.category-sidebar .title .app-name,
@@ -316,7 +314,6 @@ body {
 	.category-sidebar .create-new-playlist span {
 		display: none;
 	}
-
 	.category-sidebar .list .item:hover,
 	.category-sidebar .list .item.active {
 		background-color: var(--bg-lv6);
@@ -330,5 +327,12 @@ body {
 @media screen and (max-width: 750px) {
 	body > .new-pl-modal .new-pl-banner a {
 		width: 100px;
+		& > span {
+			display: none;
+		}
+	}
+
+	.banner-modal-ad-link > span {
+		display: none;
 	}
 }
