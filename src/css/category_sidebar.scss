@@ -317,13 +317,12 @@ body {
 		background-color: var(--bg-lv6);
 		border: none;
 	}
+	.category-sidebar .music-option::-webkit-scrollbar {
+		width: 0;
+	}
+
 	.category-sidebar .list .item,
 	.category-sidebar .list .item i {
 		margin: 0;
-	}
-}
-@media (max-width: 750px) {
-	.category-sidebar .music-option::-webkit-scrollbar {
-		width: 0;
 	}
 }
