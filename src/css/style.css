@@ -24,6 +24,10 @@
 	--bg-lv9-alpha: rgba(137, 137, 137, 0.7);
 }
 
+html {
+	overflow: hidden;
+}
+
 * {
 	box-sizing: border-box;
 	/* font-family: 'Outfit', sans-serif; */
