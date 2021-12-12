@@ -139,7 +139,6 @@
 				cursor: pointer;
 				padding: 10px 20px;
 				border-radius: 20px;
-
 				&.active {
 					background-color: var(--bg-lv4);
 				}
@@ -152,11 +151,13 @@
 		}
 	}
 	.content {
+		overflow: hidden auto;
 		position: absolute;
 		top: 80px;
 		width: 100%;
-		overflow: hidden auto;
 		@extend %songItem;
+		transition: opacity 0.3s ease;
+
 		.now-play {
 			background-color: var(--bg-lv6);
 			border-radius: 20px;
@@ -192,7 +193,7 @@
 		}
 		& > * {
 			opacity: 0;
-			transition: opacity 0.2s ease;
+			transition: opacity 0.3s ease;
 		}
 	}
 	.recent-tab {

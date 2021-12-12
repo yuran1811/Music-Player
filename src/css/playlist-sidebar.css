@@ -161,10 +161,11 @@
 }
 
 .playlist-sidebar .content {
+  overflow: hidden auto;
   position: absolute;
   top: 80px;
   width: 100%;
-  overflow: hidden auto;
+  transition: opacity 0.3s ease;
 }
 
 .playlist-sidebar .content .now-play {
@@ -204,7 +205,7 @@
 
 .playlist-sidebar .content > * {
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.3s ease;
 }
 
 .playlist-sidebar .recent-tab {
