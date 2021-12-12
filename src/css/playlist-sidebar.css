@@ -221,7 +221,7 @@
   opacity: 1;
 }
 
-@media screen and (max-width: 500px) {
+@media (max-width: 500px) {
   .playlist-sidebar.active {
     width: calc(100% - 70px);
   }

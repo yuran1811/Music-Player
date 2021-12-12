@@ -318,7 +318,7 @@ body > .new-pl-modal .new-pl-banner a > span {
   transform: skewY(45deg) translateY(-250px);
 }
 
-@media screen and (max-width: 1024px) {
+@media (max-width: 1024px) {
   .banner-modal-ad-link,
   .category-sidebar .list .item span,
   .category-sidebar .title .app-name,
@@ -336,7 +336,7 @@ body > .new-pl-modal .new-pl-banner a > span {
   }
 }
 
-@media screen and (max-width: 750px) {
+@media (max-width: 750px) {
   .category-sidebar .music-option::-webkit-scrollbar {
     width: 0;
   }

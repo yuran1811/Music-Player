@@ -1,4 +1,4 @@
-@media screen and (max-width: 1024px) {
+@media (max-width: 1024px) {
 	.category-sidebar {
 		width: 70px;
 	}

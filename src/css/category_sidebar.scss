@@ -304,7 +304,7 @@ body {
 	}
 }
 
-@media screen and (max-width: 1024px) {
+@media (max-width: 1024px) {
 	.banner-modal-ad-link,
 	.category-sidebar .list .item span,
 	.category-sidebar .title .app-name,
@@ -322,7 +322,7 @@ body {
 		margin: 0;
 	}
 }
-@media screen and (max-width: 750px) {
+@media (max-width: 750px) {
 	.category-sidebar .music-option::-webkit-scrollbar {
 		width: 0;
 	}

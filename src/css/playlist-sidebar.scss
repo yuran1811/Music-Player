@@ -209,11 +209,11 @@
 	}
 }
 
-@media screen and (max-width: 1024px) {
+@media (max-width: 1024px) {
 }
-@media screen and (max-width: 750px) {
+@media (max-width: 750px) {
 }
-@media screen and (max-width: 500px) {
+@media (max-width: 500px) {
 	.playlist-sidebar {
 		&.active {
 			width: calc(100% - 70px);
