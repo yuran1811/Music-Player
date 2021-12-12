@@ -336,7 +336,7 @@
   padding: 10px 6px;
   margin: 0 auto 40px;
   border-radius: 25px;
-  background-color: var(--bg-lv7);
+  background-color: var(--bg-lv6);
 }
 
 .main-content > .personal-section .nav-bar.ontop {
@@ -364,7 +364,7 @@
 }
 
 .main-content > .personal-section .nav-bar .nav-links .link:hover {
-  background-color: var(--bg-lv6);
+  background-color: var(--bg-lv7);
 }
 
 .main-content > .personal-section .nav-bar .nav-links .liactive {
@@ -912,7 +912,7 @@
   .main-content > .personal-section .nav-bar .nav-links .link {
     width: 90%;
     margin: 5px 0;
-    padding: 5px;
+    padding: 10px 5px;
   }
   .main-content > .personal-section .song-list {
     width: 100%;
