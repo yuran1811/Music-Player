@@ -64,13 +64,8 @@
 	.song-list {
 		position: relative;
 		flex: 1;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		justify-content: flex-start;
 		overflow: hidden auto;
 		padding: 0 15px;
-		height: 330px;
 		transition: opacity 0.3s ease;
 		&::-webkit-scrollbar {
 			width: 0;
@@ -102,10 +97,10 @@
 	}
 	&.recent {
 		.recent-tab {
-			opacity: 1;
+			display: block;
 		}
 		.playlist-tab {
-			opacity: 0;
+			display: none;
 		}
 	}
 
@@ -190,6 +185,9 @@
 				}
 			}
 			@extend %songList;
+			& > .song-list {
+				height: calc(100vh - 185px);
+			}
 		}
 		& > * {
 			opacity: 0;
@@ -197,15 +195,14 @@
 		}
 	}
 	.recent-tab {
-		@extend %songList;
-		margin-top: 10px;
-		opacity: 0;
+		margin: 15px;
+		display: none;
 		& > .song-list {
-			height: 470px;
+			height: calc(100vh - 185px);
 		}
 	}
 	.playlist-tab {
-		opacity: 1;
+		display: block;
 	}
 }
 

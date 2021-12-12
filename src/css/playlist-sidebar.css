@@ -63,20 +63,15 @@
   width: 50px;
 }
 
-.playlist-sidebar .content .next-play .song-list, .playlist-sidebar .recent-tab .song-list {
+.playlist-sidebar .content .next-play .song-list {
   position: relative;
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
   overflow: hidden auto;
   padding: 0 15px;
-  height: 330px;
   transition: opacity 0.3s ease;
 }
 
-.playlist-sidebar .content .next-play .song-list::-webkit-scrollbar, .playlist-sidebar .recent-tab .song-list::-webkit-scrollbar {
+.playlist-sidebar .content .next-play .song-list::-webkit-scrollbar {
   width: 0;
 }
 
@@ -106,11 +101,11 @@
 }
 
 .playlist-sidebar.recent .recent-tab {
-  opacity: 1;
+  display: block;
 }
 
 .playlist-sidebar.recent .playlist-tab {
-  opacity: 0;
+  display: none;
 }
 
 .playlist-sidebar .top-bar {
@@ -203,22 +198,26 @@
   transform: scale(1);
 }
 
+.playlist-sidebar .content .next-play > .song-list {
+  height: calc(100vh - 185px);
+}
+
 .playlist-sidebar .content > * {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .playlist-sidebar .recent-tab {
-  margin-top: 10px;
-  opacity: 0;
+  margin: 15px;
+  display: none;
 }
 
 .playlist-sidebar .recent-tab > .song-list {
-  height: 470px;
+  height: calc(100vh - 185px);
 }
 
 .playlist-sidebar .playlist-tab {
-  opacity: 1;
+  display: block;
 }
 
 @media (max-width: 500px) {

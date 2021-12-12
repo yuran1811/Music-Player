@@ -139,8 +139,8 @@
 	width: 30%;
 	height: 65px;
 }
-.player-control .player-tools > i {
-	font-size: 1.3em;
+.player-control .player-tools .bi {
+	font-size: 1.3rem;
 }
 .player-control .player-tools .bi-volume-up {
 	position: relative;
