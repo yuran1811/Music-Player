@@ -58,9 +58,25 @@ const selectAll = (par, child) => par.querySelectorAll(child);
 // Playlist Sidebar Handle
 (() => {
 	const playlistSidebar = $('.playlist-sidebar');
-	const playlistBtn = $('.player-control .bi-music-note-list');
 
+	const playlistBtn = $('.player-control .bi-music-note-list');
 	playlistBtn.onclick = () => playlistSidebar.classList.toggle('active');
+
+	const options = selectAll(playlistSidebar, '.option');
+	options.forEach(
+		(item) =>
+			(item.onclick = () => {
+				const lastActiveOption = select(
+					playlistSidebar,
+					'.left .active'
+				);
+				lastActiveOption.classList.remove('active');
+				item.classList.add('active');
+				if (item === options[1])
+					playlistSidebar.classList.add('recent');
+				else playlistSidebar.classList.remove('recent');
+			})
+	);
 })();
 
 // Player Control Elements
