@@ -338,28 +338,29 @@ const musicPlayer = {
 	},
 	renderRankingSection() {
 		const rankingSection = $('.main-content .ranking-section');
-		const itemSongs = selectAll(rankingSection, '.song .list');
+		const itemSongs = selectAll(rankingSection, '.itemSong.list');
 
-		itemSongs.forEach(
-			(item) => (
-				item.addEventListener('mouseover', animeIn),
-				item.addEventListener('mouseleave', animeOut)
-			)
-		);
+		itemSongs.forEach((item) => {
+			item.onmouseover = animeIn;
+			item.onmouseout = removeAll;
+		});
 
 		function animeIn(e) {
-			itemSongs.forEach(
-				(item) => (item.style.height = '8.70%'),
-				item.classList.add('animeIn')
-			);
-			e.currentTarget.style.height = '20%';
+			itemSongs.forEach((item) => {
+				if (item === e.currentTarget) {
+					e.currentTarget.style.height = '140px';
+					return;
+				}
+				item.style.height = '60px';
+				item.classList.add('animeIn');
+			});
 		}
 
-		function animeOut() {
-			itemSongs.forEach(
-				(item) => (item.style.height = '64px'),
-				item.classList.remove('animeIn')
-			);
+		function removeAll() {
+			itemSongs.forEach((item) => {
+				item.style.height = '80px';
+				item.classList.remove('animeIn');
+			});
 		}
 	},
 	render() {
@@ -851,7 +852,7 @@ const musicPlayer = {
 	},
 
 	start() {
-		this.callApi();
+		// this.callApi();
 		this.defineProperties();
 		this.loadConfig();
 		this.render();
