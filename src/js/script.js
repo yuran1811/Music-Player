@@ -244,10 +244,11 @@ const musicPlayer = {
 		this.currentIndex = lastPlaySong.id;
 		this.loadCurrentSong();
 	},
-	renderSongs() {
-		$('section .song-list ul').innerHTML = this.songs
-			.map(
-				(song) => `
+	renderPersonalSection() {
+		const renderSongs = () => {
+			$('section .song-list ul').innerHTML = this.songs
+				.map(
+					(song) => `
 				<li class="song-item" data-songindex="${song.id}" data-songurl="${song.audioSrc}">
 					<div class="left">
 						<img src="${song.imgSrc}" alt="${song.name}" />
@@ -264,13 +265,13 @@ const musicPlayer = {
 					</div>
 				</li>
 			`
-			)
-			.join('');
-	},
-	renderArtists() {
-		$('#artist .swiper-wrapper').innerHTML = this.artists
-			.map(
-				(artist) => `
+				)
+				.join('');
+		};
+		const renderArtists = () => {
+			$('#artist .swiper-wrapper').innerHTML = this.artists
+				.map(
+					(artist) => `
 				<div class="artist-info swiper-slide">
 					<div class="artist__bg">
 						<div
@@ -291,13 +292,13 @@ const musicPlayer = {
 					</div>
 				</div>
 			`
-			)
-			.join('');
-	},
-	renderPlaylists() {
-		$('#playlist .swiper-wrapper').innerHTML = this.playlists
-			.map(
-				(playlist) => `
+				)
+				.join('');
+		};
+		const renderPlaylists = () => {
+			$('#playlist .swiper-wrapper').innerHTML = this.playlists
+				.map(
+					(playlist) => `
 					<div class="playlist-item swiper-slide">
 						<div
 							class="playlist-option"
@@ -315,25 +316,55 @@ const musicPlayer = {
 						<div class="playlist-owner">${playlist.owner}</div>
 					</div>
 				`
-			)
-			.join('');
-	},
-	renderSongPreview() {
-		$('section .img-preview').innerHTML = this.songs
-			.map(
-				(song) => `
+				)
+				.join('');
+		};
+		const renderSongPreview = () => {
+			$('section .img-preview').innerHTML = this.songs
+				.map(
+					(song) => `
 				<a href="#">
 					<img src="${song.imgSrc}" alt="${song.name}" />
 				</a>
 			`
+				)
+				.join('');
+		};
+
+		renderSongs();
+		renderArtists();
+		renderPlaylists();
+		renderSongPreview();
+	},
+	renderRankingSection() {
+		const rankingSection = $('.main-content .ranking-section');
+		const itemSongs = selectAll(rankingSection, '.song .list');
+
+		itemSongs.forEach(
+			(item) => (
+				item.addEventListener('mouseover', animeIn),
+				item.addEventListener('mouseleave', animeOut)
 			)
-			.join('');
+		);
+
+		function animeIn(e) {
+			itemSongs.forEach(
+				(item) => (item.style.height = '8.70%'),
+				item.classList.add('animeIn')
+			);
+			e.currentTarget.style.height = '20%';
+		}
+
+		function animeOut() {
+			itemSongs.forEach(
+				(item) => (item.style.height = '64px'),
+				item.classList.remove('animeIn')
+			);
+		}
 	},
 	render() {
-		this.renderSongs();
-		this.renderArtists();
-		this.renderPlaylists();
-		this.renderSongPreview();
+		this.renderRankingSection();
+		this.renderPersonalSection();
 		this.initApp();
 	},
 
