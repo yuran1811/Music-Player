@@ -700,8 +700,12 @@ const musicPlayer = {
 		songImgAnimation.pause();
 
 		songProgress.oninput = () => {
-			audio.currentTime = (songProgress.value * audio.duration) / 100;
-			songProgress.value = (audio.currentTime / audio.duration) * 100;
+			audio.currentTime = parseFloat(
+				(songProgress.value * audio.duration) / 100
+			).toFixed(3);
+			songProgress.value = parseFloat(
+				(audio.currentTime / audio.duration) * 100
+			).toFixed(3);
 			songImgAnimation.play();
 			audio.play();
 		};
@@ -717,8 +721,9 @@ const musicPlayer = {
 			}
 
 			audio.ontimeupdate = () =>
-				(songProgress.value =
-					(audio.currentTime / audio.duration) * 100);
+				(songProgress.value = parseFloat(
+					(audio.currentTime / audio.duration) * 100
+				).toFixed(3));
 		};
 		nextBtn.onclick = () => (
 			this.playNextSong(), audio.play(), songImgAnimation.play()
@@ -749,7 +754,8 @@ const musicPlayer = {
 			} else nextBtn.click();
 		};
 
-		songVolume.oninput = () => (audio.volume = songVolume.value / 100);
+		songVolume.oninput = () =>
+			(audio.volume = parseFloat(songVolume.value / 100).toFixed(3));
 	},
 
 	callApi() {
