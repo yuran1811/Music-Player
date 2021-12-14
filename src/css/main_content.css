@@ -221,7 +221,7 @@
   width: 90%;
   height: 34px;
   margin-left: 10px;
-  padding: 15px 10px;
+  padding: 20px 30px;
   border-radius: 25px;
   border: 0;
   outline: none;
@@ -230,8 +230,7 @@
   transition: all 0.5s ease;
 }
 
-.main-content .top-bar .search-bar input::placeholder,
-.main-content .top-bar .search-bar input:target {
+.main-content .top-bar .search-bar input::placeholder, .main-content .top-bar .search-bar input:target {
   color: var(--bg-lv0);
   font-size: 1rem;
   font-style: italic;
@@ -867,53 +866,55 @@
 }
 
 .main-content > .ranking-section .container .songs .itemSong:hover .content .number {
+  top: 12px;
+  left: 12px;
   width: 40px;
   height: 40px;
-  left: 12px;
-  top: 12px;
   font-size: 18px;
-  background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .main-content > .ranking-section .container .songs .itemSong:hover .content .image {
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  left: 0;
-  top: 0;
   border-radius: 6px;
   transition: all 0.4s 0.2s cubic-bezier(0.62, 0.21, 0.19, 0.84);
 }
 
-.main-content > .ranking-section .container .songs .itemSong:hover .content .image img {
-  filter: grayscale(100%);
-}
-
-.main-content > .ranking-section .container .songs .itemSong:hover .content .image:before {
+.main-content > .ranking-section .container .songs .itemSong:hover .content .image::before {
   background-color: #7a7a7a;
   opacity: 0.4;
 }
 
-.main-content > .ranking-section .container .songs .itemSong:hover .content .image:after {
+.main-content > .ranking-section .container .songs .itemSong:hover .content .image::after {
+  background-color: #e87867;
   opacity: 0.6;
 }
 
+.main-content > .ranking-section .container .songs .itemSong:hover .content .image > img {
+  filter: grayscale(100%);
+  width: 100%;
+}
+
 .main-content > .ranking-section .container .songs .itemSong:hover .content .info .moreInfo {
-  visibility: visible;
-  opacity: 1;
   bottom: 0;
+  opacity: 1;
+  visibility: visible;
   transition: all 0.3s 0.3s ease;
 }
 
 .main-content > .ranking-section .container .songs .itemSong:hover .content .info .text {
+  top: 32px;
   color: white;
   font-size: 14px;
-  top: 32px;
 }
 
 .main-content > .ranking-section .container .songs .itemSong:hover .content .info .plays {
-  color: white;
   top: 32px;
+  color: white;
 }
 
 .main-content > .ranking-section .container .songs .itemSong.featured {
@@ -969,7 +970,6 @@
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content .image > img {
   width: 100%;
-  height: 500px;
 }
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content .info {
@@ -1039,25 +1039,40 @@
   justify-content: space-around;
 }
 
+.main-content > .ranking-section .container .songs .itemSong.animeIn .content .image {
+  height: 28px;
+}
+
 .main-content > .ranking-section .container .songs .itemSong.animeIn .content .info .text {
   top: 50%;
-  transform: translateY(0);
+  transform: translateY(-50%);
   font-size: 12px;
 }
 
 .main-content > .ranking-section .container .songs .itemSong.animeIn .content .info .plays {
   top: 50%;
-  transform: translateY(0);
+  transform: translateY(-50%);
+}
+
+.main-content > .ranking-section .container .songs .itemSong.down .content .info .score {
+  transform: rotateZ(180deg);
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content {
+  width: 100%;
+  height: 100%;
+  display: flex;
   position: relative;
   border-radius: 6px;
-  display: flex;
-  height: 100%;
-  width: 100%;
   padding: 8px 24px 8px 8px;
   background-color: rgba(244, 220, 193, 0.35);
+}
+
+.main-content > .ranking-section .container .songs .itemSong .content .icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  margin-right: 8px;
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .number {
@@ -1102,8 +1117,9 @@
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .image > img {
-  width: 100%;
-  height: 100%;
+  width: 48px;
+  text-align: center;
+  transition: all 0.4s ease;
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .info {
@@ -1169,8 +1185,12 @@
   margin-right: 32px;
 }
 
+.main-content > .ranking-section .container .songs .itemSong .content .info .moreInfo .moreItem:last-child {
+  margin-right: 0;
+}
+
 .main-content > .ranking-section .container .songs .itemSong .content .info .moreInfo .moreItem .score {
-  background-image: url("");
+  background-image: url("https://www.rafaelalucas.com/dailyui/19/assets/arrowup.svg");
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .info .moreInfo .counters {
@@ -1179,11 +1199,11 @@
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .info .moreInfo .counters .heart {
-  background-image: url("");
+  background-image: url("https://www.rafaelalucas.com/dailyui/19/assets/heart.svg");
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .info .moreInfo .counters .play {
-  background-image: url("");
+  background-image: url("https://www.rafaelalucas.com/dailyui/19/assets/play.svg");
 }
 
 .main-content .to-top {

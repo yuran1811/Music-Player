@@ -25,7 +25,6 @@
 	#playlist .playlist-slider:hover::-webkit-scrollbar-thumb {
 		background-color: var(--bg-lv2);
 	}
-
 	.top-bar {
 		position: relative;
 		top: 0;
@@ -35,7 +34,6 @@
 		padding: 0;
 		display: flex;
 		align-items: center;
-
 		.top-ico {
 			padding: 0 10px;
 			color: var(--bg-lv0);
@@ -43,14 +41,12 @@
 		.parts {
 			width: 100%;
 			@extend %flexCenter;
-
 			.part1 {
 				margin-left: 10px;
 				flex: 1;
 				display: flex;
 				align-items: center;
 				justify-content: flex-start;
-
 				& > .top-ico:hover {
 					transform: scale(1.4);
 				}
@@ -60,7 +56,6 @@
 				display: flex;
 				flex-direction: row;
 				align-items: center;
-
 				.item {
 					position: relative;
 					cursor: pointer;
@@ -77,7 +72,6 @@
 						.theme-panel {
 							height: auto;
 							padding: 5px;
-
 							.theme-item {
 								padding: 5px 10px;
 								height: 50px;
@@ -87,7 +81,6 @@
 							display: block;
 						}
 					}
-
 					.ava-img {
 						width: inherit;
 						height: inherit;
@@ -104,7 +97,6 @@
 						@extend %flexCenter;
 						flex-flow: row wrap;
 						transition: all 0.45s ease;
-
 						.theme-item {
 							background-color: var(--bg-lv5);
 							position: relative;
@@ -122,7 +114,6 @@
 					}
 					.setting-panel {
 						display: none;
-
 						.setting-list {
 							background-color: var(--bg-lv6);
 							position: absolute;
@@ -135,7 +126,6 @@
 							align-items: flex-start;
 							flex-direction: column;
 							justify-content: center;
-
 							.setting-item {
 								width: 100%;
 								margin: 3px 0;
@@ -151,7 +141,6 @@
 									margin-right: 10px;
 								}
 							}
-
 							.music-quality {
 								.quality-panel {
 									display: none;
@@ -161,7 +150,6 @@
 									padding: 8px 12px;
 									border-radius: 20px;
 									background-color: var(--bg-lv6);
-
 									.quality-item {
 										margin: 8px 0 12px;
 										span {
@@ -173,7 +161,6 @@
 										}
 									}
 								}
-
 								&:hover .quality-panel {
 									display: block;
 								}
@@ -209,25 +196,24 @@
 			input {
 				background-color: var(--bg-lv8);
 				color: var(--bg-lv0);
-
 				width: 90%;
 				height: 34px;
 				margin-left: 10px;
-				padding: 15px 10px;
+				padding: 20px 30px;
 				border-radius: 25px;
-
 				border: 0;
 				outline: none;
 				border-left: 2px solid var(--bg-lv6);
 				border-bottom: 2px solid var(--bg-lv6);
 				transition: all 0.5s ease;
+				&::placeholder,
+				&:target {
+					color: var(--bg-lv0);
+					font-size: 1rem;
+					font-style: italic;
+				}
 			}
-			input::placeholder,
-			input:target {
-				color: var(--bg-lv0);
-				font-size: 1rem;
-				font-style: italic;
-			}
+
 			&.active input,
 			input:focus {
 				background-color: var(--bg-lv6);
@@ -785,7 +771,6 @@
 			min-width: 320px;
 			padding: 20px 50px;
 			width: 100%;
-
 			.header {
 				height: 100px;
 				@extend %flexCenter;
@@ -810,7 +795,6 @@
 				position: relative;
 				@extend %flexCenter;
 				flex-direction: column;
-
 				.categories {
 					display: flex;
 					align-items: flex-end;
@@ -832,51 +816,50 @@
 					&:hover {
 						.content {
 							.number {
+								top: 12px;
+								left: 12px;
 								width: 40px;
 								height: 40px;
-								left: 12px;
-								top: 12px;
 								font-size: 18px;
-								background-color: rgba(white, 0.4);
 								backdrop-filter: blur(5px);
+								background-color: rgba(white, 0.4);
 							}
 							.image {
+								top: 0;
+								left: 0;
 								width: 100%;
 								height: 100%;
-								left: 0;
-								top: 0;
 								border-radius: 6px;
 								transition: all 0.4s 0.2s
 									cubic-bezier(0.62, 0.21, 0.19, 0.84);
-
-								img {
-									filter: grayscale(100%);
-								}
-
-								&:before {
+								&::before {
 									background-color: #7a7a7a;
 									opacity: 0.4;
 								}
-
-								&:after {
+								&::after {
+									background-color: #e87867;
 									opacity: 0.6;
+								}
+								& > img {
+									filter: grayscale(100%);
+									width: 100%;
 								}
 							}
 							.info {
 								.moreInfo {
-									visibility: visible;
-									opacity: 1;
 									bottom: 0;
+									opacity: 1;
+									visibility: visible;
 									transition: all 0.3s 0.3s ease;
 								}
 								.text {
+									top: 32px;
 									color: white;
 									font-size: 14px;
-									top: 32px;
 								}
 								.plays {
-									color: white;
 									top: 32px;
+									color: white;
 								}
 							}
 						}
@@ -898,7 +881,6 @@
 							border-radius: inherit;
 							align-items: flex-end;
 							position: relative;
-
 							.number {
 								width: 40px;
 								height: 40px;
@@ -930,7 +912,6 @@
 								}
 								& > img {
 									width: 100%;
-									height: 500px;
 								}
 							}
 							.info {
@@ -999,29 +980,42 @@
 					}
 					&.animeIn {
 						.content {
+							.image {
+								height: 28px;
+							}
 							.info {
 								.text {
 									top: 50%;
-									transform: translateY(0);
+									transform: translateY(-50%);
 									font-size: 12px;
 								}
 								.plays {
 									top: 50%;
-									transform: translateY(0);
+									transform: translateY(-50%);
 								}
 							}
 						}
 					}
-
+					&.down {
+						.content .info .score {
+							transform: rotateZ(180deg);
+						}
+					}
 					.content {
+						width: 100%;
+						height: 100%;
+						display: flex;
 						position: relative;
 						border-radius: 6px;
-						display: flex;
-						height: 100%;
-						width: 100%;
 						padding: 8px 24px 8px 8px;
 						background-color: rgba(244, 220, 193, 0.35);
 
+						.icon {
+							width: 16px;
+							height: 16px;
+							display: flex;
+							margin-right: 8px;
+						}
 						.number {
 							-webkit-box-align: center;
 							-webkit-box-pack: center;
@@ -1064,8 +1058,9 @@
 								transition: all 0.4s 0.2s ease;
 							}
 							& > img {
-								width: 100%;
-								height: 100%;
+								width: 48px;
+								text-align: center;
+								transition: all 0.4s ease;
 							}
 						}
 						.info {
@@ -1128,9 +1123,12 @@
 								.moreItem {
 									display: flex;
 									margin-right: 32px;
+									&:last-child {
+										margin-right: 0;
+									}
 
 									.score {
-										background-image: url('');
+										background-image: url('https://www.rafaelalucas.com/dailyui/19/assets/arrowup.svg');
 									}
 								}
 								.counters {
@@ -1138,10 +1136,10 @@
 									justify-content: space-around;
 
 									.heart {
-										background-image: url('');
+										background-image: url('https://www.rafaelalucas.com/dailyui/19/assets/heart.svg');
 									}
 									.play {
-										background-image: url('');
+										background-image: url('https://www.rafaelalucas.com/dailyui/19/assets/play.svg');
 									}
 								}
 							}
@@ -1165,7 +1163,6 @@
 			content: '';
 			position: absolute;
 			bottom: 0;
-
 			background-color: var(--bg-lv1);
 			width: 31px;
 			height: 5px;
@@ -1185,24 +1182,20 @@
 			&::before {
 				transform: rotateZ(0);
 			}
-
 			.content {
 				display: block;
 			}
 		}
-
 		.content {
 			font-size: 1.7rem;
 			font-weight: 700;
 			text-align: center;
 			padding: 0;
 			margin: 0;
-
 			position: absolute;
 			left: 0;
 			right: 0;
 			bottom: 15px;
-
 			display: none;
 			transition: all 0.5s ease;
 		}
