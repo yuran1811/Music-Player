@@ -185,9 +185,6 @@
 				}
 			}
 			@extend %songList;
-			& > .song-list {
-				height: calc(100vh - 185px);
-			}
 		}
 		& > * {
 			opacity: 0;
@@ -203,6 +200,9 @@
 	}
 	.playlist-tab {
 		display: block;
+		& .song-list {
+			height: calc(100vh - 185px - 150px);
+		}
 	}
 }
 

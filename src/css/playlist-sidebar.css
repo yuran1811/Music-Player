@@ -198,10 +198,6 @@
   transform: scale(1);
 }
 
-.playlist-sidebar .content .next-play > .song-list {
-  height: calc(100vh - 185px);
-}
-
 .playlist-sidebar .content > * {
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -218,6 +214,10 @@
 
 .playlist-sidebar .playlist-tab {
   display: block;
+}
+
+.playlist-sidebar .playlist-tab .song-list {
+  height: calc(100vh - 185px - 150px);
 }
 
 @media (max-width: 500px) {
