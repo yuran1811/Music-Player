@@ -64,7 +64,7 @@
 .main-content .top-bar .parts .part2 .item {
   position: relative;
   cursor: pointer;
-  z-index: 100;
+  z-index: 1000;
   display: flex;
   align-items: center;
   width: 40px;
@@ -807,34 +807,33 @@
 
 .main-content > .ranking-section .container {
   transition: all 0.4s ease;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.911);
   position: relative;
   text-align: center;
   border-radius: 8px;
   margin: 50px auto;
-  max-width: 570px;
-  min-width: 320px;
   padding: 20px 50px;
-  width: 100%;
+  width: 80%;
 }
 
 .main-content > .ranking-section .container .header {
-  height: 100px;
+  height: 150px;
   flex-direction: column;
 }
 
 .main-content > .ranking-section .container .header .title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #e87867;
+  color: #d46351;
+  font-size: 3rem;
+  font-weight: bold;
   margin-bottom: 8px;
   letter-spacing: 1.2px;
   text-transform: uppercase;
 }
 
 .main-content > .ranking-section .container .header .subtitle {
-  font-size: 14px;
-  color: #5eadb7;
+  color: #1d8694;
+  font-size: 1.3rem;
+  font-weight: bold;
   letter-spacing: 1.5px;
 }
 
@@ -850,16 +849,17 @@
   justify-content: space-between;
   width: calc(100% - 80px);
   letter-spacing: 0.2px;
-  font-size: 1.2rem;
+  font-size: 2rem;
+  font-weight: bold;
   position: relative;
-  padding: 16px 32px;
+  padding: 16px 0px 20px 40px;
   color: #e87867;
   margin: 0 40px;
 }
 
 .main-content > .ranking-section .container .songs .itemSong {
   width: 100%;
-  height: 80px;
+  height: 100px;
   display: flex;
   padding-bottom: 16px;
   transition: all 0.35s cubic-bezier(0.62, 0.21, 0.19, 0.84);
@@ -907,26 +907,24 @@
 }
 
 .main-content > .ranking-section .container .songs .itemSong:hover .content .info .text {
-  top: 32px;
+  top: 52px;
   color: white;
-  font-size: 14px;
 }
 
 .main-content > .ranking-section .container .songs .itemSong:hover .content .info .plays {
-  top: 32px;
+  top: 42px;
   color: white;
 }
 
 .main-content > .ranking-section .container .songs .itemSong.featured {
-  width: calc(100% + 80px + 32px);
-  padding-bottom: 0px;
-  margin-bottom: 10px;
-  max-width: 602px;
-  position: relative;
   top: 0;
-  height: 184px;
+  width: 120%;
+  height: 35vmin;
   color: white;
   border-radius: 10px;
+  padding-bottom: 0px;
+  margin-bottom: 10px;
+  position: relative;
   box-shadow: 0px 6px 20px 25% black;
 }
 
@@ -939,12 +937,12 @@
 }
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content .number {
-  width: 40px;
-  height: 40px;
+  width: 65px;
+  height: 65px;
   top: initial;
   bottom: 24px;
   left: 24px;
-  font-size: 18px;
+  font-size: 1.7rem;
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(5px);
 }
@@ -973,7 +971,7 @@
 }
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content .info {
-  margin-left: calc(40px + 16px);
+  margin-left: calc(65px + 20px);
 }
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content .info .text {
@@ -983,13 +981,13 @@
 }
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content .info .text .title {
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 500;
   color: white;
 }
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content .info .text .artist {
-  font-size: 16px;
+  font-size: 1.3rem;
   font-weight: 300;
   color: white;
 }
@@ -999,7 +997,7 @@
   top: initial;
   right: 32px;
   color: inherit;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 500;
   transform: translateY(-8px);
 }
@@ -1007,9 +1005,9 @@
 .main-content > .ranking-section .container .songs .itemSong.featured .content .info .plays::before {
   content: 'plays';
   position: absolute;
-  bottom: -10px;
+  bottom: -15px;
   right: 0;
-  font-size: 12px;
+  font-size: 1.3rem;
   font-weight: 200;
   text-align: right;
   letter-spacing: 0.04em;
@@ -1040,13 +1038,13 @@
 }
 
 .main-content > .ranking-section .container .songs .itemSong.animeIn .content .image {
-  height: 28px;
+  height: 48px;
 }
 
 .main-content > .ranking-section .container .songs .itemSong.animeIn .content .info .text {
   top: 50%;
   transform: translateY(-50%);
-  font-size: 12px;
+  font-size: 1rem;
 }
 
 .main-content > .ranking-section .container .songs .itemSong.animeIn .content .info .plays {
@@ -1069,8 +1067,8 @@
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .icon {
-  width: 16px;
-  height: 16px;
+  width: 22px;
+  height: 22px;
   display: flex;
   margin-right: 8px;
 }
@@ -1085,9 +1083,9 @@
   top: -4px;
   left: -4px;
   z-index: 2;
-  width: 20px;
-  height: 20px;
-  font-size: 12px;
+  width: 30px;
+  height: 30px;
+  font-size: 1.1rem;
   font-weight: 500;
   transition: all 0.4s cubic-bezier(0.85, 0.08, 0.21, 1.34);
 }
@@ -1099,8 +1097,8 @@
   overflow: hidden;
   left: 8px;
   top: 8px;
-  width: 48px;
-  height: 48px;
+  width: 68px;
+  height: 68px;
   transition: all 0.6s 0.1s cubic-bezier(0.02, 1.09, 0.19, 1.01);
 }
 
@@ -1117,7 +1115,7 @@
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .image > img {
-  width: 48px;
+  width: 68px;
   text-align: center;
   transition: all 0.4s ease;
 }
@@ -1128,7 +1126,7 @@
   display: flex;
   -webkit-box-pack: start;
   justify-content: flex-start;
-  margin-left: calc(48px + 24px);
+  margin-left: calc(68px + 24px);
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .info .text {
@@ -1138,11 +1136,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-size: 14px;
+  font-size: 1.15rem;
   color: #5eadb7;
   height: fit-content;
   position: absolute;
-  top: 32px;
+  top: 50%;
   transform: translateY(-50%);
   transition: all 0.3s ease, color 0.3s 0.1s ease;
 }
@@ -1153,9 +1151,9 @@
 
 .main-content > .ranking-section .container .songs .itemSong .content .info .plays {
   position: absolute;
-  right: 32px;
-  top: 32px;
-  font-size: 16px;
+  right: 55px;
+  top: 50%;
+  font-size: 1.5rem;
   font-weight: 500;
   color: #e87867;
   transform: translateY(-50%);
@@ -1164,7 +1162,7 @@
 
 .main-content > .ranking-section .container .songs .itemSong .content .info .moreInfo {
   color: white;
-  font-size: 12px;
+  font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.8px;
   visibility: hidden;
@@ -1204,6 +1202,53 @@
 
 .main-content > .ranking-section .container .songs .itemSong .content .info .moreInfo .counters .play {
   background-image: url("https://www.rafaelalucas.com/dailyui/19/assets/play.svg");
+}
+
+.main-content > .ranking-section .container .load-remain {
+  position: relative;
+  font-size: 1.3rem;
+  margin: 20px auto;
+  cursor: pointer;
+  padding: 20px;
+  border: none;
+  width: 280px;
+  outline: none;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #f74add, #d92b2b, #ffaf1c, #f74add);
+  background-size: 400%;
+  color: #fff;
+  letter-spacing: 4px;
+}
+
+.main-content > .ranking-section .container .load-remain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, #ec37d0, #d92b2b, #ffaa0d, #ec37d0);
+  background-size: 400%;
+  border-radius: 50px;
+  transition: 0.5s;
+}
+
+.main-content > .ranking-section .container .load-remain:hover {
+  animation: animate 10s linear infinite;
+}
+
+.main-content > .ranking-section .container .load-remain:hover::before {
+  filter: blur(25px);
+  opacity: 0.8;
+  animation: animate 10s linear infinite;
+}
+
+@keyframes animate {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 400%;
+  }
 }
 
 .main-content .to-top {
@@ -1275,6 +1320,9 @@
 }
 
 @media (max-width: 750px) {
+  *::-webkit-scrollbar {
+    width: 0;
+  }
   .main-content:hover::-webkit-scrollbar-thumb,
   .main-content > .personal-section .song-list:hover::-webkit-scrollbar-thumb,
   .main-content #playlist .playlist-slider:hover::-webkit-scrollbar-thumb {
@@ -1322,27 +1370,34 @@
   .main-content > .personal-section section .title-right span {
     display: none;
   }
-  #songs .section-content {
+  .main-content > .personal-section #songs .section-content {
     max-height: 60vh;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
   }
-  #songs .img-preview {
+  .main-content > .personal-section #songs .img-preview {
     display: none;
   }
-  #playlist .section-content {
+  .main-content > .personal-section #playlist .section-content {
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-  #playlist .new-playlist {
+  .main-content > .personal-section #playlist .new-playlist {
     width: 80%;
     height: 150px;
     margin: 5px auto 15px;
   }
-  #playlist .swiper-container {
+  .main-content > .personal-section #playlist .swiper-container {
     width: 100%;
+  }
+  .main-content > .ranking-section .container {
+    width: 100%;
+    margin: 0;
+  }
+  .main-content > .ranking-section .container .songs .itemSong.featured {
+    width: calc(100vw - 70px);
   }
 }

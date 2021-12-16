@@ -348,17 +348,17 @@ const musicPlayer = {
 		function animeIn(e) {
 			itemSongs.forEach((item) => {
 				if (item === e.currentTarget) {
-					e.currentTarget.style.height = '140px';
+					e.currentTarget.style.height = '170px';
 					return;
 				}
-				item.style.height = '60px';
+				item.style.height = '80px';
 				item.classList.add('animeIn');
 			});
 		}
 
 		function removeAll() {
 			itemSongs.forEach((item) => {
-				item.style.height = '80px';
+				item.style.height = '100px';
 				item.classList.remove('animeIn');
 			});
 		}
