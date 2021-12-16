@@ -1144,13 +1144,15 @@
 				}
 			}
 			.load-remain {
+				letter-spacing: 4px;
 				position: relative;
-				font-size: 1.3rem;
 				margin: 20px auto;
+				font-size: 1.3rem;
+				max-width: 280px;
 				cursor: pointer;
 				padding: 20px;
 				border: none;
-				width: 280px;
+				color: #fff;
 				outline: none;
 				border-radius: 50px;
 				background: linear-gradient(
@@ -1161,8 +1163,6 @@
 					#f74add
 				);
 				background-size: 400%;
-				color: #fff;
-				letter-spacing: 4px;
 				&::before {
 					content: '';
 					position: absolute;
@@ -1355,10 +1355,84 @@
 			.container {
 				width: 100%;
 				margin: 0;
+				.header {
+					height: 150px;
+					.title {
+						font-size: 2rem;
+					}
+					.subtitle {
+						font-size: 1.1rem;
+					}
+				}
 				.songs {
 					.itemSong {
 						&.featured {
 							width: calc(100vw - 70px);
+						}
+					}
+					.categories {
+						width: calc(100vw - 70px - 64px);
+						font-size: 1.1rem;
+						padding: 24px;
+					}
+					.itemSong {
+						width: calc(100vw - 70px - 24px);
+						height: 100px;
+						&:hover {
+							.content {
+								.number {
+									font-size: 18px;
+								}
+								.info {
+									.moreInfo {
+										bottom: 0;
+										opacity: 1;
+										visibility: visible;
+										transition: all 0.3s 0.3s ease;
+									}
+									.text {
+										top: 52px;
+										color: white;
+										// font-size: 1.5rem;
+									}
+									.plays {
+										top: 42px;
+										color: white;
+									}
+								}
+							}
+						}
+						.content {
+							.number {
+								width: 30px;
+								height: 30px;
+								font-size: 1.1rem;
+							}
+							.image {
+								width: 68px;
+								height: 68px;
+								&::before,
+								&::after {
+									height: 100%;
+									width: 100%;
+								}
+								& > img {
+									width: 68px;
+								}
+							}
+							.info {
+								width: 100%;
+								.text {
+									font-size: 1rem;
+								}
+								.plays {
+									font-size: 1rem;
+								}
+								.moreInfo {
+									font-size: 1rem;
+									width: 100%;
+								}
+							}
 						}
 					}
 				}
