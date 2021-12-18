@@ -1,9 +1,15 @@
 .main-content .top-bar .parts, .main-content .top-bar .parts .part2 .item .theme-panel, .main-content > .personal-section .banner, .main-content > .personal-section section > .title .title-right .upload-song,
 .main-content > .personal-section section > .title .title-right .play-all, .main-content > .personal-section #playlist .new-playlist, .main-content > .personal-section #playlist .swiper-slide, .main-content > .personal-section #artist .artist-info, .main-content > .personal-section #artist .swiper-container,
 .main-content > .personal-section #playlist .swiper-container, .main-content > .ranking-section .container .header, .main-content > .ranking-section .container .songs, .main-content > .ranking-section .container .songs .itemSong.featured .content .info .moreInfo, .main-content > .ranking-section .container .songs .itemSong .content .number {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .main-content {
@@ -13,6 +19,7 @@
   left: 240px;
   width: calc(100% - 240px);
   height: calc(100vh - 90px);
+  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
@@ -29,8 +36,12 @@
   width: 100%;
   height: 70px;
   padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .main-content .top-bar .top-ico {
@@ -44,32 +55,53 @@
 
 .main-content .top-bar .parts .part1 {
   margin-left: 10px;
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .main-content .top-bar .parts .part1 > .top-ico:hover {
-  transform: scale(1.4);
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
 }
 
 .main-content .top-bar .parts .part2 {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .main-content .top-bar .parts .part2 .item {
   position: relative;
   cursor: pointer;
   z-index: 1000;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 40px;
   height: 40px;
   margin-right: 10px;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   border-top: 2px solid transparent;
 }
@@ -106,7 +138,11 @@
   padding: 0;
   background-color: var(--bg-lv6);
   border-radius: 20px;
-  flex-flow: row wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-transition: all 0.45s ease;
   transition: all 0.45s ease;
 }
 
@@ -119,6 +155,7 @@
   padding: 0;
   margin: 10px;
   border-radius: 50%;
+  -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
@@ -138,10 +175,19 @@
   width: 180px;
   padding: 7px 12px;
   border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .main-content .top-bar .parts .part2 .item .setting-panel .setting-list .setting-item {
@@ -149,9 +195,15 @@
   margin: 3px 0;
   padding: 8px 12px;
   border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .main-content .top-bar .parts .part2 .item .setting-panel .setting-list .setting-item:hover {
@@ -203,7 +255,8 @@
   left: 50%;
   height: 0;
   width: 80%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .main-content .top-bar .parts .part2 .item .setting-panel .setting-list .horizone-line ~ .setting-item {
@@ -227,7 +280,26 @@
   outline: none;
   border-left: 2px solid var(--bg-lv6);
   border-bottom: 2px solid var(--bg-lv6);
+  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
+}
+
+.main-content .top-bar .search-bar input::-webkit-input-placeholder, .main-content .top-bar .search-bar input:target {
+  color: var(--bg-lv0);
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.main-content .top-bar .search-bar input:-ms-input-placeholder, .main-content .top-bar .search-bar input:target {
+  color: var(--bg-lv0);
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.main-content .top-bar .search-bar input::-ms-input-placeholder, .main-content .top-bar .search-bar input:target {
+  color: var(--bg-lv0);
+  font-size: 1rem;
+  font-style: italic;
 }
 
 .main-content .top-bar .search-bar input::placeholder, .main-content .top-bar .search-bar input:target {
@@ -258,6 +330,7 @@
   height: 0;
   padding: 0;
   margin-left: 10px;
+  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
@@ -277,12 +350,18 @@
 }
 
 .main-content .top-bar .search-bar .suggest-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   position: relative;
   border-radius: 20px;
-  padding: 8px 10px;
+  padding: 13px 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -305,16 +384,26 @@
   position: relative;
   width: 100%;
   padding: 0 54px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .main-content > .personal-section .banner {
   margin-top: 20px;
   width: 100%;
   height: 30%;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .main-content > .personal-section .banner img {
@@ -342,15 +431,25 @@
   position: fixed;
   top: 0;
   left: 59%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   z-index: 1000;
 }
 
 .main-content > .personal-section .nav-bar .nav-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .main-content > .personal-section .nav-bar .nav-links .link {
@@ -359,6 +458,7 @@
   margin: 0 7px;
   padding: 5px 15px;
   border-radius: 20px;
+  -webkit-transition: all 0.35s ease;
   transition: all 0.35s ease;
 }
 
@@ -379,8 +479,13 @@
   border-bottom: 3px solid var(--bg-lv6);
   border-left: 1px solid var(--bg-lv6);
   border-right: 1px solid var(--bg-lv6);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 100%;
   height: auto;
   padding: 15px;
@@ -388,15 +493,23 @@
 }
 
 .main-content > .personal-section section > .title {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   font-size: 1.5rem;
   position: relative;
   padding-bottom: 10px;
   margin-top: 10px;
   height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .main-content > .personal-section section > .title > span {
@@ -414,12 +527,15 @@
   border-top-left-radius: 5px;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 5px;
+  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
+  -webkit-transition: background 0.2s 0.2s ease-in-out;
   transition: background 0.2s 0.2s ease-in-out;
 }
 
 .main-content > .personal-section section > .title > span > a {
   color: var(--bg-lv0);
+  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 
@@ -433,6 +549,7 @@
   z-index: 10;
   height: 100%;
   border-radius: 50px;
+  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 
@@ -440,8 +557,12 @@
   content: '';
   width: 15px;
   height: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background-color: transparent;
   position: absolute;
   top: calc(50% - 9px);
@@ -450,7 +571,9 @@
   border-radius: 2px;
   border-bottom: 0;
   border-left: 0;
-  transform: translateX(-42px) rotate(45deg);
+  -webkit-transform: translateX(-42px) rotate(45deg);
+          transform: translateX(-42px) rotate(45deg);
+  -webkit-transition: all 0.2s 0.1s ease-in-out;
   transition: all 0.2s 0.1s ease-in-out;
 }
 
@@ -467,17 +590,25 @@
 
 .main-content > .personal-section section > .title > span:hover > a::before {
   left: 23px;
-  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
 }
 
 .main-content > .personal-section section > .title > span:hover > a::after {
-  transform: translateX(5px) rotate(45deg);
+  -webkit-transform: translateX(5px) rotate(45deg);
+          transform: translateX(5px) rotate(45deg);
 }
 
 .main-content > .personal-section section > .title .title-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .main-content > .personal-section section > .title .title-right i {
@@ -501,6 +632,8 @@
 }
 
 .main-content > .personal-section section .section-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -515,9 +648,11 @@
   top: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 10px;
   opacity: 0;
+  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
@@ -529,11 +664,22 @@
 
 .main-content > .personal-section #songs .section-content .song-list {
   position: relative;
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   height: 250px;
   padding: 0 15px;
   overflow: hidden auto;
@@ -546,11 +692,20 @@
   cursor: pointer;
   margin-bottom: 15px;
   border-radius: 10px;
+  -webkit-transition: all 0.35s ease;
   transition: all 0.35s ease;
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .main-content > .personal-section #songs .section-content .song-list .song-item:hover {
@@ -566,25 +721,40 @@
 }
 
 .main-content > .personal-section #songs .section-content .song-list .song-item .left {
-  width: 100%;
+  width: calc(100% - 100px);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .main-content > .personal-section #songs .section-content .song-list .song-item .left .left-content {
   position: relative;
   font-size: 1.1rem;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .main-content > .personal-section #songs .section-content .song-list .song-item .left .left-content .song-title,
 .main-content > .personal-section #songs .section-content .song-list .song-item .left .left-content .song-artist {
-  width: 80%;
+  width: 95%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -595,8 +765,14 @@
 }
 
 .main-content > .personal-section #songs .section-content .song-list .song-item .right {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  right: 0;
 }
 
 .main-content > .personal-section #songs .section-content .song-list .song-item .right > .duration {
@@ -613,16 +789,21 @@
   height: 230px;
   margin-top: 15px;
   margin-right: 25px;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .main-content > .personal-section #playlist .new-playlist:hover .create-btn,
 .main-content > .personal-section #playlist .new-playlist .create-btn:hover {
-  transform: rotateZ(-90deg);
+  -webkit-transform: rotateZ(-90deg);
+          transform: rotateZ(-90deg);
 }
 
 .main-content > .personal-section #playlist .new-playlist:hover {
-  animation: pock 0.7s ease-in-out;
+  -webkit-animation: pock 0.7s ease-in-out;
+          animation: pock 0.7s ease-in-out;
 }
 
 .main-content > .personal-section #playlist .new-playlist .create-btn {
@@ -630,6 +811,7 @@
   cursor: pointer;
   width: 50px;
   height: 50px;
+  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
@@ -640,11 +822,13 @@
   top: 50%;
   height: 3px;
   width: 50px;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
 .main-content > .personal-section #playlist .new-playlist .create-btn::before {
-  transform: rotateZ(90deg) translateX(-3px);
+  -webkit-transform: rotateZ(90deg) translateX(-3px);
+          transform: rotateZ(90deg) translateX(-3px);
   bottom: 2px;
 }
 
@@ -663,6 +847,7 @@
   background-color: #6f7073;
   margin: 0 5px;
   border-radius: 5px;
+  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
 
@@ -678,7 +863,11 @@
   position: relative;
   margin-right: 10px;
   border-radius: 10px;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
@@ -688,9 +877,14 @@
   position: relative;
   width: 130px;
   height: 160px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .main-content > .personal-section #playlist .swiper-slide .playlist-option:hover {
@@ -709,20 +903,28 @@
   width: 0;
   height: 0;
   opacity: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   background-color: rgba(0, 0, 0, 0.445);
+  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
 .main-content > .personal-section #playlist .swiper-slide .playlist-option .playlist-option-overlay > i {
   cursor: pointer;
+  -webkit-transition: all 0.35s ease;
   transition: all 0.35s ease;
 }
 
 .main-content > .personal-section #playlist .swiper-slide .playlist-option .playlist-option-overlay > i:hover {
-  transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
 }
 
 .main-content > .personal-section #playlist .swiper-slide .playlist-title,
@@ -742,7 +944,10 @@
 
 .main-content > .personal-section #artist .artist-info {
   position: relative;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin: 40px 40px 0 0;
 }
 
@@ -757,10 +962,19 @@
 
 .main-content > .personal-section #artist .artist-info .artist__content {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .main-content > .personal-section #artist .artist-info .artist__name {
@@ -797,15 +1011,18 @@
 .main-content > .personal-section .swiper-button-prev {
   top: 110px;
   color: var(--bg-lv1);
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
 .main-content > .personal-section .swiper-button-next:hover,
 .main-content > .personal-section .swiper-button-prev:hover {
-  transform: scale(1.3);
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
 }
 
 .main-content > .ranking-section .container {
+  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
   background-color: rgba(255, 255, 255, 0.911);
   position: relative;
@@ -818,7 +1035,10 @@
 
 .main-content > .ranking-section .container .header {
   height: 150px;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .main-content > .ranking-section .container .header .title {
@@ -840,13 +1060,22 @@
 .main-content > .ranking-section .container .songs {
   width: 100%;
   position: relative;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .main-content > .ranking-section .container .songs .categories {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: calc(100% - 80px);
   letter-spacing: 0.2px;
   font-size: 2rem;
@@ -860,8 +1089,11 @@
 .main-content > .ranking-section .container .songs .itemSong {
   width: 100%;
   height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   padding-bottom: 16px;
+  -webkit-transition: all 0.35s cubic-bezier(0.62, 0.21, 0.19, 0.84);
   transition: all 0.35s cubic-bezier(0.62, 0.21, 0.19, 0.84);
 }
 
@@ -871,7 +1103,8 @@
   width: 40px;
   height: 40px;
   font-size: 18px;
-  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   background-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -881,6 +1114,7 @@
   width: 100%;
   height: 100%;
   border-radius: 6px;
+  -webkit-transition: all 0.4s 0.2s cubic-bezier(0.62, 0.21, 0.19, 0.84);
   transition: all 0.4s 0.2s cubic-bezier(0.62, 0.21, 0.19, 0.84);
 }
 
@@ -895,7 +1129,8 @@
 }
 
 .main-content > .ranking-section .container .songs .itemSong:hover .content .image > img {
-  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
   width: 100%;
 }
 
@@ -903,6 +1138,7 @@
   bottom: 0;
   opacity: 1;
   visibility: visible;
+  -webkit-transition: all 0.3s 0.3s ease;
   transition: all 0.3s 0.3s ease;
 }
 
@@ -925,14 +1161,16 @@
   padding-bottom: 0px;
   margin-bottom: 10px;
   position: relative;
-  box-shadow: 0px 6px 20px 25% black;
+  -webkit-box-shadow: 0px 6px 20px 25% black;
+          box-shadow: 0px 6px 20px 25% black;
 }
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content {
   padding: 24px 32px 24px 24px;
   -webkit-box-align: end;
   border-radius: inherit;
-  align-items: flex-end;
+  -ms-flex-align: end;
+      align-items: flex-end;
   position: relative;
 }
 
@@ -944,7 +1182,8 @@
   left: 24px;
   font-size: 1.7rem;
   background-color: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content .image {
@@ -958,6 +1197,7 @@
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content .image::before {
   opacity: 1;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(55.95%, rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.74)));
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55.95%, rgba(0, 0, 0, 0.74) 100%);
 }
 
@@ -976,7 +1216,8 @@
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content .info .text {
   position: initial;
-  transform: none;
+  -webkit-transform: none;
+          transform: none;
   top: initial;
 }
 
@@ -999,7 +1240,8 @@
   color: inherit;
   font-size: 2rem;
   font-weight: 500;
-  transform: translateY(-8px);
+  -webkit-transform: translateY(-8px);
+          transform: translateY(-8px);
 }
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content .info .plays::before {
@@ -1015,6 +1257,8 @@
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content .info .moreInfo {
   background-color: #5eadb7;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   height: 32px;
   padding: 0 16px;
@@ -1024,17 +1268,23 @@
   right: calc(8% + 8px);
   opacity: 1;
   visibility: visible;
-  box-shadow: 0px 6px 20px 25% black;
+  -webkit-box-shadow: 0px 6px 20px 25% black;
+          box-shadow: 0px 6px 20px 25% black;
 }
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content .info .moreInfo .moreItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin-right: 32px;
 }
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content .info .moreInfo .counters {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-around;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .main-content > .ranking-section .container .songs .itemSong.animeIn .content .image {
@@ -1043,22 +1293,27 @@
 
 .main-content > .ranking-section .container .songs .itemSong.animeIn .content .info .text {
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   font-size: 1rem;
 }
 
 .main-content > .ranking-section .container .songs .itemSong.animeIn .content .info .plays {
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
 .main-content > .ranking-section .container .songs .itemSong.down .content .info .score {
-  transform: rotateZ(180deg);
+  -webkit-transform: rotateZ(180deg);
+          transform: rotateZ(180deg);
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content {
   width: 100%;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   position: relative;
   border-radius: 6px;
@@ -1069,6 +1324,8 @@
 .main-content > .ranking-section .container .songs .itemSong .content .icon {
   width: 22px;
   height: 22px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin-right: 8px;
 }
@@ -1087,6 +1344,7 @@
   height: 30px;
   font-size: 1.1rem;
   font-weight: 500;
+  -webkit-transition: all 0.4s cubic-bezier(0.85, 0.08, 0.21, 1.34);
   transition: all 0.4s cubic-bezier(0.85, 0.08, 0.21, 1.34);
 }
 
@@ -1099,6 +1357,7 @@
   top: 8px;
   width: 68px;
   height: 68px;
+  -webkit-transition: all 0.6s 0.1s cubic-bezier(0.02, 1.09, 0.19, 1.01);
   transition: all 0.6s 0.1s cubic-bezier(0.02, 1.09, 0.19, 1.01);
 }
 
@@ -1111,21 +1370,26 @@
   z-index: 1;
   left: 0;
   top: 0;
+  -webkit-transition: all 0.4s 0.2s ease;
   transition: all 0.4s 0.2s ease;
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .image > img {
   width: 68px;
   text-align: center;
+  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .info {
   z-index: 1;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: start;
-  justify-content: flex-start;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
   margin-left: calc(68px + 24px);
 }
 
@@ -1133,15 +1397,23 @@
   -webkit-box-align: start;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: start;
+      align-items: flex-start;
   font-size: 1.15rem;
   color: #5eadb7;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease, color 0.3s 0.1s ease;
   transition: all 0.3s ease, color 0.3s 0.1s ease;
 }
 
@@ -1156,7 +1428,8 @@
   font-size: 1.5rem;
   font-weight: 500;
   color: #e87867;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   transition: all 0.2s ease, color 0.2s 0.2s ease, font-size 0.2s linear, transform 0.3s 0.4s ease, -webkit-transform 0.3s 0.4s ease;
 }
 
@@ -1167,18 +1440,24 @@
   letter-spacing: 0.8px;
   visibility: hidden;
   opacity: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
   position: absolute;
   left: 0;
   width: 100%;
   bottom: -20px;
   padding: 16px 24px;
   -webkit-box-pack: justify;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .info .moreInfo .moreItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin-right: 32px;
 }
@@ -1192,8 +1471,11 @@
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .info .moreInfo .counters {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-around;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .info .moreInfo .counters .heart {
@@ -1216,6 +1498,7 @@
   color: #fff;
   outline: none;
   border-radius: 50px;
+  background: -webkit-gradient(linear, left top, right top, from(#f74add), color-stop(#d92b2b), color-stop(#ffaf1c), to(#f74add));
   background: linear-gradient(90deg, #f74add, #d92b2b, #ffaf1c, #f74add);
   background-size: 400%;
 }
@@ -1226,20 +1509,34 @@
   inset: 0;
   opacity: 0;
   z-index: -1;
+  background: -webkit-gradient(linear, left top, right top, from(#ec37d0), color-stop(#d92b2b), color-stop(#ffaa0d), to(#ec37d0));
   background: linear-gradient(90deg, #ec37d0, #d92b2b, #ffaa0d, #ec37d0);
   background-size: 400%;
   border-radius: 50px;
+  -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
 .main-content > .ranking-section .container .load-remain:hover {
-  animation: animate 10s linear infinite;
+  -webkit-animation: animate 10s linear infinite;
+          animation: animate 10s linear infinite;
 }
 
 .main-content > .ranking-section .container .load-remain:hover::before {
-  filter: blur(25px);
+  -webkit-filter: blur(25px);
+          filter: blur(25px);
   opacity: 0.8;
-  animation: animate 10s linear infinite;
+  -webkit-animation: animate 10s linear infinite;
+          animation: animate 10s linear infinite;
+}
+
+@-webkit-keyframes animate {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 400%;
+  }
 }
 
 @keyframes animate {
@@ -1269,17 +1566,20 @@
   background-color: var(--bg-lv1);
   width: 31px;
   height: 5px;
+  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
 .main-content .to-top::after {
   left: 0;
-  transform: rotateZ(-225deg);
+  -webkit-transform: rotateZ(-225deg);
+          transform: rotateZ(-225deg);
 }
 
 .main-content .to-top::before {
   right: 0;
-  transform: rotateZ(225deg);
+  -webkit-transform: rotateZ(225deg);
+          transform: rotateZ(225deg);
 }
 
 .main-content .to-top:hover {
@@ -1287,7 +1587,8 @@
 }
 
 .main-content .to-top:hover::after, .main-content .to-top:hover::before {
-  transform: rotateZ(0);
+  -webkit-transform: rotateZ(0);
+          transform: rotateZ(0);
 }
 
 .main-content .to-top:hover .content {
@@ -1305,6 +1606,7 @@
   right: 0;
   bottom: 15px;
   display: none;
+  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
@@ -1329,7 +1631,10 @@
     background-color: transparent;
   }
   .main-content .top-bar .parts .part2 {
-    flex-direction: column-reverse;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
     top: 66px;
   }
   .main-content .top-bar .parts .part2 .item {
@@ -1355,7 +1660,10 @@
     left: calc(59% - 70px);
   }
   .main-content > .personal-section .nav-bar .nav-links {
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
   .main-content > .personal-section .nav-bar .nav-links .link {
     width: 90%;
@@ -1372,18 +1680,34 @@
   }
   .main-content > .personal-section #songs .section-content {
     max-height: 60vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   .main-content > .personal-section #songs .img-preview {
     display: none;
   }
   .main-content > .personal-section #playlist .section-content {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   .main-content > .personal-section #playlist .new-playlist {
     width: 80%;
@@ -1425,6 +1749,7 @@
     bottom: 0;
     opacity: 1;
     visibility: visible;
+    -webkit-transition: all 0.3s 0.3s ease;
     transition: all 0.3s 0.3s ease;
   }
   .main-content > .ranking-section .container .songs .itemSong:hover .content .info .text {

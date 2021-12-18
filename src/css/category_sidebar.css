@@ -1,22 +1,36 @@
 .category-sidebar .menu, body > .new-pl-modal .new-pl-banner a,
 body > .ad-modal .banner-modal-ad > a {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .category-sidebar {
   background-color: var(--bg-lv8);
   border-right: 1px solid var(--bg-lv6);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: fixed;
   top: 0;
   left: 0;
   width: 240px;
   height: calc(100vh - 90px);
   padding: 70px 0 54px;
+  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
@@ -25,9 +39,14 @@ body > .ad-modal .banner-modal-ad > a {
   color: var(--bg-lv0);
   font-size: 1.4rem;
   font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   position: fixed;
   top: 0;
   z-index: 10;
@@ -38,7 +57,10 @@ body > .ad-modal .banner-modal-ad > a {
 
 .category-sidebar .menu {
   position: relative;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin-bottom: 15px;
   width: 100%;
 }
@@ -54,6 +76,7 @@ body > .ad-modal .banner-modal-ad > a {
   height: 38px;
   margin-left: 3px;
   padding: 7px 25px;
+  -webkit-transition: background 0.5s ease;
   transition: background 0.5s ease;
 }
 
@@ -85,7 +108,8 @@ body > .ad-modal .banner-modal-ad > a {
   border-top: 1px solid var(--bg-lv6);
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   width: 80%;
   height: 0;
 }
@@ -135,9 +159,15 @@ body > .ad-modal .banner-modal-ad > a {
   color: var(--bg-lv0);
   font-size: 1.2rem;
   cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   width: 100%;
   height: 54px;
   padding: 0 28px;
@@ -196,6 +226,7 @@ body > .new-pl-modal input {
   font-size: 1.3rem;
   border-radius: 10px;
   border: 3px solid white;
+  -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
 }
 
@@ -210,7 +241,8 @@ body > .ad-modal .banner-modal-ad__content > img {
 }
 
 body > .ad-modal .banner-modal-ad__content > img:hover {
-  animation: blink linear 0.6s infinite alternate;
+  -webkit-animation: blink linear 0.6s infinite alternate;
+          animation: blink linear 0.6s infinite alternate;
 }
 
 body > .ad-modal .banner-modal-ad__content > div {
@@ -220,7 +252,8 @@ body > .ad-modal .banner-modal-ad__content > div {
 }
 
 body > .ad-modal .banner-modal-ad > a:hover {
-  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 body > .new-pl-modal .new-pl-banner,
@@ -236,11 +269,20 @@ body > .ad-modal .banner-modal-ad {
   left: 50%;
   width: 350px;
   padding: 25px 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-around;
-  transform: translate(-50%, -50%);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 body > .new-pl-modal .new-pl-banner__content,
@@ -259,6 +301,7 @@ body > .ad-modal .banner-modal-ad > a {
   font-weight: 600;
   font-size: 1.2rem;
   padding: 6px 35px;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
@@ -295,6 +338,7 @@ body > .new-pl-modal .new-pl-banner a > span {
   padding: 6px 35px;
   font-weight: 600;
   margin-top: 7px;
+  -webkit-transition: all 0.7s ease;
   transition: all 0.7s ease;
 }
 
@@ -306,16 +350,20 @@ body > .new-pl-modal .new-pl-banner a > span {
   width: 100%;
   height: 100px;
   background-color: rgba(255, 255, 255, 0.6);
-  transform: skewY(45deg) translateY(250px);
+  -webkit-transform: skewY(45deg) translateY(250px);
+          transform: skewY(45deg) translateY(250px);
+  -webkit-transition: all 0.7s ease;
   transition: all 0.7s ease;
 }
 
 .banner-modal-ad-link:hover {
-  transform: translateY(3px);
+  -webkit-transform: translateY(3px);
+          transform: translateY(3px);
 }
 
 .banner-modal-ad-link:hover::before {
-  transform: skewY(45deg) translateY(-250px);
+  -webkit-transform: skewY(45deg) translateY(-250px);
+          transform: skewY(45deg) translateY(-250px);
 }
 
 @media (max-width: 1024px) {

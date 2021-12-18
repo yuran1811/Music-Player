@@ -348,7 +348,7 @@ const musicPlayer = {
 		function animeIn(e) {
 			itemSongs.forEach((item) => {
 				if (item === e.currentTarget) {
-					e.currentTarget.style.height = '170px';
+					e.currentTarget.style.height = '220px';
 					return;
 				}
 				item.style.height = '80px';
@@ -504,6 +504,9 @@ const musicPlayer = {
 						))
 				);
 		};
+
+		hideAll(tabItem);
+		personalSection.style.display = 'block';
 
 		tabLink.forEach((link, id) =>
 			link.addEventListener('click', (e) => {

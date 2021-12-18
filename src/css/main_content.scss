@@ -261,7 +261,7 @@
 				justify-content: flex-start;
 				position: relative;
 				border-radius: 20px;
-				padding: 8px 10px;
+				padding: 13px 10px;
 				text-overflow: ellipsis;
 				white-space: nowrap;
 				overflow: hidden;
@@ -530,7 +530,8 @@
 							opacity: 1;
 						}
 						.left {
-							width: 100%;
+							width: calc(100% - 100px);
+							// width: 100%;
 							display: flex;
 							align-items: center;
 							justify-content: flex-start;
@@ -546,7 +547,7 @@
 
 								.song-title,
 								.song-artist {
-									width: 80%;
+									width: 95%;
 									overflow: hidden;
 									white-space: nowrap;
 									text-overflow: ellipsis;
@@ -559,6 +560,8 @@
 						.right {
 							display: flex;
 							align-items: center;
+							position: absolute;
+							right: 0;
 
 							& > .duration {
 								width: 50px;
