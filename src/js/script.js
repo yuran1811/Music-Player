@@ -211,6 +211,7 @@ const musicPlayer = {
 	NCTArtists: [],
 	NCTTrendArtists: [],
 	NCTPlaylists: [],
+	NCTRanking: [],
 	NCTTop100: [],
 	NCTTopics: [],
 	NCTHome: [],
@@ -336,35 +337,195 @@ const musicPlayer = {
 		renderPlaylists();
 		renderSongPreview();
 	},
-	renderRankingSection() {
+	renderRankingSection(data) {
 		const rankingSection = $('.main-content .ranking-section');
-		const itemSongs = selectAll(rankingSection, '.itemSong.list');
+		const rankingSectionHeader = select(rankingSection, '.header');
+		const rankingTitle = select(rankingSectionHeader, '.title');
+		const rankingSubtitle = select(rankingSectionHeader, '.subtitle');
+		const songsInner = select(rankingSection, '.songs');
 
-		itemSongs.forEach((item) => {
-			item.onmouseover = animeIn;
-			item.onmouseout = removeAll;
-		});
+		const renderRankingPlaylist = (songs) =>
+			songs.map((item, index) => {
+				let thisSong = this.NCTRanking[index];
+				if (index === 0)
+					return `
+					<div class="itemSong featured">
+						<div class="content">
+							<span class="number">${index + 1}</span>
+							<figure class="image">
+								<img
+									src="${item.thumbnail || item.artists[0].imageUrl}"
+									alt="img"
+								/>
+							</figure>
+							<div class="info">
+								<div class="text">
+									<p class="title">${item.title}</p>
+									<p class="artist">${thisSong.artists.map((item) => item.name).join(', ')}</p>
+								</div>
+								<p class="plays">${12}</p>
+								<div class="moreInfo">
+									<div class="moreItem">
+										<i class="icon score"></i>
+										<p class="iconLabel">${
+											item.position <= item.oldPosition
+												? `+${
+														item.oldPosition -
+														item.position
+												  }`
+												: `-${
+														item.position -
+														item.oldPosition
+												  }`
+										}</p>
+									</div>
 
-		function animeIn(e) {
-			itemSongs.forEach((item) => {
-				if (item === e.currentTarget) {
-					e.currentTarget.style.height = '220px';
-					return;
-				}
-				item.style.height = '80px';
-				item.classList.add('animeIn');
+									<div class="counters">
+										<div class="moreItem">
+											<i class="icon heart"></i>
+											<p class="iconLabel">
+												1452
+											</p>
+										</div>
+										<div class="moreItem">
+											<i class="icon play"></i>
+											<p class="iconLabel">
+												5432
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="categories">
+						<p>Songs</p>
+						<p>Duration</p>
+					</div>`;
+				return `
+					<div class="itemSong list ${item.position <= item.oldPosition ? `` : `down`}">
+						<div class="content">
+							<span class="number">${index + 1}</span>
+							<figure class="image">
+								<img
+									src="${item.thumbnail || item.artists[0].imageUrl}"
+									alt="img"
+								/>
+							</figure>
+							<div class="info">
+								<div class="text">
+									<p class="title">${item.title}</p>
+									<p class="artist">${thisSong.artists.map((item) => item.name).join(', ')}</p>
+								</div>
+
+								<p class="plays">${12}</p>
+
+								<div class="moreInfo">
+									<div class="moreItem">
+										<i class="icon score"></i>
+										<p class="iconLabel">${
+											item.position <= item.oldPosition
+												? `+${
+														item.oldPosition -
+														item.position
+												  }`
+												: `-${
+														item.position -
+														item.oldPosition
+												  }`
+										}</p>
+									</div>
+
+									<div class="counters">
+										<div class="moreItem">
+											<i class="icon heart"></i>
+											<p class="iconLabel">325</p>
+										</div>
+										<div class="moreItem">
+											<i class="icon play"></i>
+											<p class="iconLabel">
+												2683
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>`;
 			});
-		}
+		let allSongs = renderRankingPlaylist(this.NCTRanking);
 
-		function removeAll() {
-			itemSongs.forEach((item) => {
-				item.style.height = '100px';
-				item.classList.remove('animeIn');
+		rankingTitle.innerHTML = 'Vietnamese Ranking';
+		rankingSubtitle.innerHTML = `Week: ${data.week}, ${data.year}`;
+
+		songsInner.innerHTML = allSongs.slice(0, 5).join('');
+
+		const loadRemain = select(rankingSection, '.load-remain');
+		loadRemain.onclick = () => {
+			songsInner.innerHTML += allSongs.slice(5).join('');
+			loadRemain.style.display = 'none';
+		};
+	},
+	renderTop100Section(songs) {
+		const Top100Section = $('.main-content .top-100');
+		const songsInner = select(Top100Section, '.songs');
+
+		const renderTop100Playlist = (songs) =>
+			songs.map((item, index) => {
+				if (index === 0)
+					return `
+					<div class="itemSong featured">
+						<div class="content">
+							<span class="number">${index + 1}</span>
+							<figure class="image">
+								<img
+									src="${item.thumbnail || item.artists[0].imageUrl}"
+									alt="img"
+								/>
+							</figure>
+							<div class="info">
+								<div class="text">
+									<p class="title">${item.title}</p>
+									<p class="artist">${item.artists.map((item) => item.name).join(', ')}</p>
+								</div>
+								<p class="plays long">${item.duration}</p>
+							</div>
+						</div>
+					</div>
+					<div class="categories">
+						<p>Songs</p>
+						<p>Duration</p>
+					</div>`;
+				return `
+					<div class="itemSong list">
+						<div class="content">
+							<span class="number">${index + 1}</span>
+							<figure class="image">
+								<img
+									src="${item.thumbnail || item.artists[0].imageUrl}"
+									alt="img"
+								/>
+							</figure>
+							<div class="info">
+								<div class="text">
+									<p class="title">${item.title}</p>
+									<p class="artist">${item.artists.map((item) => item.name).join(', ')}</p>
+								</div>
+								<p class="plays">${item.duration}</p>
+							</div>
+						</div>
+					</div>`;
 			});
-		}
+		let allSongs = renderTop100Playlist(songs);
+		songsInner.innerHTML = allSongs.slice(0, 5).join('');
+
+		const loadRemain = select(Top100Section, '.load-remain');
+		loadRemain.onclick = () => {
+			songsInner.innerHTML += allSongs.slice(5).join('');
+			loadRemain.style.display = 'none';
+		};
 	},
 	render() {
-		this.renderRankingSection();
 		this.renderPersonalSection();
 		this.initApp();
 	},
@@ -795,7 +956,12 @@ const musicPlayer = {
 			this.NCTHome = data;
 		};
 		const top100Handle = (data) => {
-			this.NCTTop100 = data;
+			this.NCTTop100 = data.playlist.songs;
+			this.renderTop100Section(this.NCTTop100);
+		};
+		const rankingHandle = (data) => {
+			this.NCTRanking = data.ranking.song;
+			this.renderRankingSection(data.ranking);
 		};
 
 		const api = NhacCuaTui;
@@ -830,17 +996,25 @@ const musicPlayer = {
 			// api.searchByKeyword('energy'),
 
 			api.getTop100('m3liaiy6vVsF'),
-			// api.getChart({
-			// 	category: 'nhac-viet',
-			// 	time: {
-			// 		week: 48,
-			// 		year: 2021,
-			// 	},
-			// }),
+			api.getChart({
+				category: 'nhac-viet',
+				time: {
+					week: 48,
+					year: 2021,
+				},
+			}),
 		])
 			.then((data) => {
 				console.log(data);
-				const [home, topics, trendingArtist, topKeyword, top100] = data;
+				const [
+					home,
+					topics,
+					trendingArtist,
+					topKeyword,
+					top100,
+					ranking,
+				] = data;
+				rankingHandle(ranking);
 				top100Handle(top100);
 				topicsHandle(topics);
 				homeHandle(home);
@@ -861,7 +1035,7 @@ const musicPlayer = {
 	},
 
 	start() {
-		// this.callApi();
+		this.callApi();
 		this.defineProperties();
 		this.loadConfig();
 		this.render();
