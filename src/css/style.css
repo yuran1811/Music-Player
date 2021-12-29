@@ -30,9 +30,10 @@ html {
 
 * {
 	box-sizing: border-box;
-	/* font-family: 'Outfit', sans-serif; */
-	font-family: 'Dosis', sans-serif;
+	user-select: none;
 	font-weight: 400;
+	font-family: 'Dosis', sans-serif;
+	/* font-family: 'Outfit', sans-serif; */
 	-webkit-tap-highlight-color: transparent;
 }
 
