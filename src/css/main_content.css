@@ -1284,7 +1284,7 @@
 
 .main-content > .ranking-section .container .songs .itemSong.featured .content .info .plays::before,
 .main-content > .top-100 .container .songs .itemSong.featured .content .info .plays::before {
-  content: 'plays';
+  content: 'Wks';
   position: absolute;
   bottom: -15px;
   right: 0;
