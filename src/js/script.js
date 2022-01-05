@@ -95,8 +95,11 @@ const songImg = select(songInfo, '.media-img > img');
 const songArtist = select(songInfo, '.artist');
 const songTitle = select(songInfo, '.title');
 
-const USER_CONFIG_KEY = 'user__settings';
+// Section Elements
+const personalSection = $('.personal-section');
 
+// System Config
+const USER_CONFIG_KEY = 'user__settings';
 const api = NhacCuaTui;
 
 const songImgAnimation = songImg.animate([{ transform: 'rotate(360deg)' }], {
@@ -110,6 +113,49 @@ const musicPlayer = {
 	randArr: [],
 	isRepeat: 0,
 	isRand: 0,
+
+	uploadSongs: [
+		{
+			id: 0,
+			name: 'Nevada',
+			artist: 'Vicetone',
+			audioSrc: './src/music/Nevada.mp3',
+			imgSrc: './src/img/Nevada.png',
+			length: '3:00',
+		},
+		{
+			id: 1,
+			name: 'Summer Time',
+			artist: 'K-391',
+			audioSrc: './src/music/SummerTime.mp3',
+			imgSrc: './src/img/SummerTime.png',
+			length: '4:00',
+		},
+		{
+			id: 2,
+			name: 'Shape of You',
+			artist: 'Ed Sheeran',
+			audioSrc: './src/music/ShapeOfYou.mp3',
+			imgSrc: './src/img/EdSheeran.png',
+			length: '3:10',
+		},
+		{
+			id: 3,
+			name: 'Cheri Cheri Lady',
+			artist: 'Modern Talking',
+			audioSrc: './src/music/CheriCheriLady.mp3',
+			imgSrc: './src/img/ModernTalking.png',
+			length: '3:30',
+		},
+		{
+			id: 4,
+			name: 'Savage Love',
+			artist: 'Jason Derulo',
+			audioSrc: './src/music/SavageLove.mp3',
+			imgSrc: './src/img/SavageLove.png',
+			length: '3:60',
+		},
+	],
 
 	playlists: [
 		{
@@ -250,6 +296,7 @@ const musicPlayer = {
 		this.currentIndex = lastPlaySong.id;
 		this.loadCurrentSong();
 	},
+
 	renderPersonalSection() {
 		const renderSongs = () => {
 			$('section .song-list ul').innerHTML = this.songs
@@ -617,7 +664,6 @@ const musicPlayer = {
 				const key = item.dataset.songkey;
 				api.getSong(key).then((data) => {
 					if (_this.currentSong.name === data.song.title) return;
-					console.log('Turn on');
 					const songArtist = data.song.artists
 						.map((item) => item.name)
 						.join(', ');
@@ -634,8 +680,10 @@ const musicPlayer = {
 					];
 					_this.currentIndex = 0;
 					_this.loadCurrentSong();
-					audio.play();
-					songImgAnimation.play();
+					if (audio.src) {
+						audio.play();
+						songImgAnimation.play();
+					}
 				});
 			};
 		});
@@ -689,23 +737,57 @@ const musicPlayer = {
 	},
 	personalSongClickHandle() {
 		const _this = this;
-		const personal = $('.personal-section');
-		selectAll(personal, 'li[data-songurl]').forEach(
+		selectAll(personalSection, 'li[data-songurl]').forEach(
 			(item) =>
 				(item.onclick = () => {
-					_this.currentIndex = item.dataset.songindex;
+					const thisSong = this.uploadSongs[item.dataset.songindex];
+					_this.songs = [
+						{
+							id: 0,
+							name: thisSong.title,
+							artist: thisSong.artist,
+							audioSrc: thisSong.audioSrc,
+							imgSrc: thisSong.imgSrc,
+							length: thisSong.length,
+						},
+					];
+					_this.currentIndex = 0;
 					_this.loadCurrentSong();
-					audio.play();
-					songImgAnimation.play();
+					if (audio.src) {
+						audio.play();
+						songImgAnimation.play();
+					}
 				})
 		);
 	},
+	personalArtistHandle() {
+		const artistsStatus = selectAll(personalSection, '.artist__status');
+		artistsStatus.forEach(
+			(item) =>
+				(item.onclick = () => {
+					item.classList.toggle('isFollowed');
+					if (item.className.includes('isFollowed')) {
+						item.innerText = 'Followed';
+						item.style.color = 'var(--bg-lv6)';
+						item.style.backgroundColor = 'lightgreen';
+					} else {
+						item.innerText = 'Unfollow';
+						item.style.color = 'var(--bg-lv0)';
+						item.style.backgroundColor = 'var(--bg-lv6)';
+					}
+				})
+		);
+	},
+	personalHandle() {
+		this.personalSongClickHandle();
+		this.personalArtistHandle();
+		this.personalTabsHandle();
+	},
 
-	categoryTabsHandle() {
+	categoryHandle() {
 		const tabLink = $$('.category-sidebar .item');
 		const tabItem = $$('.main-content .category-item');
 		const tabLinkLth = tabLink.length - 1;
-		const personalSection = $('.personal-section');
 		const personalNav = $('.personal-section .nav-bar');
 		const main = $('.main-content');
 
@@ -796,6 +878,7 @@ const musicPlayer = {
 			}
 		};
 	},
+
 	topIconHandle() {
 		const checkStatus = (item) => {
 			if (item.className.includes('active')) {
@@ -847,7 +930,7 @@ const musicPlayer = {
 		};
 
 		$('.main-content .top-bar .personal-ico').onclick = () => (
-			disableAll(), ($('.personal-section').style.display = 'block')
+			disableAll(), (personalSection.style.display = 'block')
 		);
 	},
 	heartIconHandle() {
@@ -869,11 +952,11 @@ const musicPlayer = {
 	},
 
 	loadCurrentSong() {
-		currentSongDuration.innerHTML = this.currentSong.length || '99:99';
-		songTitle.innerHTML = this.currentSong.name;
-		songArtist.innerHTML = this.currentSong.artist;
-		songImg.src = this.currentSong.imgSrc;
-		audio.src = this.currentSong.audioSrc;
+		currentSongDuration.innerHTML = this.currentSong?.length || '99:99';
+		songTitle.innerHTML = this.currentSong?.name;
+		songArtist.innerHTML = this.currentSong?.artist;
+		songImg.src = this.currentSong?.imgSrc;
+		audio.src = this.currentSong?.audioSrc;
 		playBtn.click();
 	},
 	playNextSong() {
@@ -927,8 +1010,11 @@ const musicPlayer = {
 			songProgress.value = parseFloat(
 				(audio.currentTime / audio.duration) * 100
 			).toFixed(3);
-			songImgAnimation.play();
-			audio.play();
+
+			if (audio.src) {
+				songImgAnimation.play();
+				audio.play();
+			}
 
 			const setTime = () => {
 				const minute = ~~(audio.duration / 60);
@@ -941,6 +1027,7 @@ const musicPlayer = {
 
 		playBtn.onclick = () => {
 			playerControl.classList.toggle('playing');
+			if (!audio.src) return;
 			if (audio.paused) {
 				audio.play();
 				songImgAnimation.play();
@@ -949,12 +1036,20 @@ const musicPlayer = {
 				songImgAnimation.pause();
 			}
 		};
-		nextBtn.onclick = () => (
-			this.playNextSong(), audio.play(), songImgAnimation.play()
-		);
-		prevBtn.onclick = () => (
-			this.playPrevSong(), audio.play(), songImgAnimation.play()
-		);
+		nextBtn.onclick = () => {
+			if (audio.src) {
+				this.playNextSong();
+				audio.play();
+				songImgAnimation.play();
+			}
+		};
+		prevBtn.onclick = () => {
+			if (audio.src) {
+				this.playPrevSong();
+				audio.play();
+				songImgAnimation.play();
+			}
+		};
 		shuffleBtn.onclick = () => (
 			(this.isRand = !this.isRand),
 			this.setConfig('isRand', this.isRand),
@@ -972,6 +1067,7 @@ const musicPlayer = {
 			playerControl.classList.add('playing');
 		};
 		audio.onended = () => {
+			if (!audio.src) return;
 			if (this.isRepeat) {
 				audio.play();
 				songImgAnimation.play();
@@ -1087,9 +1183,8 @@ const musicPlayer = {
 		this.topIconHandle();
 		this.imageSlideShow();
 		this.swiperGenerator();
-		this.personalTabsHandle();
-		this.personalSongClickHandle();
-		this.categoryTabsHandle();
+		this.personalHandle();
+		this.categoryHandle();
 		this.playerHandle();
 	},
 	start() {

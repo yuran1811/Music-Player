@@ -121,8 +121,8 @@ body > .ad-modal .banner-modal-ad > a {
   height: 100%;
 }
 
-.category-sidebar .music-option:hover::-webkit-scrollbar-thumb {
-  background-color: var(--bg-lv2);
+.category-sidebar .music-option::-webkit-scrollbar {
+  width: 0;
 }
 
 .category-sidebar .music-option .option-scroll-bar {
@@ -377,9 +377,6 @@ body > .new-pl-modal .new-pl-banner a > span {
   .category-sidebar .list .item:hover, .category-sidebar .list .item.active {
     background-color: var(--bg-lv6);
     border: none;
-  }
-  .category-sidebar .music-option::-webkit-scrollbar {
-    width: 0;
   }
   .category-sidebar .list .item,
   .category-sidebar .list .item i {

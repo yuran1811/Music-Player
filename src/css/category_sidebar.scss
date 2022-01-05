@@ -87,10 +87,8 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
-		&:hover {
-			&::-webkit-scrollbar-thumb {
-				background-color: var(--bg-lv2);
-			}
+		&::-webkit-scrollbar {
+			width: 0;
 		}
 
 		.option-scroll-bar {
@@ -316,9 +314,6 @@ body {
 	.category-sidebar .list .item.active {
 		background-color: var(--bg-lv6);
 		border: none;
-	}
-	.category-sidebar .music-option::-webkit-scrollbar {
-		width: 0;
 	}
 
 	.category-sidebar .list .item,
