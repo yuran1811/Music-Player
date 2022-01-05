@@ -9,12 +9,12 @@ const selectAll = (par, child) => par.querySelectorAll(child);
 // Category Link
 (() => {
 	const menuList = $('.category-sidebar');
-	menuList.querySelectorAll('.item').forEach((item) => {
-		item.addEventListener('click', (e) => {
-			const last = menuList.querySelector('.active');
+	selectAll(menuList, '.item').forEach((item) => {
+		item.onclick = (e) => {
+			const last = select(menuList, '.active');
 			if (last) last.className = last.className.replace(' active', '');
 			e.currentTarget.className += ' active';
-		});
+		};
 	});
 })();
 
@@ -22,6 +22,7 @@ const selectAll = (par, child) => par.querySelectorAll(child);
 (() => {
 	const modalBox = $('body .ad-modal');
 	modalBox.onclick = () => modalBox.classList.toggle('active');
+
 	const modalBoxClick = $('.music-option .banner-modal-ad-link');
 	modalBoxClick.onclick = () => modalBox.classList.toggle('active');
 })();
@@ -31,34 +32,29 @@ const selectAll = (par, child) => par.querySelectorAll(child);
 	const newPlModalBox = $('body .new-pl-modal');
 	const newPlBtn = $('.category-sidebar .new-playlist-btn');
 	const toggleActive = () => newPlModalBox.classList.toggle('active');
+
+	select(newPlModalBox, '.new-pl-banner__overlay').onclick = toggleActive;
+	select(newPlModalBox, '.new-pl-link').onclick = toggleActive;
 	newPlBtn.onclick = toggleActive;
-	newPlModalBox.querySelector('.new-pl-banner__overlay').onclick =
-		toggleActive;
-	newPlModalBox.querySelector('.new-pl-link').onclick = toggleActive;
 })();
 
 // Search Bar Handle
 (() => {
 	const searchBar = $('.main-content .search-bar');
-	searchBar.querySelector('input').onfocus = () =>
+	select(searchBar, 'input').onfocus = () =>
 		searchBar.classList.add('active');
 
-	searchBar.querySelector('input').onblur = () =>
+	select(searchBar, 'input').onblur = () =>
 		setTimeout(() => searchBar.classList.remove('active'), 300);
 
-	searchBar
-		.querySelectorAll('.suggest-item')
-		.forEach((item) =>
-			item.addEventListener('click', () =>
-				searchBar.classList.remove('active')
-			)
-		);
+	selectAll(searchBar, '.suggest-item').forEach(
+		(item) => (item.onclick = () => searchBar.classList.remove('active'))
+	);
 })();
 
 // Playlist Sidebar Handle
 (() => {
 	const playlistSidebar = $('.playlist-sidebar');
-
 	const playlistBtn = $('.player-control .bi-music-note-list');
 	playlistBtn.onclick = () => playlistSidebar.classList.toggle('active');
 
@@ -392,7 +388,7 @@ const musicPlayer = {
 
 									<div class="counters">
 										<div class="moreItem">
-											<i class="icon heart"></i>
+											<i class="bi bi-heart ico--click icon heart"></i>
 											<p class="iconLabel">
 												1452
 											</p>
@@ -428,7 +424,7 @@ const musicPlayer = {
 									<p class="artist">${thisSong.artists.map((item) => item.name).join(', ')}</p>
 								</div>
 
-								<p class="plays">Ranked ${item.totalWeekInRanked} wks</p>
+								<p class="plays">${item.totalWeekInRanked} wks</p>
 
 								<div class="moreInfo">
 									<div class="moreItem">
@@ -448,7 +444,7 @@ const musicPlayer = {
 
 									<div class="counters">
 										<div class="moreItem">
-											<i class="icon heart"></i>
+											<i class="bi bi-heart ico--click icon heart"></i>
 											<p class="iconLabel">325</p>
 										</div>
 										<div class="moreItem">
@@ -477,6 +473,8 @@ const musicPlayer = {
 			loadRemain.style.display = 'none';
 			this.songsClickEvent(rankingSection, this);
 		};
+
+		this.heartIconHandle();
 	},
 	renderTop100Section(songs) {
 		const Top100Section = $('.main-content .top-100');
@@ -538,6 +536,8 @@ const musicPlayer = {
 			loadRemain.style.display = 'none';
 			this.songsClickEvent(Top100Section, this);
 		};
+
+		this.heartIconHandle();
 	},
 	render() {
 		this.renderPersonalSection();
@@ -610,7 +610,10 @@ const musicPlayer = {
 	songsClickEvent(par, _this) {
 		const songs = selectAll(par, '.itemSong');
 		songs.forEach((item) => {
-			item.onclick = () => {
+			item.onclick = (e) => {
+				if (e.target.parentElement.className.includes('moreItem'))
+					return;
+
 				const key = item.dataset.songkey;
 				api.getSong(key).then((data) => {
 					if (_this.currentSong.name === data.song.title) return;
@@ -631,6 +634,7 @@ const musicPlayer = {
 					];
 					_this.currentIndex = 0;
 					_this.loadCurrentSong();
+					audio.play();
 					songImgAnimation.play();
 				});
 			};
@@ -683,6 +687,20 @@ const musicPlayer = {
 		$('.personal-section .new-playlist').onclick = () =>
 			$('body .new-pl-modal').classList.toggle('active');
 	},
+	personalSongClickHandle() {
+		const _this = this;
+		const personal = $('.personal-section');
+		selectAll(personal, 'li[data-songurl]').forEach(
+			(item) =>
+				(item.onclick = () => {
+					_this.currentIndex = item.dataset.songindex;
+					_this.loadCurrentSong();
+					audio.play();
+					songImgAnimation.play();
+				})
+		);
+	},
+
 	categoryTabsHandle() {
 		const tabLink = $$('.category-sidebar .item');
 		const tabItem = $$('.main-content .category-item');
@@ -856,7 +874,7 @@ const musicPlayer = {
 		songArtist.innerHTML = this.currentSong.artist;
 		songImg.src = this.currentSong.imgSrc;
 		audio.src = this.currentSong.audioSrc;
-		audio.play();
+		playBtn.click();
 	},
 	playNextSong() {
 		if (this.isRepeat) {
@@ -930,11 +948,6 @@ const musicPlayer = {
 				audio.pause();
 				songImgAnimation.pause();
 			}
-
-			audio.ontimeupdate = () =>
-				(songProgress.value = parseFloat(
-					(audio.currentTime / audio.duration) * 100
-				).toFixed(3));
 		};
 		nextBtn.onclick = () => (
 			this.playNextSong(), audio.play(), songImgAnimation.play()
@@ -964,6 +977,10 @@ const musicPlayer = {
 				songImgAnimation.play();
 			} else nextBtn.click();
 		};
+		audio.ontimeupdate = () =>
+			(songProgress.value = parseFloat(
+				(audio.currentTime / audio.duration) * 100
+			).toFixed(3));
 
 		songVolume.oninput = () =>
 			(audio.volume = parseFloat(songVolume.value / 100).toFixed(3));
@@ -1066,17 +1083,15 @@ const musicPlayer = {
 			})
 			.catch((err) => console.log(err));
 	},
-
 	handleEvents() {
 		this.topIconHandle();
-		this.heartIconHandle();
 		this.imageSlideShow();
 		this.swiperGenerator();
 		this.personalTabsHandle();
+		this.personalSongClickHandle();
 		this.categoryTabsHandle();
 		this.playerHandle();
 	},
-
 	start() {
 		this.callApi();
 		this.defineProperties();
