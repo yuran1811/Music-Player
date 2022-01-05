@@ -4,7 +4,8 @@
 .main-content > .top-100 .container .header, .main-content > .ranking-section .container .songs,
 .main-content > .top-100 .container .songs, .main-content > .ranking-section .container .songs .itemSong.featured .content .info .moreInfo,
 .main-content > .top-100 .container .songs .itemSong.featured .content .info .moreInfo, .main-content > .ranking-section .container .songs .itemSong .content .number,
-.main-content > .top-100 .container .songs .itemSong .content .number {
+.main-content > .top-100 .container .songs .itemSong .content .number, .main-content > .ranking-section .container .songs .itemSong .content .info .moreInfo .counters .heart,
+.main-content > .top-100 .container .songs .itemSong .content .info .moreInfo .counters .heart {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -334,12 +335,18 @@
   height: 0;
   padding: 0;
   margin-left: 10px;
+  -webkit-transform: scale(0);
+          transform: scale(0);
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  -webkit-transform-origin: top center;
+          transform-origin: top center;
 }
 
 .main-content .top-bar .search-bar .suggest-list .title {
-  padding: 0 10px 8px;
+  padding: 7px 10px;
+  font-weight: bold;
+  border-left: 4px solid var(--bg-lv0);
 }
 
 .main-content .top-bar .search-bar .suggest-list .personal-section {
@@ -349,6 +356,8 @@
 }
 
 .main-content .top-bar .search-bar.active .suggest-list {
+  -webkit-transform: scale(1);
+          transform: scale(1);
   padding: 13px 10px;
   height: 30vh;
 }
@@ -458,6 +467,7 @@
 
 .main-content > .personal-section .nav-bar .nav-links .link {
   text-align: center;
+  cursor: pointer;
   width: 100px;
   margin: 0 7px;
   padding: 5px 15px;
@@ -1098,6 +1108,7 @@
 
 .main-content > .ranking-section .container .songs .itemSong,
 .main-content > .top-100 .container .songs .itemSong {
+  cursor: pointer;
   width: 100%;
   height: 100px;
   display: -webkit-box;
@@ -1471,6 +1482,7 @@
   height: fit-content;
   position: absolute;
   top: 50%;
+  width: calc(100% - 120px);
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   -webkit-transition: all 0.3s ease, color 0.3s 0.1s ease;
@@ -1478,8 +1490,15 @@
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .info .text .title,
-.main-content > .top-100 .container .songs .itemSong .content .info .text .title {
+.main-content > .ranking-section .container .songs .itemSong .content .info .text .artist,
+.main-content > .top-100 .container .songs .itemSong .content .info .text .title,
+.main-content > .top-100 .container .songs .itemSong .content .info .text .artist {
   font-weight: 500;
+  width: calc(100% - 120px);
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .info .plays,
@@ -1547,7 +1566,7 @@
 
 .main-content > .ranking-section .container .songs .itemSong .content .info .moreInfo .counters .heart,
 .main-content > .top-100 .container .songs .itemSong .content .info .moreInfo .counters .heart {
-  background-image: url("https://www.rafaelalucas.com/dailyui/19/assets/heart.svg");
+  font-size: 1.1rem;
 }
 
 .main-content > .ranking-section .container .songs .itemSong .content .info .moreInfo .counters .play,
