@@ -85,6 +85,8 @@ const controller = select(playerControl, '.controller');
 const songInfo = select(playerControl, '.song-info');
 const audio = select(playerControl, '.now-play');
 const songVolume = select(playerControl, '#volume');
+const currentSongDuration = select(playerControl, '.right-time');
+const currentSongTime = select(playerControl, '.left-time');
 
 const playBtn = select(controller, '.play-and-pause');
 const prevBtn = select(controller, '.bi-skip-backward');
@@ -98,6 +100,13 @@ const songArtist = select(songInfo, '.artist');
 const songTitle = select(songInfo, '.title');
 
 const USER_CONFIG_KEY = 'user__settings';
+
+const api = NhacCuaTui;
+
+const songImgAnimation = songImg.animate([{ transform: 'rotate(360deg)' }], {
+	duration: 10000,
+	iterations: Infinity,
+});
 
 const musicPlayer = {
 	userConfig: JSON.parse(localStorage.getItem(USER_CONFIG_KEY)) || {},
@@ -349,7 +358,8 @@ const musicPlayer = {
 				let thisSong = this.NCTRanking[index];
 				if (index === 0)
 					return `
-					<div class="itemSong featured">
+					<div class="itemSong featured" data-songkey="${item.songKey}">
+						<audio></audio>
 						<div class="content">
 							<span class="number">${index + 1}</span>
 							<figure class="image">
@@ -363,7 +373,7 @@ const musicPlayer = {
 									<p class="title">${item.title}</p>
 									<p class="artist">${thisSong.artists.map((item) => item.name).join(', ')}</p>
 								</div>
-								<p class="plays">${12}</p>
+								<p class="plays">${item.totalWeekInRanked}</p>
 								<div class="moreInfo">
 									<div class="moreItem">
 										<i class="icon score"></i>
@@ -399,11 +409,11 @@ const musicPlayer = {
 						</div>
 					</div>
 					<div class="categories">
-						<p>Songs</p>
-						<p>Duration</p>
 					</div>`;
 				return `
-					<div class="itemSong list ${item.position <= item.oldPosition ? `` : `down`}">
+					<div class="itemSong list ${
+						item.position <= item.oldPosition ? `` : `down`
+					}" data-songkey="${item.songKey}">
 						<div class="content">
 							<span class="number">${index + 1}</span>
 							<figure class="image">
@@ -418,7 +428,7 @@ const musicPlayer = {
 									<p class="artist">${thisSong.artists.map((item) => item.name).join(', ')}</p>
 								</div>
 
-								<p class="plays">${12}</p>
+								<p class="plays">Ranked ${item.totalWeekInRanked} wks</p>
 
 								<div class="moreInfo">
 									<div class="moreItem">
@@ -459,11 +469,13 @@ const musicPlayer = {
 		rankingSubtitle.innerHTML = `Week: ${data.week}, ${data.year}`;
 
 		songsInner.innerHTML = allSongs.slice(0, 5).join('');
+		this.songsClickEvent(rankingSection, this);
 
 		const loadRemain = select(rankingSection, '.load-remain');
 		loadRemain.onclick = () => {
 			songsInner.innerHTML += allSongs.slice(5).join('');
 			loadRemain.style.display = 'none';
+			this.songsClickEvent(rankingSection, this);
 		};
 	},
 	renderTop100Section(songs) {
@@ -474,7 +486,7 @@ const musicPlayer = {
 			songs.map((item, index) => {
 				if (index === 0)
 					return `
-					<div class="itemSong featured">
+					<div class="itemSong featured" data-songkey="${item.key}">
 						<div class="content">
 							<span class="number">${index + 1}</span>
 							<figure class="image">
@@ -497,7 +509,7 @@ const musicPlayer = {
 						<p>Duration</p>
 					</div>`;
 				return `
-					<div class="itemSong list">
+					<div class="itemSong list" data-songkey="${item.key}">
 						<div class="content">
 							<span class="number">${index + 1}</span>
 							<figure class="image">
@@ -518,11 +530,13 @@ const musicPlayer = {
 			});
 		let allSongs = renderTop100Playlist(songs);
 		songsInner.innerHTML = allSongs.slice(0, 5).join('');
+		this.songsClickEvent(Top100Section, this);
 
 		const loadRemain = select(Top100Section, '.load-remain');
 		loadRemain.onclick = () => {
 			songsInner.innerHTML += allSongs.slice(5).join('');
 			loadRemain.style.display = 'none';
+			this.songsClickEvent(Top100Section, this);
 		};
 	},
 	render() {
@@ -590,6 +604,36 @@ const musicPlayer = {
 					threshold: 4,
 				},
 			},
+		});
+	},
+
+	songsClickEvent(par, _this) {
+		const songs = selectAll(par, '.itemSong');
+		songs.forEach((item) => {
+			item.onclick = () => {
+				const key = item.dataset.songkey;
+				api.getSong(key).then((data) => {
+					if (_this.currentSong.name === data.song.title) return;
+					console.log('Turn on');
+					const songArtist = data.song.artists
+						.map((item) => item.name)
+						.join(', ');
+
+					_this.songs = [
+						{
+							id: 0,
+							name: data.song.title,
+							artist: songArtist,
+							audioSrc: data.song.streamUrls[0].streamUrl,
+							imgSrc: data.song.thumbnail,
+							length: data.song.duration,
+						},
+					];
+					_this.currentIndex = 0;
+					_this.loadCurrentSong();
+					songImgAnimation.play();
+				});
+			};
 		});
 	},
 
@@ -807,10 +851,12 @@ const musicPlayer = {
 	},
 
 	loadCurrentSong() {
+		currentSongDuration.innerHTML = this.currentSong.length || '99:99';
 		songTitle.innerHTML = this.currentSong.name;
 		songArtist.innerHTML = this.currentSong.artist;
 		songImg.src = this.currentSong.imgSrc;
 		audio.src = this.currentSong.audioSrc;
+		audio.play();
 	},
 	playNextSong() {
 		if (this.isRepeat) {
@@ -854,13 +900,6 @@ const musicPlayer = {
 		this.loadCurrentSong();
 	},
 	playerHandle() {
-		const songImgAnimation = songImg.animate(
-			[{ transform: 'rotate(360deg)' }],
-			{
-				duration: 10000,
-				iterations: Infinity,
-			}
-		);
 		songImgAnimation.pause();
 
 		songProgress.oninput = () => {
@@ -872,6 +911,14 @@ const musicPlayer = {
 			).toFixed(3);
 			songImgAnimation.play();
 			audio.play();
+
+			const setTime = () => {
+				const minute = ~~(audio.duration / 60);
+				const second = ~~(audio.duration - minute * 60);
+
+				currentSongDuration.innerHTML = `${minute}:${second}`;
+				currentSongTime.innerHTML = audio.currentTime.toFixed(3);
+			};
 		};
 
 		playBtn.onclick = () => {
@@ -998,10 +1045,6 @@ const musicPlayer = {
 			api.getTop100('m3liaiy6vVsF'),
 			api.getChart({
 				category: 'nhac-viet',
-				time: {
-					week: 48,
-					year: 2021,
-				},
 			}),
 		])
 			.then((data) => {
