@@ -744,7 +744,7 @@ const musicPlayer = {
 					_this.songs = [
 						{
 							id: 0,
-							name: thisSong.title,
+							name: thisSong.name,
 							artist: thisSong.artist,
 							audioSrc: thisSong.audioSrc,
 							imgSrc: thisSong.imgSrc,
@@ -778,9 +778,41 @@ const musicPlayer = {
 				})
 		);
 	},
+	personalUploadHandle() {
+		const reader = new FileReader();
+		const uploadBtns = $$('input[type="file"]');
+		uploadBtns.forEach(
+			(item) =>
+				(item.onchange = (e) => {
+					const files = e.target.files;
+					console.log(files);
+
+					reader.readAsDataURL(files[0]);
+					reader.onload = (e) => {
+						const url = e.target.result;
+						this.uploadSongs.push({
+							id: this.uploadSongs.length,
+							name: 'test',
+							artist: 'Admin',
+							audioSrc: url,
+							imgSrc: './src/img/Nevada.png',
+							length: '3:00',
+						});
+						console.log(this.uploadSongs);
+					};
+				})
+		);
+		// reader.addEventListener('progress', (event) => {
+		// 	if (event.loaded && event.total) {
+		// 		const percent = (event.loaded / event.total) * 100;
+		// 		fileUploadProgress.value = percent;
+		// 	}
+		// });
+	},
 	personalHandle() {
 		this.personalSongClickHandle();
 		this.personalArtistHandle();
+		this.personalUploadHandle();
 		this.personalTabsHandle();
 	},
 
@@ -936,7 +968,8 @@ const musicPlayer = {
 	heartIconHandle() {
 		$$('.bi-heart').forEach(
 			(item) =>
-				(item.onclick = () => {
+				(item.onclick = (e) => {
+					e.stopPropagation();
 					if (item.className.includes('bi-heart-fill'))
 						item.className = item.className.replace(
 							'bi-heart-fill',

@@ -1707,6 +1707,25 @@
   display: none;
 }
 
+.uploadUI {
+  background-color: var(--bg-lv0);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  width: 320px;
+  height: 320px;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.uploadUI.active {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+}
+
 @media (max-width: 1024px) {
   .main-content > .personal-section .nav-bar.ontop {
     left: calc(59% - 70px);
