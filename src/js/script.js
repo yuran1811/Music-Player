@@ -583,6 +583,7 @@ const musicPlayer = {
 			});
 		let allSongs = renderTop100Playlist(songs);
 		songsInner.innerHTML = allSongs.slice(0, 5).join('');
+
 		this.songsClickEvent(Top100Section, this, this.NCTTop100);
 
 		const loadRemain = select(Top100Section, '.load-remain');
@@ -662,7 +663,28 @@ const musicPlayer = {
 		});
 	},
 
-	renderNowPlaylists(songs) {
+	convertSongData(pattern, list) {
+		Promise.all(
+			pattern.map((item) => api.getSong(item.key || item.songKey))
+		).then((data) => {
+			data.forEach((item, index) => {
+				list.push({
+					id: index,
+					title: item.song.title,
+					artists: item.song.artists
+						.map((item) => item.name)
+						.join(', '),
+					streamUrl:
+						item.song?.streamUrls[0]?.streamUrl ||
+						'./src/music/Err.mp3',
+					thumbnail: item.song.thumbnail,
+					duration: item.song.duration,
+				});
+			});
+		});
+	},
+
+	nowPlaylistsHandle(songs) {
 		const nowPlaylist = select(
 			playlistSidebar,
 			'.playlist-tab .next-play .song-list'
@@ -673,7 +695,7 @@ const musicPlayer = {
 							<div class="left">
 								<div class="left-content">
 									<div class="song-title">${item.title}</div>
-									<div class="song-artist">${item.artists.map((item) => item.name).join('')}</div>
+									<div class="song-artist">${item.artists}</div>
 								</div>
 							</div>
 							<div class="right">
@@ -682,40 +704,28 @@ const musicPlayer = {
 						</div>`
 		);
 		nowPlaylist.innerHTML = htmls.join('');
+
+		const allPlaylistSongs = selectAll(nowPlaylist, '.song-item');
+		allPlaylistSongs.forEach((item) => (item.onclick = () => {}));
 	},
-	songsClickEvent(par, _this, NCTList) {
+
+	songsClickEvent(par, _this, songList) {
 		const songs = selectAll(par, '.itemSong');
-		songs.forEach((item) => {
+		songs.forEach((item, index) => {
 			item.onclick = (e) => {
 				if (e.target.parentElement.className.includes('moreItem'))
 					return;
 
-				this.renderNowPlaylists(NCTList);
+				if (index === this.currentIndex) return;
 
-				const key = item.dataset.songkey;
-				api.getSong(key).then((data) => {
-					if (_this.currentSong.name === data.song.title) return;
-					const songArtist = data.song.artists
-						.map((item) => item.name)
-						.join(', ');
-
-					_this.songs = [
-						{
-							id: 0,
-							name: data.song.title,
-							artist: songArtist,
-							audioSrc: data.song.streamUrls[0].streamUrl,
-							imgSrc: data.song.thumbnail,
-							length: data.song.duration,
-						},
-					];
-					_this.currentIndex = 0;
-					_this.loadCurrentSong();
-					if (audio.src) {
-						audio.play();
-						songImgAnimation.play();
-					}
-				});
+				this.nowPlaylistsHandle(songList);
+				this.songs = songList;
+				this.currentIndex = index;
+				this.loadCurrentSong();
+				if (audio.src) {
+					audio.play();
+					songImgAnimation.play();
+				}
 			};
 		});
 	},
@@ -1012,11 +1022,16 @@ const musicPlayer = {
 	},
 
 	loadCurrentSong() {
-		currentSongDuration.innerHTML = this.currentSong?.length || '99:99';
-		songTitle.innerHTML = this.currentSong?.name;
-		songArtist.innerHTML = this.currentSong?.artist;
-		songImg.src = this.currentSong?.imgSrc;
-		audio.src = this.currentSong?.audioSrc;
+		currentSongDuration.innerHTML =
+			this.currentSong?.length || this.currentSong?.duration || '99:99';
+		songTitle.innerHTML =
+			this.currentSong?.name || this.currentSong?.title || 'Unknown';
+		songArtist.innerHTML =
+			this.currentSong?.artist || this.currentSong?.artists || 'Unknown';
+		songImg.src =
+			this.currentSong?.imgSrc || this.currentSong?.thumbnail || '';
+		audio.src =
+			this.currentSong?.audioSrc || this.currentSong?.streamUrl || '';
 		playBtn.click();
 	},
 	playNextSong() {
@@ -1176,19 +1191,18 @@ const musicPlayer = {
 			this.NCTHome = data;
 		};
 		const top100Handle = (data) => {
-			this.NCTTop100 = data.playlist.songs;
-			this.renderTop100Section(this.NCTTop100);
+			this.convertSongData(data.playlist.songs, this.NCTTop100);
+			this.renderTop100Section(data.playlist.songs);
 		};
 		const rankingHandle = (data) => {
-			this.NCTRanking = data.ranking.song;
-			this.renderRankingSection(data.ranking);
+			// this.convertSongData(data.ranking.song, this.NCTRanking);
+			// this.renderRankingSection(data.ranking.song);
 		};
 
 		const api = NhacCuaTui;
 		Promise.all([
 			api.getHome(),
 
-			// api.getSong('EdENCgJm9dAa'),
 			// api.getLyric('EdENCgJm9dAa'),
 			// api.getArtistDetail('erik'),
 			// api.getVideoDetail('IXTbg1bBelQKh'),
@@ -1216,9 +1230,7 @@ const musicPlayer = {
 			// api.searchByKeyword('energy'),
 
 			api.getTop100('m3liaiy6vVsF'),
-			api.getChart({
-				category: 'nhac-viet',
-			}),
+			api.getChart(),
 		])
 			.then((data) => {
 				console.log(data);
@@ -1230,12 +1242,12 @@ const musicPlayer = {
 					top100,
 					ranking,
 				] = data;
-				rankingHandle(ranking);
-				top100Handle(top100);
-				topicsHandle(topics);
 				homeHandle(home);
-				searchBarHandle(topKeyword);
+				topicsHandle(topics);
 				trendingArtistHandle(trendingArtist);
+				searchBarHandle(topKeyword);
+				top100Handle(top100);
+				rankingHandle(ranking);
 			})
 			.catch((err) => console.log(err));
 	},

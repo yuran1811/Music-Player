@@ -50,7 +50,7 @@
 .playlist-sidebar .content .song-item .left .left-content {
   position: relative;
   font-size: 1.1rem;
-  width: 100%;
+  width: 200px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -267,12 +267,19 @@
 }
 
 .playlist-sidebar .recent-tab {
-  margin: 15px;
+  width: 100%;
+  padding: 15px;
   display: none;
 }
 
 .playlist-sidebar .recent-tab > .song-list {
   height: calc(100vh - 185px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .playlist-sidebar .playlist-tab {

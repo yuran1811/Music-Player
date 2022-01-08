@@ -33,7 +33,7 @@
 			.left-content {
 				position: relative;
 				font-size: 1.1rem;
-				width: 100%;
+				width: 200px;
 				display: flex;
 				flex-direction: column;
 				align-items: flex-start;
@@ -192,10 +192,13 @@
 		}
 	}
 	.recent-tab {
-		margin: 15px;
+		width: 100%;
+		padding: 15px;
 		display: none;
 		& > .song-list {
 			height: calc(100vh - 185px);
+			display: flex;
+			justify-content: center;
 		}
 	}
 	.playlist-tab {
