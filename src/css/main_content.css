@@ -169,6 +169,7 @@
 }
 
 .main-content .top-bar .parts .part2 .item .setting-panel {
+  position: relative;
   display: none;
 }
 
@@ -219,10 +220,14 @@
   margin-right: 10px;
 }
 
+.main-content .top-bar .parts .part2 .item .setting-panel .setting-list .music-quality {
+  position: relative;
+}
+
 .main-content .top-bar .parts .part2 .item .setting-panel .setting-list .music-quality .quality-panel {
   display: none;
   position: absolute;
-  left: -90%;
+  left: -70%;
   width: 170px;
   padding: 8px 12px;
   border-radius: 20px;

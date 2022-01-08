@@ -6,6 +6,11 @@ const $$ = document.querySelectorAll.bind(document);
 const select = (par, child) => par.querySelector(child);
 const selectAll = (par, child) => par.querySelectorAll(child);
 
+// Main Content
+const main = $('.main-content');
+const themeBtn = $('.main-content .top-bar .theme-ico');
+const settingBtn = $('.main-content .top-bar .setting-ico');
+
 // Player Control Elements
 const playerControl = $('.player-control');
 const controller = select(playerControl, '.controller');
@@ -28,6 +33,7 @@ const songTitle = select(songInfo, '.title');
 
 // Playlist Sidebar
 const playlistSidebar = $('.playlist-sidebar');
+const playlistBtn = $('.player-control .bi-music-note-list');
 
 // Section Elements
 const personalSection = $('.personal-section');
@@ -37,9 +43,11 @@ const USER_CONFIG_KEY = 'user__settings';
 const api = NhacCuaTui;
 
 // Category Link
+const menuList = $('.category-sidebar');
+const allItem = selectAll(menuList, '.item');
+
 (() => {
-	const menuList = $('.category-sidebar');
-	selectAll(menuList, '.item').forEach((item) => {
+	allItem.forEach((item) => {
 		item.onclick = (e) => {
 			const last = select(menuList, '.active');
 			if (last) last.className = last.className.replace(' active', '');
@@ -84,8 +92,9 @@ const api = NhacCuaTui;
 
 // Playlist Sidebar Handle
 (() => {
-	const playlistBtn = $('.player-control .bi-music-note-list');
-	playlistBtn.onclick = () => playlistSidebar.classList.toggle('active');
+	playlistBtn.onclick = (e) => (
+		e.stopPropagation(), playlistSidebar.classList.toggle('active')
+	);
 
 	const options = selectAll(playlistSidebar, '.option');
 	options.forEach(
@@ -123,7 +132,7 @@ const musicPlayer = {
 			artist: 'Vicetone',
 			audioSrc: './src/music/Nevada.mp3',
 			imgSrc: './src/img/Nevada.png',
-			length: '3:00',
+			length: '3:28',
 		},
 		{
 			id: 1,
@@ -131,7 +140,7 @@ const musicPlayer = {
 			artist: 'K-391',
 			audioSrc: './src/music/SummerTime.mp3',
 			imgSrc: './src/img/SummerTime.png',
-			length: '4:00',
+			length: '4:42',
 		},
 		{
 			id: 2,
@@ -139,7 +148,7 @@ const musicPlayer = {
 			artist: 'Ed Sheeran',
 			audioSrc: './src/music/ShapeOfYou.mp3',
 			imgSrc: './src/img/EdSheeran.png',
-			length: '3:10',
+			length: '4:23',
 		},
 		{
 			id: 3,
@@ -147,7 +156,7 @@ const musicPlayer = {
 			artist: 'Modern Talking',
 			audioSrc: './src/music/CheriCheriLady.mp3',
 			imgSrc: './src/img/ModernTalking.png',
-			length: '3:30',
+			length: '3:17',
 		},
 		{
 			id: 4,
@@ -155,10 +164,9 @@ const musicPlayer = {
 			artist: 'Jason Derulo',
 			audioSrc: './src/music/SavageLove.mp3',
 			imgSrc: './src/img/SavageLove.png',
-			length: '3:60',
+			length: '2:53',
 		},
 	],
-
 	playlists: [
 		{
 			name: 'US-UK',
@@ -193,7 +201,7 @@ const musicPlayer = {
 			artist: 'Vicetone',
 			audioSrc: './src/music/Nevada.mp3',
 			imgSrc: './src/img/Nevada.png',
-			length: '3:00',
+			length: '3:28',
 		},
 		{
 			id: 1,
@@ -201,7 +209,7 @@ const musicPlayer = {
 			artist: 'K-391',
 			audioSrc: './src/music/SummerTime.mp3',
 			imgSrc: './src/img/SummerTime.png',
-			length: '4:00',
+			length: '4:42',
 		},
 		{
 			id: 2,
@@ -209,7 +217,7 @@ const musicPlayer = {
 			artist: 'Ed Sheeran',
 			audioSrc: './src/music/ShapeOfYou.mp3',
 			imgSrc: './src/img/EdSheeran.png',
-			length: '3:10',
+			length: '4:23',
 		},
 		{
 			id: 3,
@@ -217,7 +225,7 @@ const musicPlayer = {
 			artist: 'Modern Talking',
 			audioSrc: './src/music/CheriCheriLady.mp3',
 			imgSrc: './src/img/ModernTalking.png',
-			length: '3:30',
+			length: '3:17',
 		},
 		{
 			id: 4,
@@ -225,7 +233,7 @@ const musicPlayer = {
 			artist: 'Jason Derulo',
 			audioSrc: './src/music/SavageLove.mp3',
 			imgSrc: './src/img/SavageLove.png',
-			length: '3:60',
+			length: '2:53',
 		},
 	],
 	artists: [
@@ -677,7 +685,7 @@ const musicPlayer = {
 					streamUrl:
 						item.song?.streamUrls[0]?.streamUrl ||
 						'./src/music/Err.mp3',
-					thumbnail: item.song.thumbnail,
+					thumbnail: item.song.thumbnail || './src/img/Logo.png',
 					duration: item.song.duration,
 				});
 			});
@@ -691,15 +699,15 @@ const musicPlayer = {
 		);
 		const htmls = songs.map(
 			(item) => `<div class="song-item">
-							<img src="${item.thumbnail}" alt="${item.title}" />
+							<img src="${item.thumbnail || item.imgSrc}" alt="${item.title || item.name}" />
 							<div class="left">
 								<div class="left-content">
-									<div class="song-title">${item.title}</div>
-									<div class="song-artist">${item.artists}</div>
+									<div class="song-title">${item.title || item.name}</div>
+									<div class="song-artist">${item.artists || item.artist}</div>
 								</div>
 							</div>
 							<div class="right">
-								<div class="duration">${item.duration}</div>
+								<div class="duration">${item.duration || item.length}</div>
 							</div>
 						</div>`
 		);
@@ -779,20 +787,11 @@ const musicPlayer = {
 	personalSongClickHandle() {
 		const _this = this;
 		selectAll(personalSection, 'li[data-songurl]').forEach(
-			(item) =>
+			(item, index) =>
 				(item.onclick = () => {
-					const thisSong = this.uploadSongs[item.dataset.songindex];
-					_this.songs = [
-						{
-							id: 0,
-							name: thisSong.name,
-							artist: thisSong.artist,
-							audioSrc: thisSong.audioSrc,
-							imgSrc: thisSong.imgSrc,
-							length: thisSong.length,
-						},
-					];
-					_this.currentIndex = 0;
+					_this.nowPlaylistsHandle(_this.uploadSongs);
+					_this.songs = _this.uploadSongs;
+					_this.currentIndex = index;
 					_this.loadCurrentSong();
 					if (audio.src) {
 						audio.play();
@@ -858,7 +857,6 @@ const musicPlayer = {
 		const tabItem = $$('.main-content .category-item');
 		const tabLinkLth = tabLink.length - 1;
 		const personalNav = $('.personal-section .nav-bar');
-		const main = $('.main-content');
 
 		const hideAll = (list) =>
 			list.forEach(
@@ -924,28 +922,28 @@ const musicPlayer = {
 			})
 		);
 
-		/*let navPosition = personalNav.offsetTop;
+		// let navPosition = personalNav.offsetTop;
 		main.onscroll = () => {
 			const toTop = $('.to-top');
 			if (main.scrollTop > 178) toTop.style.display = 'block';
 			else toTop.style.display = 'none';
 
-			if (window.innerWidth <= 750) {
-				personalNav.classList.remove('ontop');
-				return;
-			}
+			// if (window.innerWidth <= 750) {
+			// 	personalNav.classList.remove('ontop');
+			// 	return;
+			// }
 
-			const mainPos = main.scrollTop;
-			const navPos = personalNav.getBoundingClientRect().top;
-			if (personalNav.className.includes('ontop')) {
-				if (mainPos - 20 <= navPosition && navPosition <= mainPos + 20)
-					personalNav.classList.remove('ontop');
-				else if (mainPos <= navPosition)
-					personalNav.classList.remove('ontop');
-			} else {
-				if (navPos <= 4) personalNav.classList.add('ontop');
-			}
-		}; */
+			// const mainPos = main.scrollTop;
+			// const navPos = personalNav.getBoundingClientRect().top;
+			// if (personalNav.className.includes('ontop')) {
+			// 	if (mainPos - 20 <= navPosition && navPosition <= mainPos + 20)
+			// 		personalNav.classList.remove('ontop');
+			// 	else if (mainPos <= navPosition)
+			// 		personalNav.classList.remove('ontop');
+			// } else {
+			// 	if (navPos <= 4) personalNav.classList.add('ontop');
+			// }
+		};
 	},
 
 	topIconHandle() {
@@ -969,8 +967,8 @@ const musicPlayer = {
 			['pink', '#fcb2b5'],
 			['orange', '#fffcaf'],
 		];
-		const themeBtn = $('.main-content .top-bar .theme-ico');
-		themeBtn.addEventListener('click', () => {
+		themeBtn.addEventListener('click', (e) => {
+			e.stopPropagation();
 			if (checkStatus(themeBtn)) return;
 			disableAll();
 			themeBtn.classList.toggle('active');
@@ -988,10 +986,11 @@ const musicPlayer = {
 				);
 		});
 
-		$('.main-content .top-bar .setting-ico').onclick = (e) => {
+		settingBtn.onclick = (e) => {
+			e.stopPropagation();
 			if (checkStatus(e.currentTarget)) return;
 			disableAll();
-			e.currentTarget.classList.toggle('active');
+			settingBtn.classList.toggle('active');
 			const settingItems = $$('.main-content .top-bar .setting-item');
 			settingItems.forEach(
 				(item) => (item.onclick = (e) => e.stopPropagation())
@@ -1090,14 +1089,6 @@ const musicPlayer = {
 				songImgAnimation.play();
 				audio.play();
 			}
-
-			const setTime = () => {
-				const minute = ~~(audio.duration / 60);
-				const second = ~~(audio.duration - minute * 60);
-
-				currentSongDuration.innerHTML = `${minute}:${second}`;
-				currentSongTime.innerHTML = audio.currentTime.toFixed(3);
-			};
 		};
 
 		playBtn.onclick = () => {
@@ -1148,10 +1139,24 @@ const musicPlayer = {
 				songImgAnimation.play();
 			} else nextBtn.click();
 		};
-		audio.ontimeupdate = () =>
-			(songProgress.value = parseFloat(
+		audio.ontimeupdate = () => {
+			songProgress.value = parseFloat(
 				(audio.currentTime / audio.duration) * 100
-			).toFixed(3));
+			).toFixed(3);
+
+			let minute = Math.floor(audio.currentTime / 60);
+			let second = Math.floor(audio.currentTime - minute * 60);
+
+			currentSongTime.innerHTML = `${
+				minute < 10 ? '0' + minute : minute
+			}:${second < 10 ? '0' + second : second}`;
+
+			minute = Math.floor(audio.duration / 60);
+			second = Math.floor(audio.duration - minute * 60).toFixed();
+			currentSongDuration.innerHTML = `${
+				minute < 10 ? '0' + minute : minute
+			}:${second < 10 ? '0' + second : second}`;
+		};
 
 		songVolume.oninput = () =>
 			(audio.volume = parseFloat(songVolume.value / 100).toFixed(3));
@@ -1267,3 +1272,9 @@ const musicPlayer = {
 	},
 };
 musicPlayer.start();
+
+$('.main-container').onclick = () => {
+	playlistSidebar.classList.remove('active');
+	settingBtn.classList.remove('active');
+	themeBtn.classList.remove('active');
+};
