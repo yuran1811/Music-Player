@@ -34,6 +34,9 @@ const songTitle = select(songInfo, '.title');
 // Playlist Sidebar
 const playlistSidebar = $('.playlist-sidebar');
 const playlistBtn = $('.player-control .bi-music-note-list');
+const playlistOptions = selectAll(playlistSidebar, '.top-bar .left .option');
+const recentTab = select(playlistSidebar, '.recent-tab .song-list');
+const nowPlaySongSidebar = select(playlistSidebar, '.now-play');
 
 // Section Elements
 const personalSection = $('.personal-section');
@@ -92,21 +95,24 @@ const allItem = selectAll(menuList, '.item');
 
 // Playlist Sidebar Handle
 (() => {
+	playlistSidebar.onclick = (e) => e.stopPropagation();
+
 	playlistBtn.onclick = (e) => (
 		e.stopPropagation(), playlistSidebar.classList.toggle('active')
 	);
 
-	const options = selectAll(playlistSidebar, '.option');
-	options.forEach(
+	playlistOptions.forEach(
 		(item) =>
-			(item.onclick = () => {
+			(item.onclick = (e) => {
+				e.stopPropagation();
+
 				const lastActiveOption = select(
 					playlistSidebar,
 					'.left .active'
 				);
 				lastActiveOption.classList.remove('active');
 				item.classList.add('active');
-				if (item === options[1])
+				if (item === playlistOptions[1])
 					playlistSidebar.classList.add('recent');
 				else playlistSidebar.classList.remove('recent');
 			})
@@ -698,7 +704,7 @@ const musicPlayer = {
 			'.playlist-tab .next-play .song-list'
 		);
 		const htmls = songs.map(
-			(item) => `<div class="song-item">
+			(item, index) => `<div class="song-item" data-songindex="${index}">
 							<img src="${item.thumbnail || item.imgSrc}" alt="${item.title || item.name}" />
 							<div class="left">
 								<div class="left-content">
@@ -712,9 +718,23 @@ const musicPlayer = {
 						</div>`
 		);
 		nowPlaylist.innerHTML = htmls.join('');
+		recentTab.innerHTML = '';
 
 		const allPlaylistSongs = selectAll(nowPlaylist, '.song-item');
-		allPlaylistSongs.forEach((item) => (item.onclick = () => {}));
+		allPlaylistSongs.forEach(
+			(item) =>
+				(item.onclick = (e) => {
+					e.stopPropagation();
+					if (this.currentIndex === item.dataset.songindex) return;
+					this.currentIndex = item.dataset.songindex;
+					this.loadCurrentSong();
+					if (audio.src) {
+						audio.play();
+						songImgAnimation.play();
+					}
+					// recentTab.insertAdjacentElement('beforebegin', item);
+				})
+		);
 	},
 
 	songsClickEvent(par, _this, songList) {
@@ -1131,6 +1151,42 @@ const musicPlayer = {
 		audio.onplay = () => {
 			this.setConfig('currentSong', this.currentSong);
 			playerControl.classList.add('playing');
+
+			const song = this.currentSong;
+			const thisSongHTML = `
+				<div class="song-item" data-songindex="${this.currentIndex}">
+					<img src="${song.thumbnail || song.imgSrc}" alt="${song.title || song.name}" />
+					<div class="left">
+						<div class="left-content">
+							<div class="song-title">${song.title || song.name}</div>
+							<div class="song-artist">${song.artists || song.artist}</div>
+						</div>
+					</div>
+					<div class="right">
+						<div class="duration">${song.duration || song.length}</div>
+					</div>
+				</div>`;
+			nowPlaySongSidebar.innerHTML = thisSongHTML;
+			recentTab.innerHTML = thisSongHTML + recentTab.innerHTML;
+
+			const allRecentSong = selectAll(recentTab, '.song-item');
+			allRecentSong.forEach(
+				(item) =>
+					(item.onclick = (e) => {
+						e.stopPropagation();
+
+						const thisIndex = e.currentTarget.dataset.songindex;
+						if (thisIndex !== this.currentIndex)
+							this.currentIndex = thisIndex;
+						else return;
+
+						this.loadCurrentSong();
+						if (audio.src) {
+							audio.play();
+							songImgAnimation.play();
+						}
+					})
+			);
 		};
 		audio.onended = () => {
 			if (!audio.src) return;

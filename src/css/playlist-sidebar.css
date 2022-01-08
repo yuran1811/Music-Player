@@ -27,12 +27,14 @@
 }
 
 .playlist-sidebar .content .song-item img {
+  opacity: 1;
   width: 40px;
   height: 40px;
   margin-right: 10px;
   border-radius: 10px;
   position: relative;
-  opacity: 1;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .playlist-sidebar .content .song-item .left {
@@ -223,12 +225,34 @@
 }
 
 .playlist-sidebar .content .now-play {
+  -webkit-box-shadow: 4px 4px 0 2px var(--bg-lv4);
+          box-shadow: 4px 4px 0 2px var(--bg-lv4);
   background-color: var(--bg-lv6);
   border-radius: 20px;
   margin: 15px 20px;
   height: 70px;
-  -webkit-box-shadow: 4px 4px 0 2px var(--bg-lv4);
-          box-shadow: 4px 4px 0 2px var(--bg-lv4);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.playlist-sidebar .content .now-play .left {
+  width: 195px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.playlist-sidebar .content .now-play:hover {
+  height: 80px;
+  padding-top: 10px;
+}
+
+.playlist-sidebar .content .now-play:hover .song-item img {
+  width: 60px;
+  height: 60px;
+}
+
+.playlist-sidebar .content .now-play:hover .song-item .left {
+  width: 160px;
 }
 
 .playlist-sidebar .content .next-play .title {
@@ -274,13 +298,7 @@
 }
 
 .playlist-sidebar .recent-tab > .song-list {
-  height: calc(100vh - 185px);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  height: calc(100vh - 185px - 15px);
 }
 
 .playlist-sidebar .playlist-tab {

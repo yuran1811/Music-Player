@@ -17,12 +17,13 @@
 		}
 
 		img {
+			opacity: 1;
 			width: 40px;
 			height: 40px;
 			margin-right: 10px;
 			border-radius: 10px;
 			position: relative;
-			opacity: 1;
+			transition: all 0.3s ease;
 		}
 		.left {
 			width: 100%;
@@ -154,11 +155,29 @@
 		transition: opacity 0.3s ease;
 
 		.now-play {
+			box-shadow: 4px 4px 0 2px var(--bg-lv4);
 			background-color: var(--bg-lv6);
 			border-radius: 20px;
 			margin: 15px 20px;
 			height: 70px;
-			box-shadow: 4px 4px 0 2px var(--bg-lv4);
+			transition: all 0.3s ease;
+			.left {
+				width: 195px;
+				transition: all 0.3s ease;
+			}
+			&:hover {
+				height: 80px;
+				padding-top: 10px;
+				.song-item {
+					img {
+						width: 60px;
+						height: 60px;
+					}
+					.left {
+						width: 160px;
+					}
+				}
+			}
 		}
 		.next-play {
 			.title {
@@ -196,9 +215,7 @@
 		padding: 15px;
 		display: none;
 		& > .song-list {
-			height: calc(100vh - 185px);
-			display: flex;
-			justify-content: center;
+			height: calc(100vh - 185px - 15px);
 		}
 	}
 	.playlist-tab {
