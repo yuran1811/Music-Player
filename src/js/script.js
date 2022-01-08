@@ -274,6 +274,8 @@ const musicPlayer = {
 	loadConfig() {
 		this.isRand = this.userConfig.isRand || 0;
 		this.isRepeat = this.userConfig.isRepeat || 0;
+		this.userConfig.uploadSongs &&
+			(this.uploadSongs = JSON.parse(this.userConfig.uploadSongs));
 	},
 
 	defineProperties() {
@@ -298,10 +300,12 @@ const musicPlayer = {
 	},
 
 	renderPersonalSection() {
-		const renderSongs = () => {
-			$('section .song-list ul').innerHTML = this.songs
-				.map(
-					(song) => `
+		const _this = this;
+		return {
+			renderSongs() {
+				$('section .song-list ul').innerHTML = _this.uploadSongs
+					.map(
+						(song) => `
 				<li class="song-item" data-songindex="${song.id}" data-songurl="${song.audioSrc}">
 					<div class="left">
 						<img src="${song.imgSrc}" alt="${song.name}" />
@@ -318,13 +322,13 @@ const musicPlayer = {
 					</div>
 				</li>
 			`
-				)
-				.join('');
-		};
-		const renderArtists = () => {
-			$('#artist .swiper-wrapper').innerHTML = this.artists
-				.map(
-					(artist) => `
+					)
+					.join('');
+			},
+			renderArtists() {
+				$('#artist .swiper-wrapper').innerHTML = _this.artists
+					.map(
+						(artist) => `
 				<div class="artist-info swiper-slide">
 					<div class="artist__bg">
 						<div
@@ -345,13 +349,13 @@ const musicPlayer = {
 					</div>
 				</div>
 			`
-				)
-				.join('');
-		};
-		const renderPlaylists = () => {
-			$('#playlist .swiper-wrapper').innerHTML = this.playlists
-				.map(
-					(playlist) => `
+					)
+					.join('');
+			},
+			renderPlaylists() {
+				$('#playlist .swiper-wrapper').innerHTML = _this.playlists
+					.map(
+						(playlist) => `
 					<div class="playlist-item swiper-slide">
 						<div
 							class="playlist-option"
@@ -369,25 +373,25 @@ const musicPlayer = {
 						<div class="playlist-owner">${playlist.owner}</div>
 					</div>
 				`
-				)
-				.join('');
+					)
+					.join('');
+			},
+			renderSongPreview() {
+				$('section .img-preview').innerHTML = _this.uploadSongs
+					.map(
+						(song) =>
+							`<a href="#"><img src="${song.imgSrc}" alt="${song.name}"/></a>`
+					)
+					.join('');
+				_this.imageSlideShow();
+			},
+			renderAll() {
+				this.renderSongs();
+				this.renderArtists();
+				this.renderPlaylists();
+				this.renderSongPreview();
+			},
 		};
-		const renderSongPreview = () => {
-			$('section .img-preview').innerHTML = this.songs
-				.map(
-					(song) => `
-				<a href="#">
-					<img src="${song.imgSrc}" alt="${song.name}" />
-				</a>
-			`
-				)
-				.join('');
-		};
-
-		renderSongs();
-		renderArtists();
-		renderPlaylists();
-		renderSongPreview();
 	},
 	renderRankingSection(data) {
 		const rankingSection = $('.main-content .ranking-section');
@@ -506,7 +510,9 @@ const musicPlayer = {
 						</div>
 					</div>`;
 			});
-		let allSongs = renderRankingPlaylist(this.NCTRanking);
+		let allSongs = this.NCTRanking
+			? renderRankingPlaylist(this.NCTRanking)
+			: [];
 
 		rankingTitle.innerHTML = 'Vietnamese Ranking';
 		rankingSubtitle.innerHTML = `Week: ${data.week}, ${data.year}`;
@@ -587,7 +593,7 @@ const musicPlayer = {
 		this.heartIconHandle();
 	},
 	render() {
-		this.renderPersonalSection();
+		this.renderPersonalSection().renderAll();
 		this.initApp();
 	},
 
@@ -779,35 +785,31 @@ const musicPlayer = {
 		);
 	},
 	personalUploadHandle() {
-		const reader = new FileReader();
 		const uploadBtns = $$('input[type="file"]');
 		uploadBtns.forEach(
 			(item) =>
 				(item.onchange = (e) => {
-					const files = e.target.files;
-					console.log(files);
-
-					reader.readAsDataURL(files[0]);
-					reader.onload = (e) => {
-						const url = e.target.result;
+					const files = Array.from(e.target.files);
+					files.forEach((item) => {
+						const newURL = URL.createObjectURL(item);
+						const newName = item.name.replace(
+							`.mp${item.name.slice(-1)}`,
+							''
+						);
 						this.uploadSongs.push({
 							id: this.uploadSongs.length,
-							name: 'test',
-							artist: 'Admin',
-							audioSrc: url,
-							imgSrc: './src/img/Nevada.png',
+							name: newName,
+							artist: `Your Music`,
+							audioSrc: newURL,
+							imgSrc: './src/img/Logo.png',
 							length: '3:00',
 						});
-						console.log(this.uploadSongs);
-					};
+					});
+					this.renderPersonalSection().renderSongs();
+					this.renderPersonalSection().renderSongPreview();
+					this.personalSongClickHandle();
 				})
 		);
-		// reader.addEventListener('progress', (event) => {
-		// 	if (event.loaded && event.total) {
-		// 		const percent = (event.loaded / event.total) * 100;
-		// 		fileUploadProgress.value = percent;
-		// 	}
-		// });
 	},
 	personalHandle() {
 		this.personalSongClickHandle();
@@ -887,7 +889,7 @@ const musicPlayer = {
 			})
 		);
 
-		let navPosition = personalNav.offsetTop;
+		/*let navPosition = personalNav.offsetTop;
 		main.onscroll = () => {
 			const toTop = $('.to-top');
 			if (main.scrollTop > 178) toTop.style.display = 'block';
@@ -908,7 +910,7 @@ const musicPlayer = {
 			} else {
 				if (navPos <= 4) personalNav.classList.add('ontop');
 			}
-		};
+		}; */
 	},
 
 	topIconHandle() {
@@ -1214,7 +1216,6 @@ const musicPlayer = {
 	},
 	handleEvents() {
 		this.topIconHandle();
-		this.imageSlideShow();
 		this.swiperGenerator();
 		this.personalHandle();
 		this.categoryHandle();
