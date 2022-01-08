@@ -6,6 +6,36 @@ const $$ = document.querySelectorAll.bind(document);
 const select = (par, child) => par.querySelector(child);
 const selectAll = (par, child) => par.querySelectorAll(child);
 
+// Player Control Elements
+const playerControl = $('.player-control');
+const controller = select(playerControl, '.controller');
+const songInfo = select(playerControl, '.song-info');
+const audio = select(playerControl, '.now-play');
+const songVolume = select(playerControl, '#volume');
+const currentSongDuration = select(playerControl, '.right-time');
+const currentSongTime = select(playerControl, '.left-time');
+
+const playBtn = select(controller, '.play-and-pause');
+const prevBtn = select(controller, '.bi-skip-backward');
+const nextBtn = select(controller, '.bi-skip-forward');
+const shuffleBtn = select(controller, '.bi-shuffle');
+const repeatBtn = select(controller, '.bi-arrow-repeat');
+const songProgress = select(controller, '#progress');
+
+const songImg = select(songInfo, '.media-img > img');
+const songArtist = select(songInfo, '.artist');
+const songTitle = select(songInfo, '.title');
+
+// Playlist Sidebar
+const playlistSidebar = $('.playlist-sidebar');
+
+// Section Elements
+const personalSection = $('.personal-section');
+
+// System Config
+const USER_CONFIG_KEY = 'user__settings';
+const api = NhacCuaTui;
+
 // Category Link
 (() => {
 	const menuList = $('.category-sidebar');
@@ -54,7 +84,6 @@ const selectAll = (par, child) => par.querySelectorAll(child);
 
 // Playlist Sidebar Handle
 (() => {
-	const playlistSidebar = $('.playlist-sidebar');
 	const playlistBtn = $('.player-control .bi-music-note-list');
 	playlistBtn.onclick = () => playlistSidebar.classList.toggle('active');
 
@@ -74,33 +103,6 @@ const selectAll = (par, child) => par.querySelectorAll(child);
 			})
 	);
 })();
-
-// Player Control Elements
-const playerControl = $('.player-control');
-const controller = select(playerControl, '.controller');
-const songInfo = select(playerControl, '.song-info');
-const audio = select(playerControl, '.now-play');
-const songVolume = select(playerControl, '#volume');
-const currentSongDuration = select(playerControl, '.right-time');
-const currentSongTime = select(playerControl, '.left-time');
-
-const playBtn = select(controller, '.play-and-pause');
-const prevBtn = select(controller, '.bi-skip-backward');
-const nextBtn = select(controller, '.bi-skip-forward');
-const shuffleBtn = select(controller, '.bi-shuffle');
-const repeatBtn = select(controller, '.bi-arrow-repeat');
-const songProgress = select(controller, '#progress');
-
-const songImg = select(songInfo, '.media-img > img');
-const songArtist = select(songInfo, '.artist');
-const songTitle = select(songInfo, '.title');
-
-// Section Elements
-const personalSection = $('.personal-section');
-
-// System Config
-const USER_CONFIG_KEY = 'user__settings';
-const api = NhacCuaTui;
 
 const songImgAnimation = songImg.animate([{ transform: 'rotate(360deg)' }], {
 	duration: 10000,
@@ -518,13 +520,13 @@ const musicPlayer = {
 		rankingSubtitle.innerHTML = `Week: ${data.week}, ${data.year}`;
 
 		songsInner.innerHTML = allSongs.slice(0, 5).join('');
-		this.songsClickEvent(rankingSection, this);
+		this.songsClickEvent(rankingSection, this, this.NCTRanking);
 
 		const loadRemain = select(rankingSection, '.load-remain');
 		loadRemain.onclick = () => {
 			songsInner.innerHTML += allSongs.slice(5).join('');
 			loadRemain.style.display = 'none';
-			this.songsClickEvent(rankingSection, this);
+			this.songsClickEvent(rankingSection, this, this.NCTRanking);
 		};
 
 		this.heartIconHandle();
@@ -581,13 +583,13 @@ const musicPlayer = {
 			});
 		let allSongs = renderTop100Playlist(songs);
 		songsInner.innerHTML = allSongs.slice(0, 5).join('');
-		this.songsClickEvent(Top100Section, this);
+		this.songsClickEvent(Top100Section, this, this.NCTTop100);
 
 		const loadRemain = select(Top100Section, '.load-remain');
 		loadRemain.onclick = () => {
 			songsInner.innerHTML += allSongs.slice(5).join('');
 			loadRemain.style.display = 'none';
-			this.songsClickEvent(Top100Section, this);
+			this.songsClickEvent(Top100Section, this, this.NCTTop100);
 		};
 
 		this.heartIconHandle();
@@ -644,7 +646,7 @@ const musicPlayer = {
 			spaceBetween: 5,
 			threshold: 1,
 			speed: 800,
-			loop: true,
+			// loop: true,
 			navigation: {
 				nextEl: '.swiper-button-next',
 				prevEl: '.swiper-button-prev',
@@ -660,12 +662,35 @@ const musicPlayer = {
 		});
 	},
 
-	songsClickEvent(par, _this) {
+	renderNowPlaylists(songs) {
+		const nowPlaylist = select(
+			playlistSidebar,
+			'.playlist-tab .next-play .song-list'
+		);
+		const htmls = songs.map(
+			(item) => `<div class="song-item">
+							<img src="${item.thumbnail}" alt="${item.title}" />
+							<div class="left">
+								<div class="left-content">
+									<div class="song-title">${item.title}</div>
+									<div class="song-artist">${item.artists.map((item) => item.name).join('')}</div>
+								</div>
+							</div>
+							<div class="right">
+								<div class="duration">${item.duration}</div>
+							</div>
+						</div>`
+		);
+		nowPlaylist.innerHTML = htmls.join('');
+	},
+	songsClickEvent(par, _this, NCTList) {
 		const songs = selectAll(par, '.itemSong');
 		songs.forEach((item) => {
 			item.onclick = (e) => {
 				if (e.target.parentElement.className.includes('moreItem'))
 					return;
+
+				this.renderNowPlaylists(NCTList);
 
 				const key = item.dataset.songkey;
 				api.getSong(key).then((data) => {
