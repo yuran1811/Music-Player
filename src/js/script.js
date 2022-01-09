@@ -311,6 +311,7 @@ const musicPlayer = {
 		repeatBtn.classList.toggle('fa-spin', this.isRepeat);
 
 		const lastPlaySong = this.userConfig.currentSong || { id: 0 };
+		this.nowPlaylistsHandle(this.songs);
 		this.currentIndex = lastPlaySong.id;
 		this.loadCurrentSong();
 	},
@@ -418,7 +419,7 @@ const musicPlayer = {
 
 		const renderRankingPlaylist = (songs) =>
 			songs.map((item, index) => {
-				let thisSong = this.NCTRanking[index];
+				let thisSong = songs[index];
 				if (index === 0)
 					return `
 					<div class="itemSong featured" data-songkey="${item.songKey}">
@@ -526,24 +527,23 @@ const musicPlayer = {
 						</div>
 					</div>`;
 			});
-		let allSongs = this.NCTRanking
-			? renderRankingPlaylist(this.NCTRanking)
-			: [];
+
+		let allSongs = renderRankingPlaylist(data.song);
 
 		rankingTitle.innerHTML = 'Vietnamese Ranking';
 		rankingSubtitle.innerHTML = `Week: ${data.week}, ${data.year}`;
 
 		songsInner.innerHTML = allSongs.slice(0, 5).join('');
 		this.songsClickEvent(rankingSection, this, this.NCTRanking);
+		this.heartIconHandle();
 
 		const loadRemain = select(rankingSection, '.load-remain');
 		loadRemain.onclick = () => {
 			songsInner.innerHTML += allSongs.slice(5).join('');
 			loadRemain.style.display = 'none';
 			this.songsClickEvent(rankingSection, this, this.NCTRanking);
+			this.heartIconHandle();
 		};
-
-		this.heartIconHandle();
 	},
 	renderTop100Section(songs) {
 		const Top100Section = $('.main-content .top-100');
@@ -599,15 +599,15 @@ const musicPlayer = {
 		songsInner.innerHTML = allSongs.slice(0, 5).join('');
 
 		this.songsClickEvent(Top100Section, this, this.NCTTop100);
+		this.heartIconHandle();
 
 		const loadRemain = select(Top100Section, '.load-remain');
 		loadRemain.onclick = () => {
 			songsInner.innerHTML += allSongs.slice(5).join('');
 			loadRemain.style.display = 'none';
 			this.songsClickEvent(Top100Section, this, this.NCTTop100);
+			this.heartIconHandle();
 		};
-
-		this.heartIconHandle();
 	},
 	render() {
 		this.renderPersonalSection().renderAll();
@@ -684,10 +684,11 @@ const musicPlayer = {
 			data.forEach((item, index) => {
 				list.push({
 					id: index,
-					title: item.song.title,
-					artists: item.song.artists
-						.map((item) => item.name)
-						.join(', '),
+					title: item.song?.title || 'Unknown',
+					artists:
+						item.song?.artists
+							.map((item) => item.name)
+							.join(', ') || 'Unknown',
 					streamUrl:
 						item.song?.streamUrls[0]?.streamUrl ||
 						'./src/music/Err.mp3',
@@ -1252,12 +1253,28 @@ const musicPlayer = {
 			this.NCTHome = data;
 		};
 		const top100Handle = (data) => {
+			if (
+				typeof data !== 'object' ||
+				data.status !== 'success' ||
+				!data.playlist
+			)
+				data = {
+					playlist: {
+						songs: JSON.parse(localStorage.getItem('top100')),
+					},
+				};
+
+			localStorage.setItem('top100', JSON.stringify(data.playlist.songs));
 			this.convertSongData(data.playlist.songs, this.NCTTop100);
 			this.renderTop100Section(data.playlist.songs);
 		};
 		const rankingHandle = (data) => {
-			// this.convertSongData(data.ranking.song, this.NCTRanking);
-			// this.renderRankingSection(data.ranking.song);
+			if (!data.ranking.key)
+				data = { ranking: JSON.parse(localStorage.getItem('ranking')) };
+
+			localStorage.setItem('ranking', JSON.stringify(data.ranking));
+			this.convertSongData(data.ranking.song, this.NCTRanking);
+			this.renderRankingSection(data.ranking);
 		};
 
 		const api = NhacCuaTui;
