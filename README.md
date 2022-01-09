@@ -11,10 +11,16 @@
 -   Add favorite songs into a playlist
 -   Add details for setting panel
 -   Add error page, ...
+-   Add Time-release
 -   Create new playlist, ...
+-   Show Song lyrics
 -   Show artists' info, ...
 -   Show info about the keyword from search bar
 -   Render Ranking Graph (use Canvas)
 -   Render Discover UI, Radio UI, Following UI, Playlists / Topics UI, ...
+
+### Fixing Tasks
+
+-   Fix Responsive Bugs (mobile view)
 
 ### All Rights Reserved
