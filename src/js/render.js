@@ -165,7 +165,7 @@ const CATEGORY_SIDEBAR_HTML = `
 		<div class="music-option">
 			<div class="option-scroll-bar">
 				<ul class="list option-list">
-					${CATEGORY_LIST.map(
+					${CATEGORY_OPTIONS_LIST.map(
 						(item) =>
 							`<li class="item option-item">
 								<i class="${item.icon}"></i>
