@@ -692,8 +692,8 @@ const musicPlayer = {
 					streamUrl:
 						item.song?.streamUrls[0]?.streamUrl ||
 						'./src/music/Err.mp3',
-					thumbnail: item.song.thumbnail || './src/img/Logo.png',
-					duration: item.song.duration,
+					thumbnail: item.song?.thumbnail || './src/img/Logo.png',
+					duration: item.song?.duration || '3:00',
 				});
 			});
 		});
