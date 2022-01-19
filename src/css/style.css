@@ -44,7 +44,7 @@ html {
 	border-radius: 5px;
 	background-color: transparent;
 }
-*::-webkit-scrollbar:horizontal {
+*::-webkit-scrollbar-thumb:horizontal {
 	height: 5px;
 }
 

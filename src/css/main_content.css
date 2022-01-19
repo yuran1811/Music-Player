@@ -532,7 +532,6 @@
 }
 
 .main-content > .personal-section section > .title > span {
-  line-height: auto;
   letter-spacing: 2px;
   color: var(--bg-lv0);
   position: relative;
