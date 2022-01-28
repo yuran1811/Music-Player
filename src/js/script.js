@@ -881,8 +881,8 @@ const musicPlayer = {
 
 		const hideAll = (list) =>
 			list.forEach(
-				(item) => (item.style.display = 'none'),
-				personalNav.classList.remove('ontop')
+				(item) => (item.style.display = 'none')
+				// , personalNav.classList.remove('ontop')
 			);
 		const showAll = (list) =>
 			list.forEach((item) => (item.style.display = 'flex'));
@@ -968,6 +968,9 @@ const musicPlayer = {
 	},
 
 	topIconHandle() {
+		const tabItem = $$('.main-content .category-item');
+		const hideAll = (list) =>
+			list.forEach((item) => (item.style.display = 'none'));
 		const checkStatus = (item) => {
 			if (item.className.includes('active')) {
 				item.classList.remove('active');
@@ -1018,9 +1021,11 @@ const musicPlayer = {
 			);
 		};
 
-		$('.main-content .top-bar .personal-ico').onclick = () => (
-			disableAll(), (personalSection.style.display = 'block')
-		);
+		$('.main-content .top-bar .personal-ico').onclick = () => {
+			disableAll();
+			hideAll(tabItem);
+			personalSection.style.display = 'block';
+		};
 	},
 	heartIconHandle() {
 		$$('.bi-heart').forEach(
