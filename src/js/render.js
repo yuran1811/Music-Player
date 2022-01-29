@@ -243,8 +243,100 @@ const PLAYLIST_SIDEBAR_HTML = `
 		</div>
 	</div>`;
 
+const THEME_LIST = ['Dark', 'Light', 'Green', 'Blue', 'Pink', 'Orange'];
+const THEME_SELECTS_HTML = THEME_LIST.map(
+	(item, index) =>
+		`<div class="theme-item item${index + 1}"><span> ${item} </span></div>`
+).join('');
+
+const SETTING_LIST = [
+	{
+		ico: `bi bi-slash-circle`,
+		name: 'Block List',
+		extra: '',
+	},
+	{
+		ico: `bi bi-badge-hd`,
+		name: 'Music Quality',
+		extra: `
+			<div class="quality-panel">
+				<div class="quality-item">
+					<input
+						type="radio"
+						id="SQ"
+						name="quality"
+					/>
+					<label for="SQ">
+						<span> SQ - 128 </span>
+						<p>
+							For Slow Connection
+						</p>
+					</label>
+				</div>
+				<div class="quality-item">
+					<input
+						type="radio"
+						id="HQ"
+						name="quality"
+						checked
+					/>
+					<label for="HQ">
+						<span> HQ - 320 </span>
+						<p>Better Quality</p>
+					</label>
+				</div>
+			</div>`,
+	},
+	{
+		ico: `bi bi-play-circle`,
+		name: 'This Player',
+		extra: '',
+	},
+	{
+		ico: ``,
+		name: '',
+		extra: `<div class="horizone-line"></div>`,
+	},
+	{
+		ico: `bi bi-info-circle`,
+		name: 'Introduce',
+		extra: '',
+	},
+	{
+		ico: `bi bi-flag`,
+		name: 'Report',
+		extra: '',
+	},
+	{
+		ico: `bi bi-telephone`,
+		name: 'Contact',
+		extra: '',
+	},
+	{
+		ico: `bi bi-shield-check`,
+		name: 'Privacy',
+		extra: '',
+	},
+];
+const SETTING_LIST_HTML = SETTING_LIST.map((item) => {
+	return item?.name
+		? `
+			<li class="setting-item ${item.name === 'Music Quality' && 'music-quality'}">
+				<i class="${item.ico}"></i>
+				<span> ${item.name} </span>
+				${item.extra}
+			</li>`
+		: item.extra;
+}).join('');
+
 document.body.innerHTML =
 	PLAYER_CONTROL_HTML + MODAL_HTML + document.body.innerHTML;
 
 const mainContainer = document.querySelector('.main-container');
 mainContainer.innerHTML = `${CATEGORY_SIDEBAR_HTML} ${mainContainer.innerHTML} ${PLAYLIST_SIDEBAR_HTML}`;
+
+const themeOption = document.querySelector('#top .part2 .theme-panel');
+themeOption.innerHTML = THEME_SELECTS_HTML;
+
+const settingOption = document.querySelector('#top .part2 .setting-list');
+settingOption.innerHTML = SETTING_LIST_HTML;
