@@ -47,6 +47,9 @@
 	font-size: 1.2rem;
 	font-weight: bold;
 	width: 110px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .player-control .song-info .media-option {
 	margin-left: 10px;

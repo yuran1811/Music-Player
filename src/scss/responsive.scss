@@ -1,9 +1,10 @@
 @media (max-width: 1024px) {
 	.category-sidebar {
 		width: 70px;
-	}
-	.category-sidebar .title > div {
-		display: none;
+
+		.title > div {
+			display: none;
+		}
 	}
 
 	.main-content {
