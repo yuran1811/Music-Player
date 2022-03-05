@@ -626,7 +626,7 @@ const musicPlayer = {
 		}, 3000);
 	},
 	swiperGenerator() {
-		const mySwiper = new Swiper('#playlist .swiper-container', {
+		new Swiper('#playlist .swiper-container', {
 			direction: 'horizontal',
 			centeredSlides: false,
 			slidesPerView: 2,
@@ -654,7 +654,7 @@ const musicPlayer = {
 			},
 		});
 
-		const mySwiper2 = new Swiper('#artist .swiper-container', {
+		new Swiper('#artist .swiper-container', {
 			direction: 'horizontal',
 			centeredSlides: false,
 			slidesPerView: 1,
