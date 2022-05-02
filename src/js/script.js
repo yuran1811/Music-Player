@@ -1274,7 +1274,7 @@ const musicPlayer = {
 			this.renderTop100Section(data.playlist.songs);
 		};
 		const rankingHandle = (data) => {
-			if (!data.ranking.key)
+			if (!data.ranking.song.length)
 				data = { ranking: JSON.parse(localStorage.getItem('ranking')) };
 
 			localStorage.setItem('ranking', JSON.stringify(data.ranking));
@@ -1332,7 +1332,7 @@ const musicPlayer = {
 				top100Handle(top100);
 				rankingHandle(ranking);
 			})
-			.catch((err) => console.log(err));
+			.catch(console.log);
 	},
 	handleEvents() {
 		this.topIconHandle();
