@@ -105,3 +105,20 @@ p,
 ul {
 	list-style: none;
 }
+
+$XS: 480px;
+$SM: 768px;
+$MD: 1024px;
+$XL: 1170px;
+
+@mixin Rss($size) {
+	@media only screen and (max-width: $size) {
+		@content;
+	}
+}
+
+@mixin RssVer($size) {
+	@media only screen and (max-height: $size) {
+		@content;
+	}
+}

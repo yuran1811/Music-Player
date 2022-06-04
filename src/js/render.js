@@ -1,83 +1,62 @@
-const LOGO_LINK = './src/img/Logo.png';
-
 const HEART_ICO = `bi bi-heart`;
-
 const RANDOM_ICO = `bi bi-shuffle`;
 const REPEAT_ICO = `bi bi-arrow-repeat`;
-
 const PLAY_ICO = `bi bi-play-circle`;
 const PAUSE_ICO = `bi bi-pause`;
-
 const NEXT_SONG_ICO = `bi bi-skip-forward`;
 const PREV_SONG_ICO = `bi bi-skip-backward`;
-
 const MICRO_ICO = `bi bi-mic`;
 const VOLUME_ICO = `bi bi-volume-up`;
 const PLAYLIST_ICO = `bi bi-music-note-list`;
 const MORE_OPTION_ICO = `bi-three-dots`;
+const LOGO_LINK = './src/img/Logo.png';
 
 const PLAYER_CONTROL_HTML = `
-	<div class="player-control">
-		<div class="song-info">
-			<div class="media-img">
-				<img src="" alt="Song Img" />
-			</div>
-			<div class="media-content">
-				<div class="title">Song Name</div>
-				<div class="artist">Unknown Artist</div>
-			</div>
-			<div class="media-option">
-				<i class="${HEART_ICO} ico ico--click"></i>
-				<i class="${MORE_OPTION_ICO} ico ico--click"></i>
-			</div>
+<div class="player-control">
+	<div class="song-info">
+		<div class="media-img">
+			<img src="" alt="Song Img" />
 		</div>
-		<div class="controller">
-			<div class="part1">
-				<i class="${RANDOM_ICO} ico ico--click"></i>
-				<i class="${PREV_SONG_ICO} ico ico--click"></i>
-				<div class="play-and-pause">
-					<i class="${PLAY_ICO} ico--click"></i>
-					<i class="${PAUSE_ICO} ico--click"></i>
-				</div>
-				<i class="${NEXT_SONG_ICO} ico ico--click"></i>
-				<i class="${REPEAT_ICO} ico ico--click"></i>
-			</div>
-			<div class="part2">
-				<div class="left-time">00:00</div>
-				<div class="duration-container">
-					<input
-						id="progress"
-						class="duration ico--click"
-						type="range"
-						value="0"
-						step="1"
-						min="0"
-						max="100"
-					/>
-				</div>
-				<div class="right-time">99:99</div>
-			</div>
+		<div class="media-content">
+			<div class="title">Song Name</div>
+			<div class="artist">Unknown Artist</div>
 		</div>
-		<div class="player-tools">
-			<div class="left">
-				<i class="${MICRO_ICO} ico ico--click"></i>
-				<i class="${VOLUME_ICO} ico ico--click">
-					<input
-						id="volume"
-						class="volume ico--click"
-						type="range"
-						value="100"
-						step="2"
-						min="0"
-						max="100"
-					/>
-				</i>
-			</div>
-			<div class="vertical-line"></div>
-			<i class="${PLAYLIST_ICO} ico ico--click"></i>
+		<div class="media-option">
+			<i class="${HEART_ICO} ico ico--click"></i>
+			<i class="${MORE_OPTION_ICO} ico ico--click"></i>
 		</div>
-		<audio class="hide now-play"></audio>
-	</div>`;
+	</div>
+	<div class="controller">
+		<div class="part1">
+			<i class="${RANDOM_ICO} ico ico--click"></i>
+			<i class="${PREV_SONG_ICO} ico ico--click"></i>
+			<div class="play-and-pause">
+				<i class="${PLAY_ICO} ico--click"></i>
+				<i class="${PAUSE_ICO} ico--click"></i>
+			</div>
+			<i class="${NEXT_SONG_ICO} ico ico--click"></i>
+			<i class="${REPEAT_ICO} ico ico--click"></i>
+		</div>
+		<div class="part2">
+			<div class="left-time">00:00</div>
+			<div class="duration-container">
+				<input id="progress" class="duration ico--click" type="range" value="0" step="1" min="0" max="100" />
+			</div>
+			<div class="right-time">99:99</div>
+		</div>
+	</div>
+	<div class="player-tools">
+		<div class="left">
+			<i class="${MICRO_ICO} ico ico--click"></i>
+			<i class="${VOLUME_ICO} ico ico--click">
+				<input id="volume" class="volume ico--click" type="range" value="100" step="2" min="0" max="100" />
+			</i>
+		</div>
+		<div class="vertical-line"></div>
+		<i class="${PLAYLIST_ICO} ico ico--click"></i>
+	</div>
+	<audio class="hide now-play"></audio>
+</div>`;
 
 const MODAL_HTML = `
 	<div class="ad-modal">
@@ -141,107 +120,103 @@ const CATEGORY_OPTIONS_LIST = [
 	},
 ];
 const CATEGORY_SIDEBAR_HTML = `
-	<div class="category-sidebar">
-		<div class="title">
-			<a href="#">
-				<img class="logo" src="${LOGO_LINK}" alt="Logo" />
-				<div class="app-name">YR Player</div>
-			</a>
-		</div>
-		<nav class="menu">
-			<ul class="list menu-list">
-				${CATEGORY_LIST.map(
-					(item, index) =>
-						`<li class="item menu-item${
-							index === 0 ? ' active' : ''
-						}">
-							<i class="${item.icon}"></i>
-							<span> ${item.name} </span>
-						</li>`
-				).join('')}
+<div class="category-sidebar">
+	<div class="title">
+		<a href="#">
+			<img class="logo" src="${LOGO_LINK}" alt="Logo" />
+			<div class="app-name">YR Player</div>
+		</a>
+	</div>
+	<nav class="menu">
+		<ul class="list menu-list">
+		${CATEGORY_LIST.map(
+			(item, index) => `
+			<li class="item menu-item${index === 0 ? ' active' : ''}">
+				<i class="${item.icon}"></i>
+				<span> ${item.name} </span>
+			</li>`
+		).join('')}
+		</ul>
+	</nav>
+	<div class="horizone-line"></div>
+	<div class="music-option">
+		<div class="option-scroll-bar">
+			<ul class="list option-list">
+			${CATEGORY_OPTIONS_LIST.map(
+				(item) => `
+				<li class="item option-item">
+					<i class="${item.icon}"></i>
+					<span> ${item.name} </span>
+				</li>`
+			).join('')}
 			</ul>
-		</nav>
-		<div class="horizone-line"></div>
-		<div class="music-option">
-			<div class="option-scroll-bar">
-				<ul class="list option-list">
-					${CATEGORY_OPTIONS_LIST.map(
-						(item) =>
-							`<li class="item option-item">
-								<i class="${item.icon}"></i>
-								<span> ${item.name} </span>
-							</li>`
-					).join('')}
-				</ul>
-				<div class="banner-modal-ad" style="color: white">
-					Disable Ads and Listen Premium Songs
-					<a class="banner-modal-ad-link" href="#">
-						<span> Go Premium </span>
-					</a>
-				</div>
-				<ul class="list library-list">
-					<li class="item library-item">
-						<i class="bi bi-vinyl-fill"></i>
-						<span> Songs </span>
-					</li>
-					<li class="item library-item">
-						<i class="bi bi-file-earmark-music-fill"></i>
-						<span> Playlist </span>
-					</li>
-				</ul>
+			<div class="banner-modal-ad" style="color: white">
+				Disable Ads and Listen Premium Songs
+				<a class="banner-modal-ad-link" href="#">
+					<span> Go Premium </span>
+				</a>
 			</div>
+			<ul class="list library-list">
+				<li class="item library-item">
+					<i class="bi bi-vinyl-fill"></i>
+					<span> Songs </span>
+				</li>
+				<li class="item library-item">
+					<i class="bi bi-file-earmark-music-fill"></i>
+					<span> Playlist </span>
+				</li>
+			</ul>
 		</div>
-		<i
-			class="bi bi-arrow-right-circle ico ico--click ico--hide"
-		></i>
-		<div class="create-new-playlist">
-			<div class="new-playlist-btn">
-				<i class="fas fa-plus" style="margin-right: 10px"></i>
-				<span> New Playlist </span>
-			</div>
+	</div>
+	<i class="bi bi-arrow-right-circle ico ico--click ico--hide"></i>
+	<div class="create-new-playlist">
+		<div class="new-playlist-btn">
+			<i class="fas fa-plus" style="margin-right: 10px"></i>
+			<span> New Playlist </span>
 		</div>
-	</div>`;
+	</div>
+</div>`;
 
 const PLAYLIST_SIDEBAR_HTML = `
-	<div class="playlist-sidebar">
-		<div class="top-bar">
-			<div class="left">
-				<span class="option active">Playlist</span>
-				<span class="option">Recent</span>
-			</div>
-			<div class="right">
-				<i class="bi bi-alarm ico ico--click"></i>
-				<i class="${MORE_OPTION_ICO} ico ico--click"></i>
-			</div>
+<div class="playlist-sidebar">
+	<div class="top-bar">
+		<div class="left">
+			<span class="option active">Playlist</span>
+			<span class="option">Recent</span>
 		</div>
+		<div class="right">
+			<i class="bi bi-alarm ico ico--click"></i>
+			<i class="${MORE_OPTION_ICO} ico ico--click"></i>
+		</div>
+	</div>
 
-		<div class="content playlist-tab">
-			<div class="now-play">
-				<div class="song-item">
-					<img src="./src/img/Nevada.png" alt="Nevada" />
-					<div class="left">
-						<div class="left-content">
-							<div class="song-title">Nevada</div>
-							<div class="song-artist">Vicetone</div>
-						</div>
-					</div>
-					<div class="right">
-						<div class="duration">3:00</div>
+	<div class="content playlist-tab">
+		<div class="now-play">
+			<div class="song-item">
+				<img src="./src/img/Nevada.png" alt="Nevada" />
+				<div class="left">
+					<div class="left-content">
+						<div class="song-title">Nevada</div>
+						<div class="song-artist">Vicetone</div>
 					</div>
 				</div>
-			</div>
-			<div class="next-play">
-				<div class="title">
-					<span>Next Song</span>
+				<div class="right">
+					<div class="duration">3:00</div>
 				</div>
-				<div class="song-list"></div>
 			</div>
 		</div>
-
-		<div class="content recent-tab">
+		<div class="next-play">
+			<div class="title">
+				<span>Next Song</span>
+			</div>
 			<div class="song-list"></div>
 		</div>
-	</div>`;
+	</div>
+
+	<div class="content recent-tab">
+		<div class="song-list"></div>
+	</div>
+</div>`;
 
 const THEME_LIST = ['Dark', 'Light', 'Green', 'Blue', 'Pink', 'Orange'];
 const THEME_SELECTS_HTML = THEME_LIST.map(
@@ -259,33 +234,33 @@ const SETTING_LIST = [
 		ico: `bi bi-badge-hd`,
 		name: 'Music Quality',
 		extra: `
-			<div class="quality-panel">
-				<div class="quality-item">
-					<input
-						type="radio"
-						id="SQ"
-						name="quality"
-					/>
-					<label for="SQ">
-						<span> SQ - 128 </span>
-						<p>
-							For Slow Connection
-						</p>
-					</label>
-				</div>
-				<div class="quality-item">
-					<input
-						type="radio"
-						id="HQ"
-						name="quality"
-						checked
-					/>
-					<label for="HQ">
-						<span> HQ - 320 </span>
-						<p>Better Quality</p>
-					</label>
-				</div>
-			</div>`,
+		<div class="quality-panel">
+			<div class="quality-item">
+				<input
+					type="radio"
+					id="SQ"
+					name="quality"
+				/>
+				<label for="SQ">
+					<span> SQ - 128 </span>
+					<p>
+						For Slow Connection
+					</p>
+				</label>
+			</div>
+			<div class="quality-item">
+				<input
+					type="radio"
+					id="HQ"
+					name="quality"
+					checked
+				/>
+				<label for="HQ">
+					<span> HQ - 320 </span>
+					<p>Better Quality</p>
+				</label>
+			</div>
+		</div>`,
 	},
 	{
 		ico: `bi bi-play-circle`,
@@ -321,11 +296,11 @@ const SETTING_LIST = [
 const SETTING_LIST_HTML = SETTING_LIST.map((item) => {
 	return item?.name
 		? `
-			<li class="setting-item ${item.name === 'Music Quality' && 'music-quality'}">
-				<i class="${item.ico}"></i>
-				<span> ${item.name} </span>
-				${item.extra}
-			</li>`
+		<li class="setting-item ${item.name === 'Music Quality' && 'music-quality'}">
+			<i class="${item.ico}"></i>
+			<span> ${item.name} </span>
+			${item.extra}
+		</li>`
 		: item.extra;
 }).join('');
 

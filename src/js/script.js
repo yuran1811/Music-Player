@@ -2,7 +2,6 @@
 
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
-
 const select = (par, child) => par.querySelector(child);
 const selectAll = (par, child) => par.querySelectorAll(child);
 
@@ -880,10 +879,7 @@ const musicPlayer = {
 		const personalNav = $('.personal-section .nav-bar');
 
 		const hideAll = (list) =>
-			list.forEach(
-				(item) => (item.style.display = 'none')
-				// , personalNav.classList.remove('ontop')
-			);
+			list.forEach((item) => (item.style.display = 'none'));
 		const showAll = (list) =>
 			list.forEach((item) => (item.style.display = 'flex'));
 		const removeLastActive = () => {
@@ -943,27 +939,10 @@ const musicPlayer = {
 			})
 		);
 
-		// let navPosition = personalNav.offsetTop;
 		main.onscroll = () => {
 			const toTop = $('.to-top');
 			if (main.scrollTop > 178) toTop.style.display = 'block';
 			else toTop.style.display = 'none';
-
-			// if (window.innerWidth <= 750) {
-			// 	personalNav.classList.remove('ontop');
-			// 	return;
-			// }
-
-			// const mainPos = main.scrollTop;
-			// const navPos = personalNav.getBoundingClientRect().top;
-			// if (personalNav.className.includes('ontop')) {
-			// 	if (mainPos - 20 <= navPosition && navPosition <= mainPos + 20)
-			// 		personalNav.classList.remove('ontop');
-			// 	else if (mainPos <= navPosition)
-			// 		personalNav.classList.remove('ontop');
-			// } else {
-			// 	if (navPos <= 4) personalNav.classList.add('ontop');
-			// }
 		};
 	},
 
@@ -1160,18 +1139,18 @@ const musicPlayer = {
 
 			const song = this.currentSong;
 			const thisSongHTML = `
-				<div class="song-item" data-songindex="${this.currentIndex}">
-					<img src="${song.thumbnail || song.imgSrc}" alt="${song.title || song.name}" />
-					<div class="left">
-						<div class="left-content">
-							<div class="song-title">${song.title || song.name}</div>
-							<div class="song-artist">${song.artists || song.artist}</div>
-						</div>
+			<div class="song-item" data-songindex="${this.currentIndex}">
+				<img src="${song.thumbnail || song.imgSrc}" alt="${song.title || song.name}" />
+				<div class="left">
+					<div class="left-content">
+						<div class="song-title">${song.title || song.name}</div>
+						<div class="song-artist">${song.artists || song.artist}</div>
 					</div>
-					<div class="right">
-						<div class="duration">${song.duration || song.length}</div>
-					</div>
-				</div>`;
+				</div>
+				<div class="right">
+					<div class="duration">${song.duration || song.length}</div>
+				</div>
+			</div>`;
 			nowPlaySongSidebar.innerHTML = thisSongHTML;
 			recentTab.innerHTML = thisSongHTML + recentTab.innerHTML;
 

@@ -34,6 +34,7 @@
 		padding: 0;
 		display: flex;
 		align-items: center;
+
 		.top-ico {
 			padding: 0 10px;
 			color: var(--bg-lv0);
@@ -47,8 +48,16 @@
 				display: flex;
 				align-items: center;
 				justify-content: flex-start;
+				position: relative;
+
 				& > .top-ico:hover {
 					transform: scale(1.4);
+				}
+
+				@include Rss($XS) {
+					& > i {
+						display: none;
+					}
 				}
 			}
 			.part2 {
@@ -193,12 +202,18 @@
 		}
 		.search-bar {
 			position: relative;
+			top: 0;
+			left: 0;
 			width: 80%;
+			height: 34px;
 
 			input {
+				position: absolute;
+				top: 0;
+				left: 0;
 				background-color: var(--bg-lv8);
 				color: var(--bg-lv0);
-				width: 90%;
+				width: 100%;
 				height: 34px;
 				margin-left: 10px;
 				padding: 20px 30px;
@@ -215,7 +230,6 @@
 					font-style: italic;
 				}
 			}
-
 			&.active input,
 			input:focus {
 				background-color: var(--bg-lv6);
@@ -229,7 +243,7 @@
 				color: var(--bg-lv0);
 				font-size: 1rem;
 
-				z-index: 10;
+				z-index: 12;
 				display: block;
 				overflow: hidden auto;
 				position: absolute;
@@ -237,7 +251,10 @@
 				border-bottom-left-radius: 20px;
 				border-bottom-right-radius: 20px;
 
-				width: 90%;
+				position: absolute;
+				top: 34px;
+				left: 0;
+				width: 100%;
 				height: 0;
 				padding: 0;
 				margin-left: 10px;
@@ -256,10 +273,16 @@
 					height: 30vh;
 				}
 			}
-			&.active .suggest-list {
-				transform: scale(1);
-				padding: 13px 10px;
-				height: 30vh;
+			&.active {
+				.suggest-list {
+					transform: scale(1);
+					padding: 13px 10px;
+					height: 30vh;
+
+					@include RssVer($XS) {
+						height: 60vh;
+					}
+				}
 			}
 
 			.suggest-item {
@@ -284,6 +307,11 @@
 					white-space: nowrap;
 					text-overflow: ellipsis;
 				}
+			}
+
+			@include Rss($XS) {
+				width: 100%;
+				padding-left: 1rem;
 			}
 		}
 	}
@@ -316,12 +344,16 @@
 			}
 		}
 		.nav-bar {
+			position: sticky;
+			top: 0;
+			z-index: 11;
 			width: calc(min(468px, 100%));
 			height: auto;
 			padding: 10px 6px;
 			margin: 0 auto 40px;
 			border-radius: 25px;
 			background-color: var(--bg-lv6);
+
 			&.ontop {
 				position: fixed;
 				top: 0;
@@ -351,6 +383,18 @@
 				.liactive {
 					background-color: var(--bg-lv5);
 				}
+
+				@include Rss($XS) {
+					flex-direction: column;
+					height: 110px;
+					overflow: hidden auto;
+
+					.link {
+						width: 90%;
+						margin: 5px 0;
+						padding: 10px 5px;
+					}
+				}
 			}
 		}
 		.main-page {
@@ -379,7 +423,7 @@
 				align-items: center;
 				justify-content: space-between;
 
-				> span {
+				& > span {
 					letter-spacing: 2px;
 					color: var(--bg-lv0);
 					position: relative;
@@ -406,7 +450,7 @@
 							left: 5px;
 							top: 0;
 							width: 3px;
-							z-index: 10;
+							z-index: 8;
 							height: 100%;
 							border-radius: 50px;
 							transition: all 0.2s ease-in-out;
@@ -421,7 +465,7 @@
 							background-color: transparent;
 							position: absolute;
 							top: calc(50% - 9px);
-							z-index: 10;
+							z-index: 8;
 
 							border: solid 3px #f38181;
 							border-radius: 2px;
@@ -1304,11 +1348,6 @@
 	}
 }
 
-@media (max-width: 1024px) {
-	.main-content > .personal-section .nav-bar.ontop {
-		left: calc(59% - 70px);
-	}
-}
 @media (max-width: 750px) {
 	*::-webkit-scrollbar {
 		width: 0;
@@ -1326,6 +1365,7 @@
 				.part2 {
 					flex-direction: column-reverse;
 					top: 66px;
+
 					.item {
 						margin-top: 5px;
 						border: 0;
@@ -1338,7 +1378,7 @@
 				.search-bar {
 					input,
 					.suggest-list {
-						width: 85%;
+						width: 80%;
 					}
 				}
 			}
@@ -1346,19 +1386,9 @@
 		& > .personal-section {
 			padding-left: 5px;
 			padding-right: 5px;
+
 			.nav-bar {
-				width: 60%;
-				&.ontop {
-					left: calc(59% - 70px);
-				}
-				.nav-links {
-					flex-direction: column;
-					.link {
-						width: 90%;
-						margin: 5px 0;
-						padding: 10px 5px;
-					}
-				}
+				width: 90%;
 			}
 			.song-list {
 				width: 100%;

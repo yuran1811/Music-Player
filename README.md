@@ -1,12 +1,12 @@
 # Music Player
 
-## This is my Music Player Project
+## This is my music player project
 
 ## New way to listening to music - [**Go!!!**](https://yuran1811.github.io/Music-Player/)
 
-## This Product is Developing
+## This product is developing
 
-### Here are the next feature will appear:
+### Next features:
 
 -   Add favorite songs into a playlist
 -   Add details for setting panel
@@ -19,7 +19,7 @@
 -   Render Ranking Graph (use Canvas)
 -   Render Discover UI, Radio UI, Following UI, Playlists / Topics UI, ...
 
-### Fixing Tasks
+### Todo
 
 -   Fix Responsive Bugs (mobile view)
 
