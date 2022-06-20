@@ -6,9 +6,6 @@ self.addEventListener('install', (e) => {
 	e.waitUntil(
 		(async () => {
 			const cache = await caches.open(cacheName);
-
-			console.log('[Service Worker] Caching all: app shell and content');
-
 			await cache.addAll(appShellFiles);
 		})()
 	);
@@ -28,32 +25,9 @@ self.addEventListener('fetch', (e) => {
 
 			console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
 
-			cache.put(e.request, response.clone());
+			cache.put(e.request, response.clone()).catch(console.log);
+
 			return response;
 		})()
 	);
-});
-
-let deferredPrompt;
-
-addEventListener('beforeinstallprompt', (e) => {
-	e.preventDefault();
-
-	deferredPrompt = e;
-
-	const btnAdd = document.querySelector('.add-to-homescreen');
-	btnAdd.style.display = 'block';
-
-	btnAdd.addEventListener('click', (e) => {
-		deferredPrompt.prompt();
-		deferredPrompt.userChoice.then((result) => {
-			if (result.outcome === 'accepted') console.log('User accept prompt');
-
-			deferredPrompt = null;
-		});
-	});
-});
-
-addEventListener('appinstalled', (e) => {
-	console.log('Installed');
 });
