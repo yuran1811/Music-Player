@@ -1221,3 +1221,35 @@ $('.main-container').onclick = () => {
 	settingBtn.classList.remove('active');
 	themeBtn.classList.remove('active');
 };
+
+// Services Worker
+if ('serviceWorker' in navigator)
+	navigator.serviceWorker
+		.register('/Music-Player/sw.js')
+		.then(() => console.log('Registed'))
+		.catch(console.log);
+
+const btnAdd = document.querySelector('.add-to-homescreen');
+
+let deferredPrompt;
+
+addEventListener('beforeinstallprompt', (e) => {
+	e.preventDefault();
+	deferredPrompt = e;
+
+	btnAdd.style.display = 'block';
+	btnAdd.addEventListener('click', (e) => {
+		console.log('Click');
+
+		deferredPrompt.prompt();
+		deferredPrompt.userChoice.then((result) => {
+			if (result.outcome === 'accepted') console.log('User accept prompt');
+
+			deferredPrompt = null;
+		});
+	});
+});
+
+addEventListener('appinstalled', (e) => {
+	console.log('Installed');
+});

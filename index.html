@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<meta name="theme-color" content="#FF0000" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="manifest" href="./src/public/manifest.json" />
+		<link rel="manifest" href="manifest.json" />
 
 		<link rel="icon" href="./src/img/Logo.png" />
 		<link rel="apple-touch-icon" href="./src/public/logo/144x144.png" />
@@ -261,32 +261,5 @@
 		<script src="./src/js/render.js"></script>
 		<script src="https://cdn.jsdelivr.net/gh/napthedev/nhaccuatui-api-full@bundle/build/bundle.js"></script>
 		<script src="./src/js/script.js"></script>
-		<script>
-			'serviceWorker' in navigator && navigator.serviceWorker.register('/Music-Player/sw.js');
-
-			let deferredPrompt;
-
-			addEventListener('beforeinstallprompt', (e) => {
-				e.preventDefault();
-
-				deferredPrompt = e;
-
-				const btnAdd = document.querySelector('.add-to-homescreen');
-				btnAdd.style.display = 'block';
-
-				btnAdd.addEventListener('click', (e) => {
-					deferredPrompt.prompt();
-					deferredPrompt.userChoice.then((result) => {
-						if (result.outcome === 'accepted') console.log('User accept prompt');
-
-						deferredPrompt = null;
-					});
-				});
-			});
-
-			addEventListener('appinstalled', (e) => {
-				console.log('Installed');
-			});
-		</script>
 	</body>
 </html>
