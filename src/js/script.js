@@ -1221,7 +1221,3 @@ $('.main-container').onclick = () => {
 	settingBtn.classList.remove('active');
 	themeBtn.classList.remove('active');
 };
-
-if ('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('/workers/ver1.js');
-}

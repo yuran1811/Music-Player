@@ -2,8 +2,13 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="theme-color" content="#FF0000" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="manifest" href="/public/manifest.json" />
+
 		<link rel="icon" href="./src/img/Logo.png" />
+		<link rel="apple-touch-icon" href="/public/logo/144x144.png" />
+
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
@@ -14,6 +19,8 @@
 		<title>YR Player</title>
 	</head>
 	<body data-theme="dark">
+		<div class="add-to-homescreen">Install App</div>
+
 		<div class="main-container">
 			<div class="main-content">
 				<div id="top" class="top-bar">
@@ -22,7 +29,13 @@
 							<i class="bi bi-arrow-left top-ico ico--click"></i>
 							<i class="bi bi-arrow-right top-ico ico--click"></i>
 							<div class="search-bar">
-								<input autocomplete="off" type="text" name="search" id="search" placeholder="Type name of artist, song, ..." />
+								<input
+									autocomplete="off"
+									type="text"
+									name="search"
+									id="search"
+									placeholder="Type name of artist, song, ..."
+								/>
 								<div class="suggest-list">
 									<div class="title">Suggest for You</div>
 									<ul class="content"></ul>
@@ -79,8 +92,8 @@
 								<div class="title-right">
 									<div class="upload-song">
 										<input type="file" accept=".mp4, .mp3" name="upload-song" id="upload-song2" multiple />
-										<label for="upload-song2" class="ico--click" >
-											<i class="bi bi-upload ico ico--click" ></i>
+										<label for="upload-song2" class="ico--click">
+											<i class="bi bi-upload ico ico--click"></i>
 											<span>Upload</span>
 										</label>
 									</div>
@@ -163,11 +176,11 @@
 											<div class="counters">
 												<div class="moreItem">
 													<i class="icon heart"></i>
-													<p class="iconLabel"> 1452 </p>
+													<p class="iconLabel">1452</p>
 												</div>
 												<div class="moreItem">
 													<i class="icon play"></i>
-													<p class="iconLabel"> 5432 </p>
+													<p class="iconLabel">5432</p>
 												</div>
 											</div>
 										</div>
@@ -206,9 +219,7 @@
 												</div>
 												<div class="moreItem">
 													<i class="icon play"></i>
-													<p class="iconLabel">
-														2683
-													</p>
+													<p class="iconLabel">2683</p>
 												</div>
 											</div>
 										</div>
@@ -250,5 +261,8 @@
 		<script src="./src/js/render.js"></script>
 		<script src="https://cdn.jsdelivr.net/gh/napthedev/nhaccuatui-api-full@bundle/build/bundle.js"></script>
 		<script src="./src/js/script.js"></script>
+		<script>
+			'serviceWorker' in navigator && navigator.serviceWorker.register('/sw.js');
+		</script>
 	</body>
 </html>

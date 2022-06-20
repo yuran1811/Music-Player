@@ -33,3 +33,27 @@ self.addEventListener('fetch', (e) => {
 		})()
 	);
 });
+
+let deferredPrompt;
+
+addEventListener('beforeinstallprompt', (e) => {
+	e.preventDefault();
+
+	deferredPrompt = e;
+
+	const btnAdd = document.querySelector('.add-to-homescreen');
+	btnAdd.style.display = 'block';
+
+	btnAdd.addEventListener('click', (e) => {
+		deferredPrompt.prompt();
+		deferredPrompt.userChoice.then((result) => {
+			if (result.outcome === 'accepted') console.log('User accept prompt');
+
+			deferredPrompt = null;
+		});
+	});
+});
+
+addEventListener('appinstalled', (e) => {
+	console.log('Installed');
+});

@@ -59,37 +59,37 @@ const PLAYER_CONTROL_HTML = `
 </div>`;
 
 const MODAL_HTML = `
-	<div class="ad-modal">
-		<div class="banner-modal-ad">
-			<div class="banner-modal-ad__content">
-				<img src="${LOGO_LINK}" alt="Logo" />
-				<div>Have Fun With my Music Player !!!</div>
+<div class="ad-modal">
+	<div class="banner-modal-ad">
+		<div class="banner-modal-ad__content">
+			<img src="${LOGO_LINK}" alt="Logo" />
+			<div>Have Fun With my Music Player !!!</div>
+		</div>
+		<a class="banner-modal-ad-link" href="#">
+			<i class="fas fa-crown"></i>
+			<span> Go Premium </span>
+		</a>
+	</div>
+</div>
+<div class="new-pl-modal">
+	<div class="new-pl-banner__overlay"></div>
+	<div class="new-pl-banner">
+		<div class="new-pl-banner__content">
+			<div>
+				<span> Playlist Name </span>
+				<input type="text" placeholder="Type Playlist Name" />
 			</div>
-			<a class="banner-modal-ad-link" href="#">
-				<i class="fas fa-crown"></i>
-				<span> Go Premium </span>
+			<div>
+				<span> Owner </span>
+				<input type="text" placeholder="Type Owner Name" />
+			</div>
+			<a class="new-pl-link" href="#">
+				<i class="bi bi-plus-square"></i>
+				<span> Create Playlist </span>
 			</a>
 		</div>
 	</div>
-	<div class="new-pl-modal">
-		<div class="new-pl-banner__overlay"></div>
-		<div class="new-pl-banner">
-			<div class="new-pl-banner__content">
-				<div>
-					<span> Playlist Name </span>
-					<input type="text" placeholder="Type Playlist Name" />
-				</div>
-				<div>
-					<span> Owner </span>
-					<input type="text" placeholder="Type Owner Name" />
-				</div>
-				<a class="new-pl-link" href="#">
-					<i class="bi bi-plus-square"></i>
-					<span> Create Playlist </span>
-				</a>
-			</div>
-		</div>
-	</div>`;
+</div>`;
 
 const CATEGORY_LIST = [
 	{
@@ -219,10 +219,9 @@ const PLAYLIST_SIDEBAR_HTML = `
 </div>`;
 
 const THEME_LIST = ['Dark', 'Light', 'Green', 'Blue', 'Pink', 'Orange'];
-const THEME_SELECTS_HTML = THEME_LIST.map(
-	(item, index) =>
-		`<div class="theme-item item${index + 1}"><span> ${item} </span></div>`
-).join('');
+const THEME_SELECTS_HTML = THEME_LIST.map((item, index) => `<div class="theme-item item${index + 1}"><span> ${item} </span></div>`).join(
+	''
+);
 
 const SETTING_LIST = [
 	{
@@ -304,8 +303,7 @@ const SETTING_LIST_HTML = SETTING_LIST.map((item) => {
 		: item.extra;
 }).join('');
 
-document.body.innerHTML =
-	PLAYER_CONTROL_HTML + MODAL_HTML + document.body.innerHTML;
+document.body.innerHTML = PLAYER_CONTROL_HTML + MODAL_HTML + document.body.innerHTML;
 
 const mainContainer = document.querySelector('.main-container');
 mainContainer.innerHTML = `${CATEGORY_SIDEBAR_HTML} ${mainContainer.innerHTML} ${PLAYLIST_SIDEBAR_HTML}`;
