@@ -1,5 +1,5 @@
 const cacheName = 'm9r-s12k-PWA-ver1';
-const appShellFiles = ['/index.html', '/src/js/script.js', '/src/js/render.js', '/src/css/index.css', '/src/img/Logo.png'];
+const appShellFiles = ['/Music-Player/index.html', '/Music-Player/src/js/script.js', '/Music-Player/src/js/render.js', '/Music-Player/src/css/index.css', '/Music-Player/src/img/Logo.png'];
 
 self.addEventListener('install', (e) => {
 	console.log('[Service Worker] Install');
