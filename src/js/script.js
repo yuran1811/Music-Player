@@ -81,38 +81,28 @@ const allItem = selectAll(menuList, '.item');
 // Search Bar Handle
 (() => {
 	const searchBar = $('.main-content .search-bar');
-	select(searchBar, 'input').onfocus = () =>
-		searchBar.classList.add('active');
+	select(searchBar, 'input').onfocus = () => searchBar.classList.add('active');
 
-	select(searchBar, 'input').onblur = () =>
-		setTimeout(() => searchBar.classList.remove('active'), 300);
+	select(searchBar, 'input').onblur = () => setTimeout(() => searchBar.classList.remove('active'), 300);
 
-	selectAll(searchBar, '.suggest-item').forEach(
-		(item) => (item.onclick = () => searchBar.classList.remove('active'))
-	);
+	selectAll(searchBar, '.suggest-item').forEach((item) => (item.onclick = () => searchBar.classList.remove('active')));
 })();
 
 // Playlist Sidebar Handle
 (() => {
 	playlistSidebar.onclick = (e) => e.stopPropagation();
 
-	playlistBtn.onclick = (e) => (
-		e.stopPropagation(), playlistSidebar.classList.toggle('active')
-	);
+	playlistBtn.onclick = (e) => (e.stopPropagation(), playlistSidebar.classList.toggle('active'));
 
 	playlistOptions.forEach(
 		(item) =>
 			(item.onclick = (e) => {
 				e.stopPropagation();
 
-				const lastActiveOption = select(
-					playlistSidebar,
-					'.left .active'
-				);
+				const lastActiveOption = select(playlistSidebar, '.left .active');
 				lastActiveOption.classList.remove('active');
 				item.classList.add('active');
-				if (item === playlistOptions[1])
-					playlistSidebar.classList.add('recent');
+				if (item === playlistOptions[1]) playlistSidebar.classList.add('recent');
 				else playlistSidebar.classList.remove('recent');
 			})
 	);
@@ -289,8 +279,7 @@ const musicPlayer = {
 	loadConfig() {
 		this.isRand = this.userConfig.isRand || 0;
 		this.isRepeat = this.userConfig.isRepeat || 0;
-		this.userConfig.uploadSongs &&
-			(this.uploadSongs = JSON.parse(this.userConfig.uploadSongs));
+		this.userConfig.uploadSongs && (this.uploadSongs = JSON.parse(this.userConfig.uploadSongs));
 	},
 
 	defineProperties() {
@@ -394,10 +383,7 @@ const musicPlayer = {
 			},
 			renderSongPreview() {
 				$('section .img-preview').innerHTML = _this.uploadSongs
-					.map(
-						(song) =>
-							`<a href="#"><img src="${song.imgSrc}" alt="${song.name}"/></a>`
-					)
+					.map((song) => `<a href="#"><img src="${song.imgSrc}" alt="${song.name}"/></a>`)
 					.join('');
 				_this.imageSlideShow();
 			},
@@ -442,14 +428,8 @@ const musicPlayer = {
 										<i class="icon score"></i>
 										<p class="iconLabel">${
 											item.position <= item.oldPosition
-												? `+${
-														item.oldPosition -
-														item.position
-												  }`
-												: `-${
-														item.position -
-														item.oldPosition
-												  }`
+												? `+${item.oldPosition - item.position}`
+												: `-${item.position - item.oldPosition}`
 										}</p>
 									</div>
 
@@ -474,9 +454,7 @@ const musicPlayer = {
 					<div class="categories">
 					</div>`;
 				return `
-					<div class="itemSong list ${
-						item.position <= item.oldPosition ? `` : `down`
-					}" data-songkey="${item.songKey}">
+					<div class="itemSong list ${item.position <= item.oldPosition ? `` : `down`}" data-songkey="${item.songKey}">
 						<div class="content">
 							<span class="number">${index + 1}</span>
 							<figure class="image">
@@ -498,14 +476,8 @@ const musicPlayer = {
 										<i class="icon score"></i>
 										<p class="iconLabel">${
 											item.position <= item.oldPosition
-												? `+${
-														item.oldPosition -
-														item.position
-												  }`
-												: `-${
-														item.position -
-														item.oldPosition
-												  }`
+												? `+${item.oldPosition - item.position}`
+												: `-${item.position - item.oldPosition}`
 										}</p>
 									</div>
 
@@ -677,20 +649,13 @@ const musicPlayer = {
 	},
 
 	convertSongData(pattern, list) {
-		Promise.all(
-			pattern.map((item) => api.getSong(item.key || item.songKey))
-		).then((data) => {
+		Promise.all(pattern.map((item) => api.getSong(item.key || item.songKey))).then((data) => {
 			data.forEach((item, index) => {
 				list.push({
 					id: index,
 					title: item.song?.title || 'Unknown',
-					artists:
-						item.song?.artists
-							.map((item) => item.name)
-							.join(', ') || 'Unknown',
-					streamUrl:
-						item.song?.streamUrls[0]?.streamUrl ||
-						'./src/music/Err.mp3',
+					artists: item.song?.artists.map((item) => item.name).join(', ') || 'Unknown',
+					streamUrl: item.song?.streamUrls[0]?.streamUrl || './src/music/Err.mp3',
 					thumbnail: item.song?.thumbnail || './src/img/Logo.png',
 					duration: item.song?.duration || '3:00',
 				});
@@ -699,10 +664,7 @@ const musicPlayer = {
 	},
 
 	nowPlaylistsHandle(songs) {
-		const nowPlaylist = select(
-			playlistSidebar,
-			'.playlist-tab .next-play .song-list'
-		);
+		const nowPlaylist = select(playlistSidebar, '.playlist-tab .next-play .song-list');
 		const htmls = songs.map(
 			(item, index) => `<div class="song-item" data-songindex="${index}">
 							<img src="${item.thumbnail || item.imgSrc}" alt="${item.title || item.name}" />
@@ -741,8 +703,7 @@ const musicPlayer = {
 		const songs = selectAll(par, '.itemSong');
 		songs.forEach((item, index) => {
 			item.onclick = (e) => {
-				if (e.target.parentElement.className.includes('moreItem'))
-					return;
+				if (e.target.parentElement.className.includes('moreItem')) return;
 
 				if (index === this.currentIndex) return;
 
@@ -759,18 +720,15 @@ const musicPlayer = {
 	},
 
 	personalTabsHandle() {
-		const hideAll = (list) =>
-			list.forEach((item) => (item.style.display = 'none'));
-		const showAll = (list) =>
-			list.forEach((item) => (item.style.display = 'flex'));
+		const hideAll = (list) => list.forEach((item) => (item.style.display = 'none'));
+		const showAll = (list) => list.forEach((item) => (item.style.display = 'flex'));
 
 		const tabLink = $$('.nav-bar .link');
 		const tabItem = $$('.personal-section .main-page .item');
 		tabLink.forEach((link, id) =>
 			link.addEventListener('click', (e) => {
 				const last = $('.nav-bar .liactive');
-				if (last)
-					last.className = last.className.replace('liactive', '');
+				if (last) last.className = last.className.replace('liactive', '');
 				if (!id) {
 					showAll(tabItem);
 					e.currentTarget.className += ' liactive';
@@ -795,14 +753,12 @@ const musicPlayer = {
 					tabItem[index].style.display = 'flex';
 
 					const last = $('.nav-bar .liactive');
-					if (last)
-						last.className = last.className.replace('liactive', '');
+					if (last) last.className = last.className.replace('liactive', '');
 					tabLink[index + 1].className += ' liactive';
 				})
 		);
 
-		$('.personal-section .new-playlist').onclick = () =>
-			$('body .new-pl-modal').classList.toggle('active');
+		$('.personal-section .new-playlist').onclick = () => $('body .new-pl-modal').classList.toggle('active');
 	},
 	personalSongClickHandle() {
 		const _this = this;
@@ -846,10 +802,7 @@ const musicPlayer = {
 					const files = Array.from(e.target.files);
 					files.forEach((item) => {
 						const newURL = URL.createObjectURL(item);
-						const newName = item.name.replace(
-							`.mp${item.name.slice(-1)}`,
-							''
-						);
+						const newName = item.name.replace(`.mp${item.name.slice(-1)}`, '');
 						this.uploadSongs.push({
 							id: this.uploadSongs.length,
 							name: newName,
@@ -878,20 +831,10 @@ const musicPlayer = {
 		const tabLinkLth = tabLink.length - 1;
 		const personalNav = $('.personal-section .nav-bar');
 
-		const hideAll = (list) =>
-			list.forEach((item) => (item.style.display = 'none'));
-		const showAll = (list) =>
-			list.forEach((item) => (item.style.display = 'flex'));
+		const hideAll = (list) => list.forEach((item) => (item.style.display = 'none'));
+		const showAll = (list) => list.forEach((item) => (item.style.display = 'flex'));
 		const removeLastActive = () => {
-			personalNav
-				.querySelectorAll('.liactive')
-				.forEach(
-					(item) =>
-						(item.className = item.className.replace(
-							'liactive',
-							''
-						))
-				);
+			personalNav.querySelectorAll('.liactive').forEach((item) => (item.className = item.className.replace('liactive', '')));
 		};
 
 		hideAll(tabItem);
@@ -908,26 +851,20 @@ const musicPlayer = {
 						hideAll(personalSection.querySelectorAll('.item'));
 						removeLastActive();
 						personalSection.style.display = 'block';
-						personalSection.querySelector(
-							'#playlist'
-						).style.display = 'flex';
-						personalNav.querySelectorAll('.link')[2].className +=
-							' liactive';
+						personalSection.querySelector('#playlist').style.display = 'flex';
+						personalNav.querySelectorAll('.link')[2].className += ' liactive';
 						break;
 					case tabLinkLth - 1:
 						hideAll(personalSection.querySelectorAll('.item'));
 						removeLastActive();
-						personalNav.querySelectorAll('.link')[1].className +=
-							' liactive';
+						personalNav.querySelectorAll('.link')[1].className += ' liactive';
 						personalSection.style.display = 'block';
-						personalSection.querySelector('#songs').style.display =
-							'flex';
+						personalSection.querySelector('#songs').style.display = 'flex';
 						break;
 					case 0:
 						showAll(personalSection.querySelectorAll('.item'));
 						removeLastActive();
-						personalNav.querySelectorAll('.link')[0].className +=
-							' liactive';
+						personalNav.querySelectorAll('.link')[0].className += ' liactive';
 						personalSection.style.display = 'none';
 						tabItem[id].style.display = 'block';
 						break;
@@ -948,8 +885,7 @@ const musicPlayer = {
 
 	topIconHandle() {
 		const tabItem = $$('.main-content .category-item');
-		const hideAll = (list) =>
-			list.forEach((item) => (item.style.display = 'none'));
+		const hideAll = (list) => list.forEach((item) => (item.style.display = 'none'));
 		const checkStatus = (item) => {
 			if (item.className.includes('active')) {
 				item.classList.remove('active');
@@ -957,10 +893,7 @@ const musicPlayer = {
 			}
 			return false;
 		};
-		const disableAll = () =>
-			$$('.main-content .top-bar .part2 .icon').forEach((item) =>
-				item.classList.remove('active')
-			);
+		const disableAll = () => $$('.main-content .top-bar .part2 .icon').forEach((item) => item.classList.remove('active'));
 
 		const allTheme = [
 			['dark', '#0e0c0c'],
@@ -979,11 +912,7 @@ const musicPlayer = {
 				.querySelectorAll('.theme-item')
 				.forEach(
 					(item, index) => (
-						(item.onclick = () =>
-							(document.body.dataset.theme = item
-								.querySelector('span')
-								.innerText.trim()
-								.toLowerCase())),
+						(item.onclick = () => (document.body.dataset.theme = item.querySelector('span').innerText.trim().toLowerCase())),
 						(item.style.backgroundColor = allTheme[index][1])
 					)
 				);
@@ -995,9 +924,7 @@ const musicPlayer = {
 			disableAll();
 			settingBtn.classList.toggle('active');
 			const settingItems = $$('.main-content .top-bar .setting-item');
-			settingItems.forEach(
-				(item) => (item.onclick = (e) => e.stopPropagation())
-			);
+			settingItems.forEach((item) => (item.onclick = (e) => e.stopPropagation()));
 		};
 
 		$('.main-content .top-bar .personal-ico').onclick = () => {
@@ -1011,31 +938,18 @@ const musicPlayer = {
 			(item) =>
 				(item.onclick = (e) => {
 					e.stopPropagation();
-					if (item.className.includes('bi-heart-fill'))
-						item.className = item.className.replace(
-							'bi-heart-fill',
-							'bi-heart'
-						);
-					else
-						item.className = item.className.replace(
-							'bi-heart',
-							'bi-heart-fill'
-						);
+					if (item.className.includes('bi-heart-fill')) item.className = item.className.replace('bi-heart-fill', 'bi-heart');
+					else item.className = item.className.replace('bi-heart', 'bi-heart-fill');
 				})
 		);
 	},
 
 	loadCurrentSong() {
-		currentSongDuration.innerHTML =
-			this.currentSong?.length || this.currentSong?.duration || '99:99';
-		songTitle.innerHTML =
-			this.currentSong?.name || this.currentSong?.title || 'Unknown';
-		songArtist.innerHTML =
-			this.currentSong?.artist || this.currentSong?.artists || 'Unknown';
-		songImg.src =
-			this.currentSong?.imgSrc || this.currentSong?.thumbnail || '';
-		audio.src =
-			this.currentSong?.audioSrc || this.currentSong?.streamUrl || '';
+		currentSongDuration.innerHTML = this.currentSong?.length || this.currentSong?.duration || '99:99';
+		songTitle.innerHTML = this.currentSong?.name || this.currentSong?.title || 'Unknown';
+		songArtist.innerHTML = this.currentSong?.artist || this.currentSong?.artists || 'Unknown';
+		songImg.src = this.currentSong?.imgSrc || this.currentSong?.thumbnail || '';
+		audio.src = this.currentSong?.audioSrc || this.currentSong?.streamUrl || '';
 		playBtn.click();
 	},
 	playNextSong() {
@@ -1083,12 +997,8 @@ const musicPlayer = {
 		songImgAnimation.pause();
 
 		songProgress.oninput = () => {
-			audio.currentTime = parseFloat(
-				(songProgress.value * audio.duration) / 100
-			).toFixed(3);
-			songProgress.value = parseFloat(
-				(audio.currentTime / audio.duration) * 100
-			).toFixed(3);
+			audio.currentTime = parseFloat((songProgress.value * audio.duration) / 100).toFixed(3);
+			songProgress.value = parseFloat((audio.currentTime / audio.duration) * 100).toFixed(3);
 
 			if (audio.src) {
 				songImgAnimation.play();
@@ -1128,9 +1038,7 @@ const musicPlayer = {
 			(this.randArr[this.currentIndex] = 1)
 		);
 		repeatBtn.onclick = () => (
-			(this.isRepeat = !this.isRepeat),
-			this.setConfig('isRepeat', this.isRepeat),
-			repeatBtn.classList.toggle('fa-spin')
+			(this.isRepeat = !this.isRepeat), this.setConfig('isRepeat', this.isRepeat), repeatBtn.classList.toggle('fa-spin')
 		);
 
 		audio.onplay = () => {
@@ -1161,8 +1069,7 @@ const musicPlayer = {
 						e.stopPropagation();
 
 						const thisIndex = e.currentTarget.dataset.songindex;
-						if (thisIndex !== this.currentIndex)
-							this.currentIndex = thisIndex;
+						if (thisIndex !== this.currentIndex) this.currentIndex = thisIndex;
 						else return;
 
 						this.loadCurrentSong();
@@ -1181,26 +1088,19 @@ const musicPlayer = {
 			} else nextBtn.click();
 		};
 		audio.ontimeupdate = () => {
-			songProgress.value = parseFloat(
-				(audio.currentTime / audio.duration) * 100
-			).toFixed(3);
+			songProgress.value = parseFloat((audio.currentTime / audio.duration) * 100).toFixed(3);
 
 			let minute = Math.floor(audio.currentTime / 60);
 			let second = Math.floor(audio.currentTime - minute * 60);
 
-			currentSongTime.innerHTML = `${
-				minute < 10 ? '0' + minute : minute
-			}:${second < 10 ? '0' + second : second}`;
+			currentSongTime.innerHTML = `${minute < 10 ? '0' + minute : minute}:${second < 10 ? '0' + second : second}`;
 
 			minute = Math.floor(audio.duration / 60);
 			second = Math.floor(audio.duration - minute * 60).toFixed();
-			currentSongDuration.innerHTML = `${
-				minute < 10 ? '0' + minute : minute
-			}:${second < 10 ? '0' + second : second}`;
+			currentSongDuration.innerHTML = `${minute < 10 ? '0' + minute : minute}:${second < 10 ? '0' + second : second}`;
 		};
 
-		songVolume.oninput = () =>
-			(audio.volume = parseFloat(songVolume.value / 100).toFixed(3));
+		songVolume.oninput = () => (audio.volume = parseFloat(songVolume.value / 100).toFixed(3));
 	},
 
 	callApi() {
@@ -1219,9 +1119,7 @@ const musicPlayer = {
 			};
 			const searchBarEvent = () => {
 				const items = selectAll(searchSuggestList, '.suggest-item');
-				items.forEach(
-					(item) => (item.onclick = () => console.log(item))
-				);
+				items.forEach((item) => (item.onclick = () => console.log(item)));
 			};
 
 			searchBarRender();
@@ -1237,11 +1135,7 @@ const musicPlayer = {
 			this.NCTHome = data;
 		};
 		const top100Handle = (data) => {
-			if (
-				typeof data !== 'object' ||
-				data.status !== 'success' ||
-				!data.playlist
-			)
+			if (typeof data !== 'object' || data.status !== 'success' || !data.playlist)
 				data = {
 					playlist: {
 						songs: JSON.parse(localStorage.getItem('top100')),
@@ -1253,8 +1147,7 @@ const musicPlayer = {
 			this.renderTop100Section(data.playlist.songs);
 		};
 		const rankingHandle = (data) => {
-			if (!data.ranking.song.length)
-				data = { ranking: JSON.parse(localStorage.getItem('ranking')) };
+			if (!data.ranking.song.length) data = { ranking: JSON.parse(localStorage.getItem('ranking')) };
 
 			localStorage.setItem('ranking', JSON.stringify(data.ranking));
 			this.convertSongData(data.ranking.song, this.NCTRanking);
@@ -1296,14 +1189,7 @@ const musicPlayer = {
 		])
 			.then((data) => {
 				console.log(data);
-				const [
-					home,
-					topics,
-					trendingArtist,
-					topKeyword,
-					top100,
-					ranking,
-				] = data;
+				const [home, topics, trendingArtist, topKeyword, top100, ranking] = data;
 				homeHandle(home);
 				topicsHandle(topics);
 				trendingArtistHandle(trendingArtist);
@@ -1335,3 +1221,7 @@ $('.main-container').onclick = () => {
 	settingBtn.classList.remove('active');
 	themeBtn.classList.remove('active');
 };
+
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('/workers/ver1.js');
+}
